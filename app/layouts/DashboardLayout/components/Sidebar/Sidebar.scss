@@ -1,0 +1,82 @@
+@import '~styles/helpers/_module';
+
+$sidebar-width: 60px;
+$sidebar-entry-height: 60px;
+$sidebar-icon-size: 1.3em;
+
+$sidebar-background-color: #282828;
+$sidebar-foreground-color: #FAFAFA;
+
+$sidebar-entry-hover-background-color:  darken($sidebar-background-color, 2%);
+$sidebar-entry-hover-foreground-color:  #FAFAFA;
+
+$sidebar-entry-active-background-color: #00DF98;
+$sidebar-entry-active-foreground-color: #383838;
+
+.narrow-sidebar {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: calc(#{$sidebar-width} * -1);
+  bottom: 0px;
+  z-index: 30;
+
+  width: $sidebar-width;
+  height: calc(100% - #{$sidebar-entry-height});
+
+  background-color: $sidebar-background-color;
+
+  transition: left 200ms;
+
+  &.is-active {
+    left: 0px;
+
+    box-shadow: 4px 0px 14px 0px rgba(36,36,36,0.6);
+  }
+
+  .nav-trigger {
+    display: flex;
+    justify-content: center;
+
+    height: $sidebar-entry-height;
+
+    background-color: $sidebar-background-color;
+
+    .btn {
+      @include icon {
+        font-size: $sidebar-icon-size;
+        color: $sidebar-entry-active-background-color;
+      }
+    }
+  }
+
+  .nav-entries {
+    .nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      height: $sidebar-entry-height;
+
+      transition: background-color 300ms;
+
+      @include icon {
+        font-size: $sidebar-icon-size;
+        color: #A5A6A7;
+      }
+
+      &:hover {
+        background-color: $sidebar-entry-hover-background-color;
+      }
+
+      &.is-active {
+        background-color: $sidebar-entry-active-background-color;
+
+        @include icon {
+          color: $sidebar-entry-active-foreground-color;
+        }
+      }
+    }
+  }
+}
