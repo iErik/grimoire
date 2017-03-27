@@ -1,8 +1,10 @@
-.DS_Store
 *.DS_Store
-.bundle
-.sass-cache
-.cache
 *.cache
 *.log
+*.db
+
+.DS_Store
+.cache
+.bundle
+.sass-cache
 node_modules
