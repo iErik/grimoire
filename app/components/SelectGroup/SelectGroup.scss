@@ -1,0 +1,110 @@
+//  Variables
+//  ---------
+
+$select-value-font-size: 1em;
+$select-option-font-size: 0.9375em;
+
+$select-value-height: 60px;
+$select-option-height: 45px;
+$select-options-max-height: 135px;
+
+$select-border-radius: 4px;
+
+$select-foreground-color: #FAFAFA;
+$select-background-color: #2B2B2B;
+
+//  Object Structure
+//  ----------------
+
+%select-group {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &.is-active {
+    box-shadow: 0px 11px 13px -7px rgba(36, 36, 36, 0.6);
+
+    .select-options {
+      min-height: 0px;
+      max-height: $select-options-max-height;
+      overflow: scroll;
+
+      transition: min-height 300ms ease-out, max-height 300ms ease-out;
+    }
+  }
+
+  .select-value {
+    display: flex;
+    justify-content: center;
+
+    height: $select-value-height;
+
+    background-color: $select-background-color;
+
+    .value-label {
+      display: flex;
+      align-items: center;
+
+      user-select: none;
+      cursor: default;
+
+      font-size:   $select-value-font-size;
+      font-weight: 100;
+
+      color: $select-foreground-color;
+    }
+  }
+
+  .select-options {
+    display: flex;
+    flex-direction: column;
+
+    min-height: 0px;
+    max-height: 0px;
+    overflow: hidden;
+
+    border-bottom-left-radius: $select-border-radius;
+    border-bottom-right-radius: $select-border-radius;
+
+    transition: min-height 300ms ease-in, max-height 300ms ease-in;
+
+    .entries {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    .select-option {
+      display: flex;
+      padding: 0px 0px 0px 40px;
+
+      height: $select-option-height;
+
+      background-color: $select-background-color;
+
+      &:hover {
+        background-color: darken($select-background-color, 1%);
+        cursor: pointer;
+      }
+
+      .option-label {
+        display: flex;
+        align-items: center;
+
+        user-select: none;
+
+        font-size:   $select-option-font-size;
+        font-weight: 100;
+
+        color: $select-foreground-color;
+      }
+    }
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.select {
+  @extend %select-group;
+}
