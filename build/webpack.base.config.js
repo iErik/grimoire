@@ -20,7 +20,7 @@ export default validate(
   }
 
 , resolve:
-  { extensions: ['', '.js', '.jsx', '.json', '.scss']
+  { extensions: ['', '.js', '.jsx', '.json', '.scss', '.css']
   , alias:
     { 'app': path.resolve(__dirname, '../app')
     , 'containers': path.resolve(__dirname, '../app/containers')
@@ -53,7 +53,7 @@ export default validate(
       , exclude: /node_modules/
       }
       ,
-      { test: /\.scss$/
+      { test: /\.(scss|css)$/
       , loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       ,
       }
