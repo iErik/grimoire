@@ -1,0 +1,69 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$viewer-background-color: #F6F6F6;
+$viewer-foreground-color: #515151;
+
+$viewer-padding: 25px 60px 0px 60px;
+
+$note-title-font-size: 1.625em;
+$note-title-font-weight: normal;
+
+$note-meta-date-font-size: 0.75em;
+$note-meta-date-font-weight: 300;
+
+//  Object Structure
+//  ---------------
+
+%note-viewer {
+  display: flex;
+  flex-direction: column;
+
+  background-color: $viewer-background-color;
+
+  width:  100%;
+  height: 100%;
+
+  padding: $viewer-padding;
+
+  .note-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .note-title {
+
+      .title {
+        font-family: $font-serif;
+        font-size:   $note-title-font-size;
+        font-weight: $note-title-font-weight;
+        color:       $viewer-foreground-color;
+
+        margin: 0;
+      }
+    }
+
+    .note-meta {
+
+      .meta-date {
+        font-size:   $note-meta-date-font-size;
+        font-weight: $note-meta-date-font-weight;
+        color:       $viewer-foreground-color;
+      }
+    }
+
+  }
+
+  .note-contents {
+
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.note-viewer {
+  @extend %note-viewer;
+}

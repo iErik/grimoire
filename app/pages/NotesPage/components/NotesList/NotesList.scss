@@ -1,0 +1,109 @@
+//  Variables
+//  ---------
+
+$entries-background-color: #383838;
+$entries-foreground-color: #FAFAFA;
+
+$entry-border-color: darken($entries-background-color, 3%);
+
+$entry-contents-font-size: 0.75em;
+$entry-contents-font-weight: 300;
+
+$entry-title-font-size: 1em;
+$entry-title-font-weight: 300;
+
+$entry-meta-date-font-size: 0.625em;
+$entry-meta-date-font-weight: 100;
+
+$entry-meta-empty-font-size: 0.75em;
+$entry-meta-empty-font-weight: 100;
+
+$entry-height: 130px;
+
+//  Object Strucure
+//  ---------------
+
+%notes-list {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  .notes-list-entries {
+    flex-grow: 1;
+    z-index: 10;
+    overflow: scroll;
+
+    background-color: $entries-background-color;
+
+    .note-list-entry {
+      display: flex;
+      flex-direction: column;
+
+      height: $entry-height;
+
+      padding: 20px 40px 20px 40px;
+      margin: 0;
+
+      //border-bottom: 1px solid $entry-border-color;
+
+      cursor: pointer;
+
+      background-color: transparent;
+
+      transition: background-color 500ms ease-in;
+
+      &:hover, &.is-selected {
+        background-color: darken($entries-background-color, 2%);
+
+        transition: background-color 300ms ease-out;
+      }
+
+      .entry-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .title {
+          font-size:   $entry-title-font-size;
+          font-weight: $entry-title-font-weight;
+          color:       $entries-foreground-color;
+
+          margin: 0;
+        }
+
+        .meta-date {
+          font-size:   $entry-meta-date-font-size;
+          font-weight: $entry-meta-date-font-weight;
+          color:       $entries-foreground-color;
+
+          margin: 0;
+        }
+      }
+
+      .entry-contents {
+        display: flex;
+
+        .contents {
+          font-size:   $entry-contents-font-size;
+          font-weight: $entry-contents-font-weight;
+          color:       $entries-foreground-color;
+        }
+
+        .meta-empty {
+          font-size:   $entry-meta-empty-font-size;
+          font-weight: $entry-meta-empty-font-weight;
+          font-style:  italic;
+          color:       $entries-foreground-color;
+        }
+      }
+    }
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.notes-list {
+  @extend %notes-list;
+}

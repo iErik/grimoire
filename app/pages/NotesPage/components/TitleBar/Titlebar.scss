@@ -1,0 +1,145 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$title-bar-height: 60px;
+$title-bar-icons-size: 1.3em;
+$title-bar-title-font-size: 1.3em;
+
+$title-bar-background-color: #282828;
+$title-bar-foreground-color: #FAFAFA;
+$title-bar-borders-color: #181818;
+$title-bar-shadow-color: rgba(36, 36, 36, 0.6);
+
+$control-container-width: 60px;
+
+//  Object Structure
+//  ----------------
+
+%notes-title-bar {
+  display: flex;
+  position: relative;
+  z-index: 15;
+
+  height: $title-bar-height;
+  width: 100%;
+
+  background-color: $title-bar-background-color;
+  box-shadow: 0px 4px 13px 0px $title-bar-shadow-color;
+
+  //  Sub-Sections
+  //  ------------
+
+  .notebook-actions {
+    display: flex;
+    position: relative;
+
+    background-color: lighten($title-bar-background-color, 1%);
+
+    border-style: solid;
+    border-color: $title-bar-borders-color;
+    border-width: 0 1px 0 1px;
+
+    .notebooks-selector {
+      position: absolute;
+      z-index: 30;
+      left: 0px;
+      top: 0px;
+
+      width: 100%;
+      flex-grow: 1;
+    }
+
+    // Replace with search-bar component
+
+    .control-container {
+      position: absolute;
+      z-index: 35;
+      left: 0px;
+      top: 0px;
+
+      height: 100%;
+    }
+  }
+
+  .note-actions {
+    display: flex;
+
+    padding: 0 20px !important;
+  }
+
+  //  Containers
+  //  ----------
+
+  .control-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: $control-container-width;
+    cursor: pointer;
+
+    .btn {
+      margin: 5px 0px;
+
+      @include icon {
+        font-size: $title-bar-icons-size;
+        color: $title-bar-foreground-color;
+      }
+    }
+  }
+
+  .actions-container {
+    display: flex;
+    align-items: center;
+
+    .action-container {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+
+      &:last-child { margin-right: 0px; }
+
+      .btn {
+        display: flex;
+        align-items: center;
+
+        @include icon {
+          font-size: $title-bar-icons-size;
+          color: $title-bar-foreground-color;
+        }
+      }
+    }
+  }
+
+  .title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+
+    .title {
+      font-size:   $title-bar-title-font-size;
+      font-weight: 100;
+      color:       $title-bar-foreground-color;
+
+      user-select: none;
+      cursor: default;
+      margin: 0;
+    }
+  }
+
+  .wrapper-window-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.notes-title-bar {
+  @extend %notes-title-bar;
+}
