@@ -1,0 +1,72 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+
+$editor-font-family: $font-monospace;
+$editor-font-size: 0.9em;
+$editor-font-weight: normal;
+$editor-line-height: 1.5;
+$editor-font-color: #515151;
+
+$editor-cursor-width: 3px;
+$editor-cursor-height: 24px;
+$editor-cursor-color: #00DF98;
+
+$editor-vertical-padding: 10px;
+$editor-top-padding: 20px;
+
+//  Object Structure
+
+%editor {
+  display: flex;
+
+  height: 100%;
+
+  .ace_editor {
+    font-family: $editor-font-family;
+    font-size:   $editor-font-size;
+    font-weight: $editor-font-weight;
+    line-height: $editor-line-height;
+
+    height: 100%;
+
+    .ace_content {
+      padding-top: $editor-top-padding;
+    }
+
+    .ace_scroller {
+      padding: 0 $editor-vertical-padding !important;
+    }
+
+    .ace_text-layer {
+
+      .ace_strong { font-weight: bold; }
+      .ace_emphasis { font-style: italic; }
+
+      .ace-heading {
+        &.ace_1 { }
+        &.ace_2 { }
+        &.ace_3 { }
+        &.ace_4 { }
+        &.ace_5 { }
+        &.ace_6 { }
+      }
+
+    }
+
+    .ace_cursor {
+      border-left-width: $editor-cursor-width;
+      border-left-color: $editor-cursor-color;
+      border-left-style: solid;
+
+      height: $editor-cursor-height;
+    }
+  }
+
+}
+
+//  Exported Class
+
+.editor {
+  @extend %editor;
+}

@@ -1,0 +1,78 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$title-bar-height: 60px;
+$title-bar-icons-size: 0.85em;
+$title-bar-title-font-size: 1.3em;
+
+$title-bar-actions-max-width: 640px;
+
+$title-bar-background-color: #282828;
+$title-bar-foreground-color: #D3D3D3;
+$title-bar-borders-color: #181818;
+$title-bar-shadow-color: rgba(36, 36, 36, 0.6);
+
+$control-container-width: 60px;
+
+//  Object Structure
+//  ----------------
+
+%editor-title-bar {
+  display: flex;
+  position: relative;
+  z-index: 30;
+
+  height: $title-bar-height;
+  width: 100%;
+
+  background-color: $title-bar-background-color;
+  box-shadow: 0px 4px 13px 0px $title-bar-shadow-color;
+
+  .sidebar-trigger-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 60px;
+  }
+
+  .actions-container {
+    display: flex;
+    justify-content: center;
+    flex-grow: 30;
+
+    .inner {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-grow: 1;
+
+      height: 100%;
+      max-width: $title-bar-actions-max-width;
+
+      .action-container {
+
+        @include icon {
+          font-size: $title-bar-icons-size;
+          color:     $title-bar-foreground-color;
+        }
+      }
+    }
+  }
+
+  .window-controls-container {
+    display: flex;
+    align-items: center;
+
+    padding: 0px 20px;
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.editor-title-bar {
+  @extend %editor-title-bar;
+}
