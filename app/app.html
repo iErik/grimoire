@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script>
+    (function() {
+      if (process.env.NODE_ENV !== 'development') {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = './assets/stylesheets/styles.css'
+
+        document.getElementsByTagName('head')[0].appendChild(link);
+      }
+    }());
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script>
+    {
+      const script = document.createElement('script');
+      const port = process.env.PORT || 8080;
+      script.src = (process.env.NODE_ENV === 'development')
+        ? 'http://localhost:' + port + '/assets/app.js'
+        : './assets/scripts/app.js';
+
+      document.body.appendChild(script);
+    }
+  </script>
+</body>
+</html>
