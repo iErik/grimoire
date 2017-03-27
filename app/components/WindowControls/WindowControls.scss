@@ -1,0 +1,37 @@
+$btn-window-control-size: 13px;
+$btn-window-control-background-color: #FAFAFA;
+
+$btn-maximize-background-color: #00C87B;
+$btn-minimize-background-color: #E9DF69;
+$btn-close-background-color: #FF004C;
+
+%btn-window-control {
+  width: $btn-window-control-size;
+  height: $btn-window-control-size;
+
+  cursor: default;
+
+  background-color: $btn-window-control-background-color;
+
+  border-width: 0px;
+  border-radius: 100%;
+
+  margin-right: 9px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+.window-controls {
+  display: flex;
+  z-index: 20;
+
+  .btn {
+    @extend %btn-window-control;
+
+    &.btn-maximize { background-color: $btn-maximize-background-color; }
+    &.btn-minimize { background-color: $btn-minimize-background-color; }
+    &.btn-close { background-color: $btn-close-background-color; }
+  }
+}
