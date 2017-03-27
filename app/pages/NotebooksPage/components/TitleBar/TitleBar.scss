@@ -1,0 +1,71 @@
+//  Variables
+//  ---------
+
+$titlebar-height: 60px;
+$titlebar-icons-size: 1.3em;
+$titlebar-title-font-size: 1.3em;
+$titlebar-title-font-weight: 100;
+
+$titlebar-background-color: #282828;
+$titlebar-foreground-color: #FAFAFA;
+$titlebar-shadow-color: rgba(36, 36, 36, 0.6);
+
+$control-container-width: 60px;
+
+//  Object Structure
+//  ----------------
+
+%notebooks-titlebar {
+  display: flex;
+  position: relative;
+  z-index: 15;
+
+  height: $titlebar-height;
+  width: 100%;
+
+  background-color: $titlebar-background-color;
+  box-shadow: 0px 4px 13px 0px $titlebar-shadow-color;
+
+  .control-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width:  $control-container-width;
+    height: 100%;
+
+    cursor: pointer;
+  }
+
+  .title-container {
+    display: flex;
+    flex-grow: 40;
+    align-items: center;
+    justify-content: center;
+
+    .title {
+      font-size:   $titlebar-title-font-size;
+      font-weight: $titlebar-title-font-weight;
+      color:       $titlebar-foreground-color;
+
+      user-select: none;
+      cursor: default;
+      margin: 0;
+    }
+  }
+
+  .wrapper-window-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.notebooks-titlebar {
+  @extend %notebooks-titlebar;
+}
