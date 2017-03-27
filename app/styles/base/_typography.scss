@@ -1,0 +1,88 @@
+.typography {
+  font-family: $font-serif;
+
+  //  Headings and Paragraphs  //
+
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: $heading-font-weight;
+    font-style:  $heading-font-style;
+    line-height: $base-line-height;
+
+    text-rendering: optimizeLegibility;
+
+    margin: .5em 0 .2em;
+
+    &:first-child { margin: 0 0 .5em; }
+  }
+
+  h1 { font-size: type-scale(xx-large); }
+  h2 { font-size: type-scale(x-large); }
+  h3 { font-size: type-scale(large); }
+  h4 { font-size: type-scale(medium); }
+  h5 { font-size: type-scale(small); }
+  h6 { font-size: type-scale(x-small); }
+
+  p {
+    font-weight: $paragraph-font-weight;
+    font-size:   $paragraph-font-size;
+
+    margin-bottom: 1.3em;
+  }
+
+  //  Links  //
+
+  a { }
+
+  //  Quotations  //
+
+  blockquote { }
+
+  q { }
+
+  //  Semantics  //
+
+  strong { }
+  em { }
+  hr { }
+  br { }
+
+  //  Media Elements  //
+
+  p img { width: 100%; }
+  img { }
+
+  //  List Elements  //
+
+  ol, ul { padding-left: 2.5rem; }
+
+  ul li { list-style-type: disc; }
+
+  ol li { list-style-type: decimal; }
+
+  dl, ol, ul { margin: 0 0 1.7em; }
+
+  //  Nested Lists  //
+
+  ol ol, ol ul, ul ol, ul ul {
+    margin: 0 0 .4em;
+    padding-left: 2em;
+    font-size: .9em;
+
+    li { list-style-type: circle; }
+  }
+
+  //  Code Elements  //
+
+  code, kbd, pre, samp {
+    font-family: $font-monospace, monospace;
+    font-size: 1em;
+  }
+
+  code, pre, tt { }
+
+  code, tt { }
+
+  pre { }
+
+  pre code, pre tt { }
+}

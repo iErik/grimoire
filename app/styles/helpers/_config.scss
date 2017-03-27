@@ -1,0 +1,28 @@
+//  Base Typography
+//  ----------
+
+$type-scale: (
+  xx-large: 1.602em,
+  x-large:  1.424em,
+  large:    1.266em,
+  medium:   1.125em,
+  base:     1em,
+  small:    .79em,
+  x-small:  .702em
+);
+
+$font-sans:      'Lato', sans-serif;
+$font-serif:     'Libre Baskerville', serif;
+$font-monospace: 'Inconsolata', monospace;
+
+$base-font-family: $font-sans;
+$base-font-weight: normal;
+$base-font-color:  #515151;
+$base-font-size:   16px;
+$base-line-height: 1.5;
+
+$heading-font-weight: normal;
+$heading-font-style:  normal;
+
+$paragraph-font-weight: normal;
+$paragraph-font-size:   0.9em;

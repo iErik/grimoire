@@ -1,0 +1,23 @@
+.root-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  @include flex-grid-row(collapse, none);
+
+  &.inner { @include flex-grid-column; }
+  &.stack { flex-flow: column nowrap !important; }
+  &.full { height: 100vh; width: 100vw; }
+  &.collapse-self { padding-right: 0; padding-left: 0; }
+
+  > .container { @include grid-col-collapse; }
+
+  &.collapse {
+    > .column, .columns { @include grid-col-collapse; }
+    > .column > .row, .columns > .row, .container > .row, > .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}

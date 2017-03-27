@@ -1,0 +1,57 @@
+@function colorscheme($theme-name: nth(map-keys($themes), 1)) {
+  @return map-get($themes, $theme-name);
+}
+
+@function primary-color($key: 'base') {
+  @if map-has-key(map-get($themes, 'primary'), $key) {
+    @return map-get(map-get($theme, 'primary'), $key);
+  } @else {
+    @return map-get(map-get($themes, 'primary'), 'base');
+  }
+}
+
+@function secondary-color($key: 'base') {
+  @if map-has-key(map-get($themes, 'secondary'), $key) {
+    @return map-get(map-get($theme, 'secondary'), $key);
+  } @else {
+    @return map-get(map-get($themes, 'secondary'), 'base');
+  }
+}
+
+@function accent-color($key: 'base') {
+  @if map-has-key(map-get($themes, 'accent'), $key) {
+    @return map-get(map-get($theme, 'accent'), $key);
+  } @else {
+    @return map-get(map-get($themes, 'accent'), 'base');
+  }
+}
+
+@function background-color($key: 'base') {
+  @if map-has-key(map-get($themes, 'background'), $key) {
+    @return map-get(map-get($theme, 'background'), $key);
+  } @else {
+    @return map-get(map-get($themes, 'background'), 'base');
+  }
+}
+
+@function foreground-color($key: 'base') {
+  @if map-has-key(map-get($themes, 'foreground'), $key) {
+    @return map-get(map-get($theme, 'foreground'), $key);
+  } @else {
+    @return map-get(map-get($themes, 'foreground'), 'base');
+  }
+}
+
+@function type-scale($scale) {
+  @return map-get($type-scale, $scale);
+}
+
+@mixin icon {
+  .fa,
+  .icn,
+  [data-icon],
+  [class^="icn-"],
+  [class*=" icn-"] {
+    @content;
+  }
+}
