@@ -2,6 +2,8 @@ import React from 'react';
 import classNames from 'classnames'
 import moment from 'moment';
 
+import { truncateChars } from 'utils/stringTools';
+
 export default class NotesList extends React.Component {
   creationDate(note) {
     return moment(note.createdAt).calendar(null, {
@@ -21,7 +23,7 @@ export default class NotesList extends React.Component {
 
     console.log("extractedText: ", extractedText);
 
-    return extractedText;
+    return truncateChars(extractedText, 215);
   }
 
   renderNotes() {

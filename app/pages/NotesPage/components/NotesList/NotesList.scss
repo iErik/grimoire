@@ -7,7 +7,7 @@ $entries-foreground-color: #FAFAFA;
 $entry-border-color: darken($entries-background-color, 3%);
 
 $entry-contents-font-size: 0.75em;
-$entry-contents-font-weight: 300;
+$entry-contents-font-weight: 100;
 
 $entry-title-font-size: 1em;
 $entry-title-font-weight: 300;
@@ -42,10 +42,8 @@ $entry-height: 130px;
 
       height: $entry-height;
 
-      padding: 20px 40px 20px 40px;
+      padding: 20px 40px 15px 40px;
       margin: 0;
-
-      //border-bottom: 1px solid $entry-border-color;
 
       cursor: pointer;
 
@@ -88,6 +86,8 @@ $entry-height: 130px;
           font-size:   $entry-contents-font-size;
           font-weight: $entry-contents-font-weight;
           color:       $entries-foreground-color;
+
+          margin: 5px 0 0;
         }
 
         .meta-empty {
