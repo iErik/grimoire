@@ -40,6 +40,7 @@ export default validate(
 
     , 'styles': path.resolve(__dirname, '../app/styles')
     , 'config': path.resolve(__dirname, '../app/config')
+    , 'utils': path.resolve(__dirname, '../app/utils')
     }
   }
 , externals: Object.keys(externals || {})
