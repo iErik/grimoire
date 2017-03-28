@@ -1,0 +1,96 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+
+$sidebar-width: 300px;
+$sidebar-icon-size: 1.1em;
+$sidebar-document-entry-font-size: 1em;
+
+$sidebar-background-color: #383838;
+$sidebar-foreground-color: #FAFAFA;
+
+$sidebar-document-action-height: 60px;
+
+//  Object Structure
+
+%editor-sidebar {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  left: calc(#{$sidebar-width} * -1);
+  bottom: 0px;
+  z-index: 25;
+
+  width: $sidebar-width;
+  height: calc(100% - 60px);
+
+  background-color: $sidebar-background-color;
+
+  transition: left 400ms;
+
+  &.is-active {
+    left: 0px;
+    box-shadow: 5px 3px 14px -4px rgba(40,40,40,0.85);
+  }
+
+  .document-actions {
+    display: flex;
+
+    height: $sidebar-document-action-height;
+
+    .document-action {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+
+      background-color: transparent;
+
+      transition: background-color 0.3s ease;
+
+      .btn {
+        width: 100%;
+      }
+
+      @include icon {
+        color: $sidebar-foreground-color;
+        font-size: $sidebar-icon-size;
+      }
+
+      &:hover {
+        background-color: darken($sidebar-background-color, 3%);
+      }
+    }
+  }
+
+  .document-list-entries {
+    padding: 5px 0 0;
+
+    .document-list-entry {
+      display: flex;
+
+      color: $sidebar-foreground-color;
+
+      padding: 10px 23px 0 23px;
+
+      .title {
+        font-family: $font-monospace;
+        font-size:   $sidebar-document-entry-font-size;
+        font-weight: 100;
+
+        cursor: pointer;
+        margin: 0;
+
+        &.is-active {
+          font-weight: 900;
+        }
+      }
+    }
+  }
+}
+
+//  Exported Class
+
+.editor-sidebar {
+  @extend %editor-sidebar;
+}

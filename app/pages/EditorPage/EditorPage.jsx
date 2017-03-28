@@ -12,7 +12,7 @@ import toMarkdown from 'to-markdown';
 import { without } from 'underscore';
 
 import TitleBar from './components/TitleBar';
-import Sidebar from 'layouts/EditorLayout/components/Sidebar';
+import Sidebar from './components/Sidebar';
 import Editor from './components/Editor';
 
 export default ui({
