@@ -1,10 +1,10 @@
 import path from 'path';
-import validate from 'webpack-validator';
 import autoprefixer from 'autoprefixer';
+import jsonImporter from 'node-sass-json-importer';
 
-import { assetsPath } from './utils';
-import config from '../config';
+import { assetsPath, validateConf as validate } from './utils';
 import { dependencies as externals } from '../app/package.json';
+import config from '../config';
 
 var projectRoot = path.resolve(__dirname, '../');
 
@@ -81,4 +81,5 @@ export default validate(
     ]
   }
 , postcss: [ autoprefixer({ browsers: ['electron 1.4'] }) ]
+, sassLoader: { importer: jsonImporter }
 });
