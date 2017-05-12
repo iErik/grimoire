@@ -15,7 +15,7 @@
 
   &.collapse {
     > .column, .columns { @include grid-col-collapse; }
-    > .column > .row, .columns > .row, .container > .row, > .row {
+    > .column > .row, .columns > .row, .container > .row, > .row, > .container {
       margin-left: 0;
       margin-right: 0;
     }
