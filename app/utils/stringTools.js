@@ -35,3 +35,7 @@ export function truncateWords(input, words) {
     return input;
   }
 }
+
+export function capitalize(input) {
+  return input.charAt(0).toUpperCase() + input.slice(1);
+}
