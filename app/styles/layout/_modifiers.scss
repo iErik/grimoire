@@ -9,3 +9,15 @@
 .full-screen-height {
   height: 100vh;
 }
+
+.background-base {
+  @include themify { background-color: background-color(); }
+}
+
+.background-light {
+  @include themify { background-color: background-color('light'); }
+}
+
+.background-dark {
+  @include themify { background-color: background-color('dark'); }
+}

@@ -1,44 +1,55 @@
-@function colorscheme($theme-name: nth(map-keys($themes), 1)) {
-  @return map-get($themes, $theme-name);
+$theme: null;
+
+@mixin themify($themes: $applicationThemes) {
+  @each $theme-name, $palette in $themes {
+    &.theme-#{$theme-name},
+     .theme-#{$theme-name} & {
+       $theme: $palette !global;
+
+       @content;
+
+       $theme: null !global;
+     }
+  }
 }
 
 @function primary-color($key: 'base') {
-  @if map-has-key(map-get($themes, 'primary'), $key) {
+  @if map-has-key(map-get($theme, 'primary'), $key) {
     @return map-get(map-get($theme, 'primary'), $key);
   } @else {
-    @return map-get(map-get($themes, 'primary'), 'base');
+    @return map-get(map-get($theme, 'primary'), 'base');
   }
 }
 
 @function secondary-color($key: 'base') {
-  @if map-has-key(map-get($themes, 'secondary'), $key) {
+  @if map-has-key(map-get($theme, 'secondary'), $key) {
     @return map-get(map-get($theme, 'secondary'), $key);
   } @else {
-    @return map-get(map-get($themes, 'secondary'), 'base');
+    @return map-get(map-get($theme, 'secondary'), 'base');
   }
 }
 
 @function accent-color($key: 'base') {
-  @if map-has-key(map-get($themes, 'accent'), $key) {
+  @if map-has-key(map-get($theme, 'accent'), $key) {
     @return map-get(map-get($theme, 'accent'), $key);
   } @else {
-    @return map-get(map-get($themes, 'accent'), 'base');
+    @return map-get(map-get($theme, 'accent'), 'base');
   }
 }
 
 @function background-color($key: 'base') {
-  @if map-has-key(map-get($themes, 'background'), $key) {
+  @if map-has-key(map-get($theme, 'background'), $key) {
     @return map-get(map-get($theme, 'background'), $key);
   } @else {
-    @return map-get(map-get($themes, 'background'), 'base');
+    @return map-get(map-get($theme, 'background'), 'base');
   }
 }
 
 @function foreground-color($key: 'base') {
-  @if map-has-key(map-get($themes, 'foreground'), $key) {
+  @if map-has-key(map-get($theme, 'foreground'), $key) {
     @return map-get(map-get($theme, 'foreground'), $key);
   } @else {
-    @return map-get(map-get($themes, 'foreground'), 'base');
+    @return map-get(map-get($theme, 'foreground'), 'base');
   }
 }
 
