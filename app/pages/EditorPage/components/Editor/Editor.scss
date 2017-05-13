@@ -1,21 +1,21 @@
 @import '~styles/helpers/_module';
 
 //  Variables
+//  ---------
 
 $editor-font-family: $font-monospace;
 $editor-font-size: 0.9em;
 $editor-font-weight: normal;
 $editor-line-height: 1.5;
-$editor-font-color: #515151;
 
 $editor-cursor-width: 3px;
 $editor-cursor-height: 24px;
-$editor-cursor-color: #00DF98;
 
 $editor-vertical-padding: 10px;
 $editor-top-padding: 20px;
 
 //  Object Structure
+//  ----------------
 
 %editor {
   display: flex;
@@ -56,7 +56,7 @@ $editor-top-padding: 20px;
 
     .ace_cursor {
       border-left-width: $editor-cursor-width;
-      border-left-color: $editor-cursor-color;
+      @include themify { border-left-color: secondary-color(); }
       border-left-style: solid;
 
       height: $editor-cursor-height;
@@ -66,6 +66,7 @@ $editor-top-padding: 20px;
 }
 
 //  Exported Class
+//  --------------
 
 .editor {
   @extend %editor;
