@@ -1,4 +1,18 @@
 {
   "runInitialSetup": true,
-  "theme": "dark"
+  "appTheme": "aurora",
+
+  "editorFontSize": 14,
+  "editorTheme": {
+    "light": {
+      "name": "kuroir",
+      "label": "Kuroir",
+      "path": "kuroir"
+    },
+    "dark": {
+      "name": "tomorrow-night_eighties",
+      "label": "Tomorrow Night 80s",
+      "path": "tomorrow_night_eighties"
+    }
+  }
 }
