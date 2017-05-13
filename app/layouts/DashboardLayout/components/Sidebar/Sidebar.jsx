@@ -15,13 +15,19 @@ export default class Sidebar extends React.Component {
           <li className="nav-entry">
             <IndexLink className="nav-link" activeClassName="is-active"
               to="/dashboard">
-              <i className="fa fa-file-text-o"></i>
+              <i className="icn-newspaper"></i>
             </IndexLink>
           </li>
           <li className="nav-entry">
             <Link className="nav-link" activeClassName="is-active"
               to="/dashboard/notebooks">
-              <i className="fa fa-book"></i>
+              <i className="icn-exclamation"></i>
+            </Link>
+          </li>
+          <li className="nav-entry">
+            <Link className="nav-link" activeClassName="is-active"
+              to="/dashboard/settings">
+              <i className="icn-gear"></i>
             </Link>
           </li>
         </ul>

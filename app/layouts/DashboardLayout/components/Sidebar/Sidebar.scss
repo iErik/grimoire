@@ -1,17 +1,14 @@
 @import '~styles/helpers/_module';
 
+//  Variables
+//  ---------
+
 $sidebar-width: 60px;
 $sidebar-entry-height: 60px;
 $sidebar-icon-size: 1.3em;
 
-$sidebar-background-color: #282828;
-$sidebar-foreground-color: #FAFAFA;
-
-$sidebar-entry-hover-background-color:  darken($sidebar-background-color, 2%);
-$sidebar-entry-hover-foreground-color:  #FAFAFA;
-
-$sidebar-entry-active-background-color: #00DF98;
-$sidebar-entry-active-foreground-color: #383838;
+//  Object Structure
+//  ----------------
 
 .narrow-sidebar {
   display: flex;
@@ -25,7 +22,7 @@ $sidebar-entry-active-foreground-color: #383838;
   width: $sidebar-width;
   height: calc(100% - #{$sidebar-entry-height});
 
-  background-color: $sidebar-background-color;
+  @include themify { background-color: primary-color(); }
 
   transition: left 200ms;
 
@@ -41,13 +38,11 @@ $sidebar-entry-active-foreground-color: #383838;
 
     height: $sidebar-entry-height;
 
-    background-color: $sidebar-background-color;
+    @include themify { background-color: primary-color(); }
 
-    .btn {
-      @include icon {
-        font-size: $sidebar-icon-size;
-        color: $sidebar-entry-active-background-color;
-      }
+    @include icon {
+      font-size: $sidebar-icon-size;
+      @include themify { color: secondary-color(); }
     }
   }
 
@@ -63,18 +58,18 @@ $sidebar-entry-active-foreground-color: #383838;
 
       @include icon {
         font-size: $sidebar-icon-size;
-        color: #A5A6A7;
+        @include themify { color: rgba(foreground-color('primary'), 0.7); }
       }
 
       &:hover {
-        background-color: $sidebar-entry-hover-background-color;
+        @include themify { background-color: darken(primary-color(), 2%); }
       }
 
       &.is-active {
-        background-color: $sidebar-entry-active-background-color;
+        @include themify { background-color: secondary-color(); }
 
         @include icon {
-          color: $sidebar-entry-active-foreground-color;
+          @include themify { color: foreground-color('secondary'); }
         }
       }
     }
