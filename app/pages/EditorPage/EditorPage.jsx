@@ -4,7 +4,7 @@ import AceEditor from 'react-ace';
 
 import 'brace/mode/markdown';
 import 'brace/theme/kuroir';
-import 'brace/theme/tomorrow_night_eighties';
+import 'brace/theme/dreamweaver';
 
 import MarkdownIt from 'markdown-it';
 import toMarkdown from 'to-markdown';
@@ -19,14 +19,17 @@ export default ui({
   key: 'editorPage',
   state: {
     mdContents: ({ selectedNote }) => toMarkdown(selectedNote.contents) || '',
-    editorOptions: ({ selectedNote }) => ({
-      name: selectedNote._id || 'brace-editor',
-      theme: 'kuroir',
+    editorOptions: (props) => ({
+      name: props.selectedNote._id || 'brace-editor',
+      theme: props.editorTheme.light.name,
+      fontSize: props.editorFontSize,
       mode: 'markdown',
       width: '100%',
       height: '100%',
       showGutter: false,
-      wrapEnabled: true
+      wrapEnabled: true,
+      showPrintMargin: false,
+      focus: true
     })
   }
 })(({ selectedNote, updateNoteContents, ...props }) => {
