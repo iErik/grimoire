@@ -1,0 +1,55 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$btn-size: 60px;
+
+$btn-label-font-size: 32px;
+$btn-label-font-weight: 300;
+
+$btn-icon-size: 1.25em;
+
+//  Object Structure
+//  ----------------
+
+// TODO: Replace the .action-btn-trigger-label for an icon.
+
+%action-btn {
+  display: flex;
+
+  .action-btn-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: $btn-size;
+    height: $btn-size;
+
+    cursor: pointer;
+
+    border-radius: 100%;
+    box-shadow: 0px 9px 11px 0px rgba(25, 25, 25, 0.4);
+
+    @include themify { background-color: primary-color(); }
+  }
+
+  .action-btn-trigger-label {
+    font-size:   $btn-label-font-size;
+    font-weight: $btn-label-font-weight;
+
+    @include themify { color: secondary-color(); }
+  }
+
+  @include icon {
+    font-size: $btn-icon-size;
+    @include themify { color: secondary-color(); }
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.action-btn {
+  @extend %action-btn;
+}
