@@ -3,13 +3,14 @@
 //  Variables
 
 $sidebar-width: 300px;
-$sidebar-icon-size: 1.1em;
-$sidebar-document-entry-font-size: 1em;
-
-$sidebar-background-color: #383838;
-$sidebar-foreground-color: #FAFAFA;
 
 $sidebar-document-action-height: 60px;
+$sidebar-document-action-font-size: 1em;
+$sidebar-document-action-font-weight: 300;
+$sidebar-document-action-icon-size: 1.1em;
+
+$sidebar-document-entry-font-size: 1em;
+$sidebar-document-entry-icon-size: 0.8em;
 
 //  Object Structure
 
@@ -25,7 +26,7 @@ $sidebar-document-action-height: 60px;
   width: $sidebar-width;
   height: calc(100% - 60px);
 
-  background-color: $sidebar-background-color;
+  @include themify { background-color: primary-color('light'); }
 
   transition: left 400ms;
 
@@ -53,23 +54,30 @@ $sidebar-document-action-height: 60px;
       }
 
       @include icon {
-        color: $sidebar-foreground-color;
-        font-size: $sidebar-icon-size;
+        justify-content: center;
+
+        @include themify { color: foreground-color('primary-light'); }
+        font-size: $sidebar-document-action-icon-size;
       }
 
       &:hover {
-        background-color: darken($sidebar-background-color, 3%);
+        @include themify {
+          background-color: darken(primary-color('light'), 3%);
+        }
       }
     }
   }
 
   .document-list-entries {
+    flex-grow: 1;
     padding: 5px 0 0;
 
     .document-list-entry {
       display: flex;
+      justify-content: space-between;
 
-      color: $sidebar-foreground-color;
+
+      @include themify { color: foreground-color('primary-light');}
 
       padding: 10px 23px 0 23px;
 
@@ -85,11 +93,57 @@ $sidebar-document-action-height: 60px;
           font-weight: 900;
         }
       }
+
+      .btn-delete {
+
+        @include icon {
+          font-size: $sidebar-document-entry-icon-size;
+          @include themify {
+            color: rgba(foreground-color('primary-light'), 0.5);
+          }
+
+          &:hover {
+            @include themify { color: foreground-color('primary-light'); }
+          }
+        }
+      }
+    }
+  }
+
+  .document-action {
+    display: flex;
+    align-items: center;
+
+    height: $sidebar-document-action-height;
+    padding: 0 20px;
+    cursor: pointer;
+
+    background-color: transparent;
+
+    transition: background-color 0.4s;
+
+    &:hover {
+      @include themify { background-color: darken(primary-color(light), 3%); }
+    }
+
+    @include icon {
+      font-size: $sidebar-document-action-icon-size;
+      @include themify { color: foreground-color('primary-light'); }
+    }
+
+    .label {
+      font-size: $sidebar-document-action-font-size;
+      font-weight: 300;
+      @include themify { color: foreground-color('primary-light'); }
+
+      margin: 0 0 0 10px;
+      user-select: none;
     }
   }
 }
 
 //  Exported Class
+//  --------------
 
 .editor-sidebar {
   @extend %editor-sidebar;
