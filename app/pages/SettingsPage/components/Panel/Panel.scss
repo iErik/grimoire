@@ -1,0 +1,145 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$panel-border-radius: 3px;
+$panel-max-width: 600px;
+
+$panel-control-icon-size: 1em;
+
+$panel-name-font-size:   1em;
+$panel-name-font-weight: 200;
+
+
+//  Object Structure
+//  ----------------
+
+%panel {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: $panel-max-width;
+
+  margin-top: 65px;
+
+  border-radius: $panel-border-radius;
+
+  box-shadow: 0px 4px 9px -2px rgba(0,0,0,0.55);
+
+  &.is-hidden {
+    .panel-control {
+      border-bottom-left-radius: $panel-border-radius;
+      border-bottom-right-radius: $panel-border-radius;
+
+      transition: all 200ms ease 0.5s;
+    }
+
+    /*
+    .panel-contents-wrapper {
+      max-height: 0px;
+      overflow: hidden;
+      transition: max-height 1s cubic-bezier(0, 1, 0, 1);
+    }
+    */
+
+    /*
+    .panel-contents {
+      overflow: hidden !important;
+      height: 0px !important;
+      padding: 0px 25px !important;
+
+      transition: padding .2s ease-out, height .2s ease-out !important;
+    }
+    */
+
+    /*
+    .panel-contents {
+      transform-origin: top;
+      transform: scaleY(0) !important;
+
+      transition: transform 0.25s ease-out !important;
+    }
+    */
+  }
+
+  .panel-control {
+    display: flex;
+
+    height: 40px;
+    padding: 0 25px;
+
+    @include themify { background-color: primary-color(); }
+
+    border-top-left-radius: $panel-border-radius;
+    border-top-right-radius: $panel-border-radius;
+
+    .panel-name {
+      display: flex;
+      align-items: center;
+      flex-grow: 1;
+
+      font-size:   $panel-name-font-size;
+      font-weight: $panel-name-font-weight;
+      @include themify { color: foreground-color('primary'); }
+    }
+
+    .btn-toggle {
+
+      @include icon {
+        font-size: $panel-control-icon-size;
+        @include themify { color: foreground-color('primary'); }
+      }
+    }
+  }
+
+  .panel-contents-wrapper {
+    display: flex;
+
+    max-height: 9999px;
+    //overflow:  hidden;
+
+    transition: max-height 2.5s ease-in, overflow 0ms ease 2.5s;
+
+    .panel-contents {
+      display: flex;
+      flex-direction: column;
+
+      transform-origin: top;
+      transform: scaleY(1);
+
+      flex-grow:   1;
+      flex-shrink: 0;
+
+      padding: 17.5px 25px;
+
+      border-bottom-left-radius: $panel-border-radius;
+      border-bottom-right-radius: $panel-border-radius;
+
+      transition: padding .2s ease-in, height .2s ease-in transform 0.25s ease-in;
+
+      @include themify { background-color: background-color('lighter'); }
+
+      .section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        margin: 7.5px 0;
+
+        label {
+          font-size: 0.9em;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.panel {
+  @extend %panel;
+}
