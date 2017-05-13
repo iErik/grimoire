@@ -16,7 +16,7 @@ html {
   font-size:   $base-font-size;
   line-height: $base-line-height;
   color:       $base-font-color;
-  
+
   -ms-text-size-adjust: 100%; /* 3 */
   -webkit-text-size-adjust: 100%; /* 3 */
 
@@ -63,6 +63,10 @@ section {
 h1 {
   font-size: 2em;
   margin: 0.67em 0;
+}
+
+p {
+  margin: 0;
 }
 
 /* Grouping content

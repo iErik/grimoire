@@ -1,0 +1,69 @@
+%icn, .icn:before {
+  font-family:    'Grimoire Icons';
+  font-style:     normal !important;
+  font-weight:    normal !important;
+  font-variant:   normal !important;
+  text-transform: none   !important;
+  color:          inherit;
+
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+[data-icon]:before,
+[class^="icn-"]:before,
+[class*=" icn-"]:before {
+  @extend %icn;
+}
+
+[data-icon]:before { content: attr(data-icon); }
+@include icon { display: flex; }
+
+.icn-search:before { content: "\f001"; }
+.icn-arrow-down:before { content: "\f002"; }
+.icn-arrow-left:before { content: "\f003"; }
+.icn-arrow-right:before { content: "\f004"; }
+.icn-arrow-up:before { content: "\f005"; }
+.icn-close:before { content: "\f006"; }
+.icn-minimize:before { content: "\f007"; }
+.icn-maximize:before { content: "\f008"; }
+.icn-gear:before { content: "\f009"; }
+.icn-ham-menu:before { content: "\f010"; }
+.icn-double-a-minus:before { content: "\f011"; }
+.icn-double-a-plus:before { content: "\f012"; }
+.icn-double-a:before { content: "\f013"; }
+.icn-single-a-plus:before { content: "\f014"; }
+.icn-single-a-minus:before { content: "\f015"; }
+.icn-minus:before { content: "\f016"; }
+.icn-plus:before { content: "\f017"; }
+.icn-newspaper:before { content: "\f018"; }
+.icn-pen-paper:before { content: "\f019"; }
+.icn-menu-more:before { content: "\f020"; }
+.icn-menu-more-o:before { content: "\f021"; }
+.icn-floppy:before { content: "\f022"; }
+.icn-moon:before { content: "\f023"; }
+
+.icn-bold:before { content: "\d001"; }
+.icn-italic:before { content: "\d002"; }
+.icn-ul-list:before { content: "\d003"; }
+.icn-ol-list:before { content: "\d004"; }
+.icn-quote-left:before { content: "\d005"; }
+.icn-link:before { content: "\d006"; }
+.icn-pictures:before { content: "\d007"; }
+.icn-picture:before { content: "\d008"; }
+.icn-brackets:before { content: "\d009"; }
+.icn-link-o:before { content: "\d010"; }
+.icn-align-left:before { content: "\d011"; }
+.icn-align-center:before { content: "\d012"; }
+.icn-align-right:before { content: "\d013"; }
+.icn-underline:before { content: "\d014"; }
+.icn-spell-check:before { content: "\d015"; }
+.icn-interrogation:before { content: "\d016"; }
+.icn-strikethrough:before { content: "\d017"; }
+.icn-exclamation:before { content: "\d018"; }
+.icn-pen:before { content: "\d019"; }
+.icn-trashbin:before { content: "\d020"; }
+.icn-check:before { content: "\d021"; }
