@@ -15,6 +15,7 @@ import createLogger from 'redux-logger';
 import createRootReducer from '../reducers';
 import rootSaga from '../sagas';
 
+import settings from 'electron-settings';
 import Notebooks from '../database/collections/notebooks';
 import Notes from '../database/collections/notes';
 
@@ -45,7 +46,9 @@ const loadState = async (currentState) => {
     notebooks: {
       notebooks: await Notebooks.findAsync({}),
       activeNotebook,
-    }
+    },
+
+    settings: await settings.get()
   }
 }
 
