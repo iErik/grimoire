@@ -43,14 +43,14 @@ export function *updateNoteContents({ payload }) {
 
     yield put(actions.updateNoteContentsPending(note, contents));
 
-    const updatedDoc = yield call(
+    const updatePayload = yield call(
       Notes.updateAsync,
       { _id: note._id },
       { $set: { contents } },
       { returnUpdatedDocs: true }
     );
 
-    yield put(actions.updateNoteFulfilled(updatedDoc[1]));
+    yield put(actions.updateNoteFulfilled(updatePayload[1]));
   } catch (error) {
     yield put(actions.updateNoteContentsRejected(error));
   }
@@ -62,14 +62,14 @@ export function *updateNoteTitle({ payload }) {
 
     yield put(actions.updateNoteTitlePending(note, title));
 
-    const updatedDoc = yield call(
+    const updatePayload = yield call(
       Notes.updateAsync,
       { _id: note._id },
       { $set: { title } },
       { returnUpdatedDocs: true }
     );
 
-    yield put(actions.updateNoteFulfilled(updatedDoc));
+    yield put(actions.updateNoteFulfilled(updatePayload));
   } catch (error) {
     yield put(actions.updateNoteTitleRejected(error));
   }

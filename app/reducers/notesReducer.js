@@ -1,4 +1,4 @@
-import { sortBy, find, reject } from 'underscore';
+import { find, sortBy, reject } from 'underscore';
 
 const initialState = {
   notes: [],
@@ -33,10 +33,10 @@ export default function notesReducer(state = initialState, { type, payload }) {
 
         selectedNote: payload._id === state.selectedNote._id
           ? find(sortBy(state.notes,
-            note => -(new Date(note.createdAt).getTime())),
-            note => (
-              note.notebookId === payload.notebookId &&
-              note._id !== payload._id
+              note => -(new Date(note.createdAt).getTime())),
+              note => (
+                note.notebookId === payload.notebookId &&
+                note._id !== payload._id
             )) || { }
           : { ...state.selectedNote }
       }
@@ -52,7 +52,7 @@ export default function notesReducer(state = initialState, { type, payload }) {
         ...state,
         selectedNote: find(sortBy(state.notes,
           note => -(new Date(note.createdAt).getTime())),
-          note => note.notebookId === payload.id) || { }
+          note => note.notebookId === payload._id) || { }
       }
 
     default:

@@ -1,5 +1,5 @@
 import Datastore from 'nedb';
-import { promisifyAll } from 'bluebird';
+import { promisify, promisifyAll } from 'bluebird';
 
 const Notebooks = new Datastore({
   filename: './app/storage/notebooks.db',
@@ -7,4 +7,9 @@ const Notebooks = new Datastore({
   autoload: true,
 });
 
-export default promisifyAll(Notebooks);
+Notebooks.updateAsync = promisify(Notebooks.update, {
+  multiArgs: true,
+  context: Notebooks
+});
+
+export default promisifyAll(Notebooks, { filter: name => name !== 'update' });
