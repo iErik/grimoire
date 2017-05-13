@@ -25,52 +25,52 @@ export default (props) => {
         <div className="inner">
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertBold }>
-              <i className="fa fa-bold"></i>
+              <i className="icn-bold"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertItalic }>
-              <i className="fa fa-italic"></i>
+              <i className="icn-italic"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertStrikethrough }>
-              <i className="fa fa-underline"></i>
+              <i className="icn-underline"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertUnorderedList }>
-              <i className="fa fa-list-ul"></i>
+              <i className="icn-ul-list"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertOrderedList }>
-              <i className="fa fa-list-ol"></i>
+              <i className="icn-ol-list"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertLink }>
-              <i className="fa fa-link"></i>
+              <i className="icn-link-o"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertQuote }>
-              <i className="fa fa-quote-left"></i>
+              <i className="icn-quote-left"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn">
-              <i className="fa fa-align-left"></i>
+              <i className="icn-align-left"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn">
-              <i className="fa fa-align-center"></i>
+              <i className="icn-align-center"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn">
-              <i className="fa fa-align-right"></i>
+              <i className="icn-align-right"></i>
             </button>
           </div>
         </div>
