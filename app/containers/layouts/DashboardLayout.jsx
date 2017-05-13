@@ -8,8 +8,7 @@ const mapStateToProps = (state) => ({
   notebooks: sortBy(state.notebooks.notebooks,
     notebook => -(new Date(notebook.createdAt).getTime())),
 
-  notes: sortBy(filter(state.notes.notes,
-    note => note.notebookId === state.notebooks.activeNotebook._id),
+  notes: sortBy(state.notes.notes,
     note => -(new Date(note.createdAt).getTime())),
 
   activeNotebook: state.notebooks.activeNotebook,

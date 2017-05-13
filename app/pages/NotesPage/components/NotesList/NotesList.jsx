@@ -21,13 +21,14 @@ export default class NotesList extends React.Component {
     sanitizer.innerHTML = note.contents;
     extractedText = sanitizer.textContent || sanitizer.innerText || '';
 
-    console.log("extractedText: ", extractedText);
-
     return truncateChars(extractedText, 215);
   }
 
   renderNotes() {
     return this.props.notes.map((note) => {
+      if (note.notebookId !== this.props.activeNotebook._id)
+        return;
+
       let style = classNames({
         'note-list-entry': true,
         'is-selected': this.props.selectedNote._id === note._id

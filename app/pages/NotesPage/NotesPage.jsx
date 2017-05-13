@@ -12,7 +12,7 @@ export default class NotesPage extends React.Component {
           <TitleBar { ...this.props } />
         </section>
 
-        <section className="full-height row">
+        <section className="full-height expanded row">
           <section className="small-4 columns">
             <NotesList { ...this.props } />
           </section>
