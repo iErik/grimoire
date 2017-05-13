@@ -3,9 +3,6 @@
 //  Variables
 //  ---------
 
-$viewer-background-color: #F6F6F6;
-$viewer-foreground-color: #515151;
-
 $viewer-padding: 25px 60px 0px 60px;
 
 $note-title-font-size: 1.625em;
@@ -21,7 +18,7 @@ $note-meta-date-font-weight: 300;
   display: flex;
   flex-direction: column;
 
-  background-color: $viewer-background-color;
+  @include themify { background-color: background-color(); }
 
   width:  100%;
   height: 100%;
@@ -39,7 +36,7 @@ $note-meta-date-font-weight: 300;
         font-family: $font-serif;
         font-size:   $note-title-font-size;
         font-weight: $note-title-font-weight;
-        color:       $viewer-foreground-color;
+        @include themify { color: foreground-color(); }
 
         margin: 0;
       }
@@ -50,10 +47,9 @@ $note-meta-date-font-weight: 300;
       .meta-date {
         font-size:   $note-meta-date-font-size;
         font-weight: $note-meta-date-font-weight;
-        color:       $viewer-foreground-color;
+        @include themify { color: foreground-color(); }
       }
     }
-
   }
 
   .note-contents {

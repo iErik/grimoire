@@ -1,10 +1,7 @@
+@import '~styles/helpers/_module';
+
 //  Variables
 //  ---------
-
-$entries-background-color: #383838;
-$entries-foreground-color: #FAFAFA;
-
-$entry-border-color: darken($entries-background-color, 3%);
 
 $entry-contents-font-size: 0.75em;
 $entry-contents-font-weight: 100;
@@ -34,7 +31,7 @@ $entry-height: 130px;
     z-index: 10;
     overflow: scroll;
 
-    background-color: $entries-background-color;
+    @include themify { background-color: primary-color('light'); }
 
     .note-list-entry {
       display: flex;
@@ -52,7 +49,9 @@ $entry-height: 130px;
       transition: background-color 500ms ease-in;
 
       &:hover, &.is-selected {
-        background-color: darken($entries-background-color, 2%);
+        @include themify {
+          background-color: darken(primary-color('light'), 2%);
+        }
 
         transition: background-color 300ms ease-out;
       }
@@ -65,7 +64,7 @@ $entry-height: 130px;
         .title {
           font-size:   $entry-title-font-size;
           font-weight: $entry-title-font-weight;
-          color:       $entries-foreground-color;
+          @include themify { color: foreground-color('primary-light'); }
 
           margin: 0;
         }
@@ -73,7 +72,7 @@ $entry-height: 130px;
         .meta-date {
           font-size:   $entry-meta-date-font-size;
           font-weight: $entry-meta-date-font-weight;
-          color:       $entries-foreground-color;
+          @include themify { color: foreground-color('primary-light'); }
 
           margin: 0;
         }
@@ -85,7 +84,7 @@ $entry-height: 130px;
         .contents {
           font-size:   $entry-contents-font-size;
           font-weight: $entry-contents-font-weight;
-          color:       $entries-foreground-color;
+          @include themify { color: foreground-color('primary-light'); }
 
           margin: 5px 0 0;
         }
@@ -94,7 +93,7 @@ $entry-height: 130px;
           font-size:   $entry-meta-empty-font-size;
           font-weight: $entry-meta-empty-font-weight;
           font-style:  italic;
-          color:       $entries-foreground-color;
+          @include themify { color: foreground-color('primary-light'); }
         }
       }
     }
