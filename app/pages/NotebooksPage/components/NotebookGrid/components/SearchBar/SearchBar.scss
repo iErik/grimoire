@@ -1,0 +1,79 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$searchbar-input-width: 220px;
+$searchbar-input-font-size: 0.9em;
+$searchbar-input-font-weight: 100;
+
+//  Object Structure
+//  ----------------
+
+%floating-searchbar {
+  display: flex;
+  position: relative;
+
+  .action-btn {
+    position: relative;
+    z-index: 25;
+
+    .action-btn-trigger {
+      box-shadow: none;
+    }
+  }
+
+  .searchbar-input {
+    display: flex;
+    align-items: center;
+
+    position: absolute;
+    z-index: 20;
+
+    width: $searchbar-input-width;
+    height: 100%;
+
+    padding: 0 25px 0 65px;
+    border-radius: 60px;
+
+    @include themify { background-color: primary-color(); }
+    box-shadow: 0px 10px 16px -2px rgba(25, 25, 25, 0.4);
+
+    transition: width 0.3s, padding 0.3s;
+
+    .input {
+      font-size:   $searchbar-input-font-size;
+      font-weight: $searchbar-input-font-weight;
+      @include themify { color: foreground-color('primary-light'); }
+
+      opacity: 1;
+
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      @include themify { border-bottom-color: secondary-color(); }
+
+      background-color: transparent;
+
+      transition: opacity 0.4s;
+    }
+
+    &.is-hidden {
+      width: 60px;
+      padding: 0;
+
+      .input {
+        opacity: 0;
+        user-select: none;
+
+        transition: opacity 0.2s;
+      }
+    }
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.floating-searchbar {
+  @extend %floating-searchbar;
+}

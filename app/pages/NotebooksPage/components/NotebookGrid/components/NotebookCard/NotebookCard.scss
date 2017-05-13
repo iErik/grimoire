@@ -1,0 +1,165 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$card-width: 180px;
+$card-height: 150px;
+$card-border-radius: 4px;
+
+$card-control-height: 35px;
+
+$card-title-font-size: 0.8125em;
+$card-title-font-weight: 200;
+
+$card-control-icon-size: 0.6em;
+
+$card-notes-list-icon-size: 0.7em;
+$card-notes-list-entry-font-size: 0.75em;
+$card-notes-list-entry-font-weight: 300;
+
+$card-notes-list-empty-font-size: 0.75em;
+$card-notes-list-empty-font-weight: 100;
+
+//  Object Structure
+//  ----------------
+
+%notebook-card {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+
+  width: $card-width;
+  height: $card-height;
+  overflow: hidden;
+
+  border-radius: $card-border-radius;
+
+  box-shadow: 0px 4px 10px -2px rgba(0, 0, 0, 0.7);
+  &:hover { box-shadow: 0px 10px 17px -4px rgba(25, 25, 25, 0.6); }
+
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+
+  .card-control {
+    display: flex;
+    z-index: 20;
+
+    height: $card-control-height;
+
+    @include themify { background-color: primary-color(); }
+    box-shadow: 0px 2px 11px 0px rgba(0, 0, 0, 0.6);
+
+    border-top-left-radius: $card-border-radius;
+    border-top-right-radius: $card-border-radius;
+
+    .title-container {
+      display: flex;
+      flex-grow: 1;
+
+      .title-control {
+        font-size:   $card-title-font-size;
+        font-weight: $card-title-font-weight;
+
+        @include themify { color: foreground-color('primary-light'); }
+
+        background: transparent;
+        outline: 0;
+        width: 100%;
+        border: 0;
+
+        margin: auto 0 auto 15px;
+      }
+    }
+
+    .control-container {
+      display: flex;
+      align-items: stretch;
+
+      .btn {
+        padding: 0 15px 0;
+
+        @include icon {
+          font-size: $card-control-icon-size;
+          @include themify { color: foreground-color('primary-light'); }
+        }
+      }
+    }
+  }
+
+  .card-contents {
+    display: flex;
+    flex-grow: 1;
+
+    @include themify { background-color: background-color(); }
+
+    border-bottom-left-radius: $card-border-radius;
+    border-bottom-right-radius: $card-border-radius;
+
+    .card-notes-list-entries {
+      display: inherit;
+      flex-direction: column;
+
+      width: 100%;
+      padding: 10px 0 0;
+    }
+
+    .card-notes-list-entry {
+      display: flex;
+      justify-content: space-between;
+
+      padding: 0 15px 2px 10px;
+
+      transition: background-color 500ms;
+
+      &:hover .title {
+        @include themify {  color: foreground-color('dark'); }
+      }
+
+      .title {
+        font-family: $font-monospace;
+        font-size:   $card-notes-list-entry-font-size;
+        font-weight: $card-notes-list-entry-font-weight;
+
+        @include themify { color: rgba(foreground-color('dark'), 0.8); }
+
+        margin: 0;
+        cursor: pointer;
+      }
+
+      .btn-delete {
+
+        @include icon {
+          font-size: $card-notes-list-icon-size;
+
+          @include themify {
+            color: rgba(foreground-color(), 0.5);
+          }
+
+          &:hover {
+            @include themify {
+              color: rgba(foreground-color(), 0.9);
+            }
+          }
+        }
+      }
+    }
+
+    .card-notes-list-empty {
+      margin: 20px auto;
+
+      .title {
+        font-size:   $card-notes-list-empty-font-size;
+        font-weight: $card-notes-list-empty-font-weight;
+        font-style:  italic;
+        @include themify { color: foreground-color('primary-light'); }
+      }
+    }
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.notebook-card {
+  @extend %notebook-card;
+}
