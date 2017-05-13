@@ -1,0 +1,55 @@
+//  Variables
+//  ---------
+
+$text-field-width: 300px;
+$text-field-height: 40px;
+
+$text-field-border-radius: 2px;
+
+$text-field-font-size: 1em;
+$text-field-font-weight: 300;
+
+$text-field-background-color: white;
+
+//  Object Structure
+//  ----------------
+
+%text-field {
+  display: flex;
+
+  width: $text-field-width;
+  height: $text-field-height;
+
+  padding: 0px 15px;
+
+  font-size: $text-field-font-size;
+  font-weight: $text-field-font-weight;
+
+  background-color: $text-field-background-color;
+
+  outline: 0;
+  border: 0;
+  border-radius: $text-field-border-radius;
+
+  transition: box-shadow .2s cubic-bezier(0.4, 0, 1, 1);
+
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+
+  &:hover {
+    box-shadow:
+      0px 4px 5px   0px rgba(0, 0, 0, 0.14),
+      0px 1px 10px  0px rgba(0, 0, 0, 0.12),
+      0px 2px 4px  -1px rgba(0, 0, 0, 0.20);
+  }
+
+  &.align-end {
+    text-align: end;
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.text-field {
+  @extend %text-field;
+}
