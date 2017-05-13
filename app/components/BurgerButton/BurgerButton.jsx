@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import ui from 'redux-ui';
 import classNames from 'classnames';
 
 export default class BurgerButton extends React.Component {

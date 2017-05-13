@@ -1,3 +1,5 @@
+@import '~styles/helpers/_module';
+
 //  Variables
 //  ---------
 
@@ -9,9 +11,6 @@ $btn-bar-active-thickness: 2px;
 
 $btn-bar-pad: 3px;
 $btn-bar-space: 3px;
-
-$btn-bar-color: #D3D3D3;
-$btn-active-bar-color: #00DF98;
 
 $btn-transition-duration: 0.3s;
 
@@ -43,8 +42,12 @@ $btn-transition-duration: 0.3s;
   cursor: pointer;
 
   &.is-active .btn-bars {
-    background-color: transparent;
+    background-color: transparent !important;
     height: $btn-bar-active-thickness;
+
+    @include themify {
+      &::after, &::before { background-color: secondary-color(); }
+    }
 
     &::after {
       bottom: 0px;
@@ -60,7 +63,6 @@ $btn-transition-duration: 0.3s;
 
     &::after,
     &::before {
-      background-color: $btn-active-bar-color;
       transition-delay: 0s, $btn-transition-duration, 0s;
     }
   }
@@ -74,7 +76,11 @@ $btn-transition-duration: 0.3s;
     right: $btn-bar-pad;
 
     height: $btn-bar-thickness;
-    background-color: $btn-bar-color;
+
+    @include themify {
+      background-color: foreground-color('light');
+      &::after, &::before { background-color: foreground-color('light'); }
+    }
 
     transition: background-color 0s ease $btn-transition-duration;
 
@@ -88,7 +94,6 @@ $btn-transition-duration: 0.3s;
 
       width: 100%;
       height: $btn-bar-thickness;
-      background-color: $btn-bar-color;
 
       transition-duration:
         $btn-transition-duration,
