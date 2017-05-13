@@ -1,3 +1,5 @@
+@import '~styles/helpers/_module';
+
 //  Variables
 //  ---------
 
@@ -5,10 +7,6 @@ $titlebar-height: 60px;
 $titlebar-icons-size: 1.3em;
 $titlebar-title-font-size: 1.3em;
 $titlebar-title-font-weight: 100;
-
-$titlebar-background-color: #282828;
-$titlebar-foreground-color: #FAFAFA;
-$titlebar-shadow-color: rgba(36, 36, 36, 0.6);
 
 $control-container-width: 60px;
 
@@ -23,8 +21,10 @@ $control-container-width: 60px;
   height: $titlebar-height;
   width: 100%;
 
-  background-color: $titlebar-background-color;
-  box-shadow: 0px 4px 13px 0px $titlebar-shadow-color;
+  box-shadow: 0px 4px 13px 0px rgba(36, 36, 36, 0.6);
+  @include themify { background-color: primary-color(); }
+
+  .column { padding: 0 !important; }
 
   .control-container {
     display: flex;
@@ -46,7 +46,7 @@ $control-container-width: 60px;
     .title {
       font-size:   $titlebar-title-font-size;
       font-weight: $titlebar-title-font-weight;
-      color:       $titlebar-foreground-color;
+      @include themify { color: foreground-color('primary'); }
 
       user-select: none;
       cursor: default;
@@ -60,6 +60,8 @@ $control-container-width: 60px;
     justify-content: center;
 
     height: 100%;
+
+    padding: 0 20px 0;
   }
 }
 
