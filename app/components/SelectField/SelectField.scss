@@ -1,0 +1,176 @@
+@import '~styles/helpers/_module';
+
+//  Variables
+//  ---------
+
+$select-field-width: 300px;
+$select-field-height: 40px;
+$select-field-border-radius: 2px;
+
+$select-field-value-label-font-size: 1em;
+$select-field-value-label-font-weight: 300;
+$select-field-value-icon-size: 0.8em;
+
+$select-field-option-height: 40px;
+$select-field-option-max-height: 90px;
+
+$select-field-option-label-font-size: 0.9375em;
+$select-field-option-label-font-weight: 300;
+
+$select-field-options-max-height: 120px;
+
+$select-field-foreground-color: #515151;
+
+$select-field-value-background-color: #FFF;
+$select-field-value-border-color: #D3D3D3;
+
+$select-field-options-background-color: #FFF;
+
+//  Object Structure
+//  ----------------
+
+%select-field {
+  position: relative;
+
+  width:  $select-field-width;
+  height: $select-field-height;
+
+  .inner-select-field {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    width: $select-field-width;
+
+    border-radius: $select-field-border-radius;
+
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.14);
+
+    transition: box-shadow .2s cubic-bezier(.4,0,1,1);
+
+    &:hover, &.is-active {
+      z-index: 90;
+
+      box-shadow:
+        0px 4px 5px   0px rgba(0, 0, 0, 0.14),
+        0px 1px 10px  0px rgba(0, 0, 0, 0.12),
+        0px 2px 4px  -1px rgba(0, 0, 0, 0.20);
+    }
+
+    &.is-active {
+
+      .select-field-value {
+        //border-bottom: 1px solid $select-field-value-border-color;
+
+        border-bottom-right-radius: 0px;
+        border-bottom-left-radius: 0px;
+      }
+
+      .select-field-options {
+        min-height: 0px;
+        max-height: $select-field-options-max-height;
+        overflow: scroll;
+
+        transition: min-height 300ms ease-out, max-height 300ms ease-out;
+      }
+    }
+
+    .select-field-value {
+      display: flex;
+      justify-content: space-between;
+
+      height: $select-field-height;
+      padding: 0px 15px;
+
+      border-radius: $select-field-border-radius;
+
+      background-color: $select-field-value-background-color;
+
+      .value-label {
+        display: flex;
+        align-items: center;
+
+        user-select: none;
+        cursor: default;
+
+        font-size:   $select-field-value-label-font-size;
+        font-weight: $select-field-value-label-font-weight;
+      }
+
+      .btn {
+
+        @include icon {
+          font-size: $select-field-value-icon-size;
+        }
+      }
+    }
+
+    .select-field-options {
+      display: flex;
+      flex-direction: column;
+
+      min-height: 0px;
+      max-height: 0px;
+      overflow: hidden;
+
+      border-bottom-left-radius:  $select-field-border-radius;
+      border-bottom-right-radius: $select-field-border-radius;
+
+      background-color: $select-field-options-background-color;
+
+      transition: min-height 300ms ease-in, max-height 300ms ease-in;
+
+      .entries {
+        display: flex;
+        flex-direction: column;
+        flex-shrink: 0;
+
+        //padding: 0 0 5px;
+      }
+
+      .select-field-option {
+        display: flex;
+        justify-content: space-between;
+
+        height: $select-field-option-height;
+        padding: 0 15px;
+
+        background: transparent;
+
+        transition: background-color .3s cubic-bezier(.4,0,1,1);
+
+        &:hover {
+          cursor: pointer;
+
+          background-color: darken($select-field-options-background-color, 10%);
+        }
+
+        .option-label {
+          display: flex;
+          align-items: center;
+
+          user-select: none;
+
+          font-size: $select-field-option-label-font-size;
+          font-weight: $select-field-option-label-font-weight;
+        }
+
+        @include icon {
+          display: flex;
+          align-items: center;
+        }
+      }
+
+    }
+
+  }
+}
+
+//  Exported Class
+//  --------------
+
+.select-field {
+  @extend %select-field;
+}
