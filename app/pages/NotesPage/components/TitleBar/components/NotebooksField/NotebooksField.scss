@@ -1,7 +1,10 @@
+@import '~styles/helpers/_module';
+
 //  Variables
 //  ---------
 
 $select-value-font-size: 1em;
+$select-value-icon-size: 0.8em;
 $select-option-font-size: 0.9375em;
 
 $select-value-height: 60px;
@@ -10,21 +13,22 @@ $select-options-max-height: 135px;
 
 $select-border-radius: 4px;
 
-$select-foreground-color: #FAFAFA;
-$select-background-color: #2B2B2B;
-
 //  Object Structure
 //  ----------------
 
-%select-group {
+%notebooks-field {
   display: flex;
   flex-direction: column;
   overflow: hidden;
 
-  &.is-active {
-    box-shadow: 0px 11px 13px -7px rgba(36, 36, 36, 0.6);
+  box-shadow: 0px 0px 0px 0px rgba(24, 24, 24, 0.0);
+  transition: box-shadow 0ms ease 300ms;
 
-    .select-options {
+  &.is-active {
+    box-shadow: 0px 11px 13px -7px rgba(24, 24, 24, 0.6);
+    transition: box-shadow 200ms ease-in 0ms;
+
+    .select-field-options {
       min-height: 0px;
       max-height: $select-options-max-height;
       overflow: scroll;
@@ -33,13 +37,13 @@ $select-background-color: #2B2B2B;
     }
   }
 
-  .select-value {
+  .select-field-value {
     display: flex;
     justify-content: center;
 
     height: $select-value-height;
 
-    background-color: $select-background-color;
+    @include themify { background-color: lighten(primary-color(), 1%); }
 
     .value-label {
       display: flex;
@@ -51,11 +55,20 @@ $select-background-color: #2B2B2B;
       font-size:   $select-value-font-size;
       font-weight: 100;
 
-      color: $select-foreground-color;
+      @include themify { color: foreground-color('primary'); }
+    }
+
+    .btn {
+      margin: 0 -25px 0 25px;
+
+      @include icon {
+        font-size: $select-value-icon-size;
+        @include themify { color: foreground-color('primary'); }
+      }
     }
   }
 
-  .select-options {
+  .select-field-options {
     display: flex;
     flex-direction: column;
 
@@ -74,16 +87,17 @@ $select-background-color: #2B2B2B;
       flex-shrink: 0;
     }
 
-    .select-option {
+    .select-field-option {
       display: flex;
-      padding: 0px 0px 0px 40px;
+      justify-content: space-between;
 
       height: $select-option-height;
+      padding: 0px 40px 0px 40px;
 
-      background-color: $select-background-color;
+      @include themify { background-color: lighten(primary-color(), 1%); }
 
       &:hover {
-        background-color: darken($select-background-color, 1%);
+        @include themify { background-color: primary-color(); }
         cursor: pointer;
       }
 
@@ -96,7 +110,12 @@ $select-background-color: #2B2B2B;
         font-size:   $select-option-font-size;
         font-weight: 100;
 
-        color: $select-foreground-color;
+        @include themify { color: foreground-color('primary'); }
+      }
+
+      @include icon {
+        display: flex;
+        align-items: center;
       }
     }
   }
@@ -105,6 +124,6 @@ $select-background-color: #2B2B2B;
 //  Exported Class
 //  --------------
 
-.select {
-  @extend %select-group;
+.notebooks-field {
+  @extend %notebooks-field;
 }

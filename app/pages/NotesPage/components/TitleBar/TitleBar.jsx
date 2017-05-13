@@ -3,8 +3,8 @@ import React from 'react';
 import { productName as APP_NAME } from 'app/package';
 
 import BurgerButton from 'components/BurgerButton';
-import SelectGroup from 'components/SelectGroup';
 import WindowControls from 'components/WindowControls';
+import NotebooksField from './components/NotebooksField';
 
 export default class TitleBar extends React.Component {
   createNote() {
@@ -16,25 +16,21 @@ export default class TitleBar extends React.Component {
     this.props.updateUI('showSidebar', !this.props.ui.showSidebar);
   }
 
-  mapActiveNotebook() {
-    return {
-      label: this.props.activeNotebook.name,
-      value: this.props.activeNotebook._id
-    }
-  }
-
-  mapNotebooks() {
-    return this.props.notebooks.map((notebook) => ({
-      label: notebook.name,
-      value: notebook._id
-    }));
-  }
-
   renderNotebookSelector() {
     return (
-      <SelectGroup
-        value={ this.mapActiveNotebook() }
-        options={ this.mapNotebooks() }
+      <NotebooksField
+        value={{
+          label: this.props.activeNotebook.name,
+          value: this.props.activeNotebook,
+          key: this.props.activeNotebook._id,
+        }}
+
+        options={ this.props.notebooks.map((notebook) => ({
+          label: notebook.name,
+          key: notebook._id,
+          value: notebook
+        })) }
+
         onChange={ this.props.changeActiveNotebook }
        />
      );
@@ -46,19 +42,19 @@ export default class TitleBar extends React.Component {
         <div className="actions-container">
           <div className="action-container">
             <button className="btn" onClick={ this.createNote.bind(this) }>
-              <i className="fa fa-plus"></i>
+              <i className="icn-plus"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn"
               onClick={ this.props.editNote.bind(null, this.props.selectedNote) }>
-              <i className="fa fa-pencil-square-o"></i>
+              <i className="icn-pen-paper"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn"
               onClick={ this.props.deleteNote.bind(null, this.props.selectedNote) }>
-              <i className="fa fa-trash-o"></i>
+              <i className="icn-trashbin"></i>
             </button>
           </div>
         </div>
@@ -68,7 +64,7 @@ export default class TitleBar extends React.Component {
         <div className="actions-container">
           <div className="action-container" onClick={ this.createNote.bind(this) }>
             <button className="btn">
-              <i className="fa fa-plus"></i>
+              <i className="icn-plus"></i>
             </button>
           </div>
         </div>
@@ -89,7 +85,7 @@ export default class TitleBar extends React.Component {
           <div className="notebook-actions columns">
             <div className="control-container">
               <button className="btn">
-                <i className="fa fa-search"></i>
+                <i className="icn-search"></i>
               </button>
             </div>
             <div className="notebooks-selector">

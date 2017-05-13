@@ -1,13 +1,19 @@
 import React, { PropTypes } from 'react';
 import ui from 'redux-ui';
 import classNames from 'classnames';
+import { isEqual } from 'underscore';
+
+/*
+ * TODO: Use the SelectField component and integrate it with
+ * a search bar.
+ */
 
 @ui({
   state: {
     showOptions: false
   }
 })
-export default class SelectGroup extends React.Component {
+export default class NotebooksField extends React.Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     options: PropTypes.array.isRequired,
@@ -19,36 +25,39 @@ export default class SelectGroup extends React.Component {
     this.props.updateUI('showOptions', false);
   }
 
-  renderOptions() {
-    return this.props.options.map((option) => {
-      return (
-        <div className="select-option" key={ option.value }
-          onClick={ this.onChange.bind(this, option.value) }>
-          <span className="option-label">{ option.label }</span>
-        </div>
-      );
-    });
-  }
-
   toggleOptions() {
     this.props.updateUI('showOptions', !this.props.ui.showOptions);
+  }
+
+  renderOptions() {
+    return this.props.options.map((option) => (
+      <div className="select-field-option" key={ option.key }
+        onClick={ this.onChange.bind(this, option.value) }>
+        <span className="option-label">{ option.label }</span>
+
+        { option.key === this.props.value.key
+        ? <i className="icn-check"></i>
+        : ''
+        }
+      </div>
+    ));
   }
 
   render() {
     let styles = {
       select: classNames({
-        'select': true,
+        'notebooks-field': true,
         'is-active': this.props.ui.showOptions
       })
     }
 
     return (
       <div className={ styles.select }>
-        <div className="select-value" onClick={ this.toggleOptions.bind(this) }>
+        <div className="select-field-value" onClick={ this.toggleOptions.bind(this) }>
           <span className="value-label">{ this.props.value.label }</span>
-          <button className="btn"><i className="fa"></i></button>
+          <button className="btn"><i className="icn-arrow-down"></i></button>
         </div>
-        <div className="select-options">
+        <div className="select-field-options">
           <div className="entries">
             { this.renderOptions() }
           </div>
