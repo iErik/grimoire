@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute, IndexRedirect } from 'react-router';
 
-import RootLayout from 'layouts/RootLayout';
+import RootLayout from 'containers/layouts/RootLayout';
 import DashboardLayout from 'containers/layouts/DashboardLayout';
 import EditorLayout from 'containers/layouts/EditorLayout';
 

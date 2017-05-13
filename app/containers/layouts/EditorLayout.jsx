@@ -14,7 +14,10 @@ const mapStateToProps = (state, { routeParams }) => ({
   selectedNote: find(state.notes.notes,
     note => note._id == routeParams.noteId),
 
-  settings: state.settings,
+  editorTheme: state.settings.editorTheme,
+  editorFontSize: state.settings.editorFontSize,
+  editorFontFamily: state.settings.editorFontFamily,
+
   isStoreLoading: state.initialState.loading
 })
 

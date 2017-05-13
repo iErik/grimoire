@@ -10,7 +10,7 @@ import ui from 'redux-ui';
 export default class RootLayout extends React.Component {
   render() {
     return (
-      <div className="root-container">
+      <div className={ `root-container theme-${this.props.appTheme}` }>
         { this.props.children }
       </div>
     );
