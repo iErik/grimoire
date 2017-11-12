@@ -11,6 +11,8 @@ $note-title-font-weight: normal;
 $note-meta-date-font-size: 0.75em;
 $note-meta-date-font-weight: 300;
 
+$note-contents-font-size: 0.9em;
+
 //  Object Structure
 //  ---------------
 
@@ -22,6 +24,7 @@ $note-meta-date-font-weight: 300;
 
   width:  100%;
   height: 100%;
+  overflow: scroll;
 
   padding: $viewer-padding;
 
@@ -30,15 +33,22 @@ $note-meta-date-font-weight: 300;
     align-items: center;
     justify-content: space-between;
 
+    flex-shrink: 0;
+    margin-bottom: 20px;
+
     .note-title {
 
-      .title {
+      .input-title {
         font-family: $font-serif;
         font-size:   $note-title-font-size;
         font-weight: $note-title-font-weight;
         @include themify { color: foreground-color(); }
 
+        border: 0;
         margin: 0;
+        outline: 0;
+        padding: 0;
+        background: transparent;
       }
     }
 
@@ -53,7 +63,7 @@ $note-meta-date-font-weight: 300;
   }
 
   .note-contents {
-
+    font-size: $note-contents-font-size;
   }
 }
 
