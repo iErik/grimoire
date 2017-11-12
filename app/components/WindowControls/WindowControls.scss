@@ -1,37 +1,23 @@
-$btn-window-control-size: 13px;
-$btn-window-control-background-color: #FAFAFA;
+@import '~styles/helpers/_module';
 
-$btn-maximize-background-color: #00C87B;
-$btn-minimize-background-color: #E9DF69;
-$btn-close-background-color: #FF004C;
+//  Variables
+//  ---------
 
-%btn-window-control {
-  width: $btn-window-control-size;
-  height: $btn-window-control-size;
+$btn-icon-size: 1em;
 
-  cursor: default;
-
-  background-color: $btn-window-control-background-color;
-
-  border-width: 0px;
-  border-radius: 100%;
-
-  margin-right: 9px;
-
-  &:last-child {
-    margin-right: 0px;
-  }
-}
+//  Exported Class
+//  --------------
 
 .window-controls {
   display: flex;
   z-index: 20;
 
   .btn {
-    @extend %btn-window-control;
+    &:nth-child(2) { margin: 0 25px; }
 
-    &.btn-maximize { background-color: $btn-maximize-background-color; }
-    &.btn-minimize { background-color: $btn-minimize-background-color; }
-    &.btn-close { background-color: $btn-close-background-color; }
+    @include icon {
+      @include themify { color: foreground-color('primary'); }
+      font-size: $btn-icon-size;
+    }
   }
 }

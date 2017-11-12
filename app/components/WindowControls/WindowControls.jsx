@@ -18,14 +18,14 @@ export default class WindowControls extends React.Component {
   render() {
     return (
       <div className="window-controls">
-        <button className="btn btn-maximize"
-          onClick={ this.maximizeWindow.bind(this) }>
+        <button className="btn btn-maximize" onClick={ this.maximizeWindow.bind(this) }>
+          <i className="icn-maximize"></i>
         </button>
-        <button className="btn btn-minimize"
-          onClick={ this.minimizeWindow.bind(this) }>
+        <button className="btn btn-minimize" onClick={ this.minimizeWindow.bind(this) }>
+          <i className="icn-minimize"></i>
         </button>
-        <button className="btn btn-close"
-          onClick={ this.closeWindow.bind(this) }>
+        <button className="btn btn-close" onClick={ this.closeWindow.bind(this) }>
+          <i className="icn-close"></i>
         </button>
       </div>
     );

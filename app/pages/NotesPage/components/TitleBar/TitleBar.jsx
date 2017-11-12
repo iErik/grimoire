@@ -48,7 +48,7 @@ export default class TitleBar extends React.Component {
           <div className="action-container">
             <button className="btn"
               onClick={ this.props.editNote.bind(null, this.props.selectedNote) }>
-              <i className="icn-pen-paper"></i>
+              <i className="icn-pen"></i>
             </button>
           </div>
           <div className="action-container">
