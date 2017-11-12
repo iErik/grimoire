@@ -1,7 +1,8 @@
 import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
-import validate from 'webpack-validator';
+import autoprefixer from 'autoprefixer';
+import jsonImporter from 'node-sass-json-importer';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
@@ -9,31 +10,40 @@ import { assetsPath } from './utils';
 import config from '../config';
 import baseConfig from './webpack.base.config';
 
-export default validate(merge(baseConfig,
+export default merge(baseConfig,
 { output:
     { path: config.build.assetsRoot
     , filename: assetsPath('scripts/[name].[chunkhash].js')
     , chunkFilename: assetsPath('scripts/[id].[chunkhash].js')
+    , publicPath: config.build.assetsPublicPath
+    , libraryTarget: 'commonjs2'
     }
 
 , devtool: config.build.cssSourceMap ? '#source-map' : false
 , target: 'electron-renderer'
 
 , module:
-  { loaders:
-    [
-      { test: /\.scss$/
-      , loader: ExtractTextPlugin.extract(
-          ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-        )
-      }
-    ]
+  { rules:
+    [{ test: /\.(scss|css)$/
+     , loader: ExtractTextPlugin.extract({
+         fallback: "style-loader",
+         use:
+         [ { loader: 'css-loader' }
+         , { loader: 'postcss-loader'
+           , options: { plugins: [autoprefixer({ browsers: ['electron 1.4'] })] }
+           }
+         , { loader: 'sass-loader'
+           , options: { importer: jsonImporter }
+           }
+         ]
+       })
+    }]
   }
 
 , plugins:
-  [ new webpack.optimize.OccurrenceOrderPlugin()
-  , new ExtractTextPlugin(assetsPath('stylesheets/[name].[contenthash].css'),
-      { allChunks: true
+  [ new ExtractTextPlugin(
+      { filename: assetsPath('stylesheets/styles.css')
+      , allChunks: true
       })
 
   , new webpack.DefinePlugin(
@@ -42,8 +52,13 @@ export default validate(merge(baseConfig,
 
   , new HtmlWebpackPlugin(
       { filename: '../app.html'
-      , template: 'app/app.html'
-      , inject: false
+      , template: 'app/app.dev.html'
+      , inject: true
       })
   ]
-}));
+
+, node:
+  { __dirname: false
+  , __filename: false
+  }
+});

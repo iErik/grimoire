@@ -7,8 +7,7 @@ export default {
   build: {
     env: prodEnv,
     assetsRoot: path.resolve(__dirname, '../app/assets'),
-    assetsSubDirectory: '.',
-    assetsPublicPath: path.resolve(__dirname, '..app/assets/'),
+    assetsPublicPath: './assets/',
     cssSourceMap: true
   },
 

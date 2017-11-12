@@ -2,14 +2,14 @@ import path from 'path';
 import autoprefixer from 'autoprefixer';
 import jsonImporter from 'node-sass-json-importer';
 
-import { assetsPath, validateConf as validate } from './utils';
+import { assetsPath } from './utils';
 import { dependencies as externals } from '../app/package.json';
 import config from '../config';
 
 var projectRoot = path.resolve(__dirname, '../');
 
-export default validate(
-{ entry: { app: ['babel-polyfill', './app/app.js'] }
+export default {
+  entry: { app: ['./app/app.js'] }
 , output:
   { path: config.build.assetsRoot
   , publicPath: process.env.NODE_ENV === 'production'
@@ -20,7 +20,7 @@ export default validate(
   }
 
 , resolve:
-  { extensions: ['', '.js', '.jsx', '.json', '.scss', '.css']
+  { extensions: ['.js', '.jsx', '.json', '.scss', '.css']
   , alias:
     { 'app': path.resolve(__dirname, '../app')
     , 'containers': path.resolve(__dirname, '../app/containers')
@@ -46,26 +46,30 @@ export default validate(
 , externals: Object.keys(externals || {})
 
 , module:
-  { loaders:
+  { rules:
     [
       { test: /\.jsx?$/
-      , loaders: ['babel-loader']
+      , loader: 'babel-loader'
       , include: [ path.join(projectRoot, 'app') ]
       , exclude: /node_modules/
       }
       ,
       { test: /\.(scss|css)$/
-      , loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
-      ,
-      }
-      ,
-      { test: /\.json$/
-      , loader: 'json-loader'
+      , use:
+        [ { loader: 'style-loader' }
+        , { loader: 'css-loader' }
+        , { loader: 'postcss-loader'
+          , options: { plugins: [autoprefixer({ browsers: ['electron 1.4'] })] }
+          }
+        , { loader: 'sass-loader'
+          , options: { importer: jsonImporter }
+          }
+        ]
       }
       ,
       { test: /\.(ico|webp|png|jpe?g|gif|svg)(\?.*)?$/
       , loader: 'url-loader'
-      , query:
+      , options:
         { limit: 10000
         , name: assetsPath('images/[name].[hash:7].[ext]')
         }
@@ -73,13 +77,11 @@ export default validate(
       ,
       { test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/
       , loader: 'url-loader'
-      , query:
+      , options:
         { limit: 10000
         , name: assetsPath('fonts/[name].[hash:7].[ext]')
         }
       }
     ]
   }
-, postcss: [ autoprefixer({ browsers: ['electron 1.4'] }) ]
-, sassLoader: { importer: jsonImporter }
-});
+}

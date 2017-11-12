@@ -4,16 +4,16 @@
     "stage-0",
     "react"
   ],
-  "plugins": ["add-module-exports"],
+  "plugins": [
+    "add-module-exports",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-es2015-classes"
+  ],
   "env": {
     "production": {
-      "plugins": ["babel-plugin-dev-expression"]
-    },
-    "development": {
       "plugins": [
-        "transform-decorators-legacy",
-        "transform-class-properties",
-        "transform-es2015-classes"
+        "babel-plugin-dev-expression"
       ]
     }
   }

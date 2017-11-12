@@ -13,6 +13,7 @@ if (!process.env.NODE_ENV)
 const app = express();
 const compiler = webpack(webpackConfig);
 const PORT = process.env.PORT = config.dev.port || 8080;
+const URI = `http://localhost:${PORT}`;
 
 const hotMiddleware = webpackHotMiddleware(compiler, {
   log: () => {}
@@ -20,23 +21,23 @@ const hotMiddleware = webpackHotMiddleware(compiler, {
 
 const devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  stats: {
-    colors: true
-  }
+  quiet: true
+});
+
+devMiddleware.waitUntilValid(function() {
+  console.log(`> Serving application assets at http://localhost:${PORT}/\n`);
 });
 
 app.use(devMiddleware);
 app.use(hotMiddleware);
 
-const server = app.listen(PORT, 'localhost', serverError => {
+const server = app.listen(PORT, serverError => {
   if (serverError)
     return console.error(serverError);
 
   spawn('npm', ['run', 'start-dev'], { shell: true, env: process.env, stdio: 'inherit' })
     .on('close', code => process.exit(code))
     .on('error', spawnError => console.error(spawnError));
-
-  console.log(`Listening at http://localhost:${PORT}`);
 });
 
 process.on('SIGTERM', () => {
