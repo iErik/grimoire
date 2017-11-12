@@ -299,6 +299,12 @@ input { /* 1 */
   overflow: visible;
 }
 
+// Fix text input's line height.
+
+input[type="text"] {
+  line-height: $base-line-height;
+}
+
 /**
  * Remove the inheritance of text transform in Edge, Firefox, and IE.
  * 1. Remove the inheritance of text transform in Firefox.

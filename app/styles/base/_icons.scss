@@ -11,8 +11,6 @@
   -webkit-font-smoothing: antialiased;
 }
 
-
-
 [data-icon]:before,
 [class^="icn-"]:before,
 [class*=" icn-"]:before {
@@ -40,11 +38,12 @@
 .icn-minus:before { content: "\f016"; }
 .icn-plus:before { content: "\f017"; }
 .icn-newspaper:before { content: "\f018"; }
-.icn-pen-paper:before { content: "\f019"; }
+.icn-pen:before { content: "\f019"; }
 .icn-menu-more:before { content: "\f020"; }
 .icn-menu-more-o:before { content: "\f021"; }
 .icn-floppy:before { content: "\f022"; }
 .icn-moon:before { content: "\f023"; }
+.icn-moon-dark:before { content: "\f024"; }
 
 .icn-bold:before { content: "\d001"; }
 .icn-italic:before { content: "\d002"; }
@@ -64,6 +63,5 @@
 .icn-interrogation:before { content: "\d016"; }
 .icn-strikethrough:before { content: "\d017"; }
 .icn-exclamation:before { content: "\d018"; }
-.icn-pen:before { content: "\d019"; }
 .icn-trashbin:before { content: "\d020"; }
 .icn-check:before { content: "\d021"; }

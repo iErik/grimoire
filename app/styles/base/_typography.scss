@@ -1,6 +1,10 @@
 .typography {
   font-family: $font-serif;
 
+  // TODO: Store line-height in a proper variable
+
+  line-height: 1.7;
+
   //  Headings and Paragraphs  //
 
   h1, h2, h3, h4, h5, h6 {
@@ -48,7 +52,15 @@
 
   //  Media Elements  //
 
-  p img { width: 100%; }
+  p img {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+
+    border-radius: 4px;
+    border: 1px solid #EDEDED;
+  }
+
   img { }
 
   //  List Elements  //
