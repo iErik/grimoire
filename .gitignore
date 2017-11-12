@@ -4,7 +4,9 @@
 *.db
 
 .DS_Store
-.cache
-.bundle
-.sass-cache
+.cache/
+.bundle/
+.sass-cache/
 node_modules
+
+/release/
