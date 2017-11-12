@@ -3,17 +3,16 @@ import ui from 'redux-ui';
 import AceEditor from 'react-ace';
 
 import 'brace/mode/markdown';
-import 'brace/theme/kuroir';
-import 'brace/theme/dreamweaver';
 
 import MarkdownIt from 'markdown-it';
 import toMarkdown from 'to-markdown';
 
-import { without } from 'underscore';
-
 import TitleBar from './components/TitleBar';
 import Sidebar from './components/Sidebar';
 import Editor from './components/Editor';
+
+import { without, union, map } from 'underscore';
+import { editorThemes } from 'config/themes';
 
 export default ui({
   key: 'editorPage',
@@ -21,7 +20,6 @@ export default ui({
     mdContents: ({ selectedNote }) => toMarkdown(selectedNote.contents) || '',
     editorOptions: (props) => ({
       name: props.selectedNote._id || 'brace-editor',
-      theme: props.editorTheme.light.name,
       fontSize: props.editorFontSize,
       mode: 'markdown',
       width: '100%',
@@ -32,8 +30,28 @@ export default ui({
       focus: true
     })
   }
-})(({ selectedNote, updateNoteContents, ...props }) => {
-  let editor;
+})(({ updateNoteContents, ...props }) => {
+  var editor;
+
+  const loadThemes = async (e) => {
+    if (props.ui.areThemesLoaded) return;
+
+    let { light, dark } = editorThemes
+
+    await Promise.all(map(union(light, dark), (theme) => {
+      return import(`brace/theme/${theme.name}`);
+    }));
+
+    props.updateUI({ areThemesLoaded: true });
+  }
+
+  const getTheme = () => {
+    if (!props.ui.areThemesLoaded) return '';
+
+    return props.ui.isDark
+    ? props.editorTheme.dark.name
+    : props.editorTheme.light.name;
+  }
 
   const getSelection = () => {
     return editor.session.getTextRange(editor.getSelectionRange());
@@ -49,7 +67,20 @@ export default ui({
 
   const docActions = {
     saveDocument: () => {
-      updateNoteContents(selectedNote, toHtml(props.ui.mdContents))
+      updateNoteContents(props.selectedNote, toHtml(props.ui.mdContents))
+    },
+    switchMode: () => {
+      props.updateUI({ isDark: !props.ui.isDark })
+    },
+    increaseFontSize: () => {
+      if (props.editorFontSize >= 90) return;
+
+      props.changeEditorFontSize(props.editorFontSize + 1);
+    },
+    decreaseFontSize: () => {
+      if (props.editorFontSize <= 1) return;
+
+      props.changeEditorFontSize(props.editorFontSize - 1);
     }
   };
 
@@ -146,14 +177,18 @@ export default ui({
         <TitleBar { ...props } editorActions={ editorActions } />
       </section>
       <section className="full-height editor-container">
-        <Sidebar { ...props } docActions={ docActions } />
+        <Sidebar {  ...props  } docActions={ docActions } />
 
         <Editor>
           <AceEditor ref={ c => editor = c ? c.editor : undefined }
+
             { ...props.ui.editorOptions }
 
+            fontSize={ props.editorFontSize }
+            theme={ getTheme() }
             value={ props.ui.mdContents }
             onChange={ updateValue }
+            onLoad={ loadThemes }
           />
         </Editor>
       </section>

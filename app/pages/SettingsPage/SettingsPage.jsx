@@ -38,7 +38,7 @@ export default class SettingsPage extends React.Component {
             <div className="section">
               <label>Font Size:</label>
               <TextField
-                value={ this.props.settings.editorFontSize }
+                value={ this.props.settings.editorFontSize.toString() }
                 onChange={ this.props.changeEditorFontSize }
                 alignEnd={ true }
               />

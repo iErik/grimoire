@@ -3,7 +3,9 @@ import ui from 'redux-ui';
 
 @ui({
   state: {
-    showSidebar: false
+    isDark: false,
+    showSidebar: false,
+    areThemesLoaded: false
   }
 })
 export default class EditorLayout extends React.Component {

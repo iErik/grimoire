@@ -1,35 +1,29 @@
 {
   "editorThemes": {
     "dark": [
-      { "name": "tomorrow-night_eighties"
+      { "name": "tomorrow_night_eighties"
       , "label": "Tomorrow Night 80s"
-      , "path": "brace/theme/tomorrow_night_eighties"
       }
       ,
-      { "name": "pastel-on-dark"
+      { "name": "pastel_on_dark"
       , "label": "Pastel On Dark"
-      , "path": "brace/theme/pastel_on_dark"
       }
       ,
       { "name": "twilight"
       , "label": "Twilight"
-      , "path": "brace/theme/twilight"
       }
     ],
     "light": [
       { "name": "kuroir"
       , "label": "Kuroir"
-      , "path": "brace/theme/kuroir"
       }
       ,
-      { "name": "dreamweaver"
-      , "label": "Dreamweaver"
-      , "path": "brace/theme/dreamweaver"
+      { "name": "solarized_light"
+      , "label": "Solarized Light"
       }
       ,
       { "name": "textmate"
       , "label": "TextMate"
-      , "path": "brace/theme/textmate"
       }
     ]
   },

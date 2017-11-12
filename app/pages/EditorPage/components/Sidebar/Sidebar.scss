@@ -45,12 +45,15 @@ $sidebar-document-entry-icon-size: 0.8em;
       flex-grow: 1;
       justify-content: center;
 
+      padding: 0 0;
+
       background-color: transparent;
 
       transition: background-color 0.3s ease;
 
       .btn {
         width: 100%;
+        height: 100%;
       }
 
       @include icon {
@@ -77,9 +80,30 @@ $sidebar-document-entry-icon-size: 0.8em;
       justify-content: space-between;
 
 
-      @include themify { color: foreground-color('primary-light');}
+      @include themify { color: foreground-color('primary-light'); }
 
       padding: 10px 23px 0 23px;
+
+      &.is-editing {
+        .title-input { display: flex; }
+        .title { display: none; }
+      }
+
+      .title-input {
+        display: none;
+
+        font-family: $font-monospace;
+        font-size:   $sidebar-document-entry-font-size;
+        font-weight: 900;
+
+        @include themify { color: foreground-color('primary-light'); }
+
+        background: transparent;
+        border: 0;
+        margin: 0;
+        padding: 0;
+        outline: 0;
+      }
 
       .title {
         font-family: $font-monospace;

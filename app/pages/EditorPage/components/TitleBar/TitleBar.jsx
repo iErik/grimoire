@@ -35,7 +35,7 @@ export default (props) => {
           </div>
           <div className="action-container">
             <button className="btn" onClick={ editorActions.insertStrikethrough }>
-              <i className="icn-underline"></i>
+              <i className="icn-strikethrough"></i>
             </button>
           </div>
           <div className="action-container">
