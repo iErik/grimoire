@@ -40,17 +40,17 @@ const loadState = async (currentState) => {
 
     notes: {
       notes: await Notes.findAsync({}),
-      selectedNote: await Notes.findOneAsync({ notebookId: activeNotebook._id }) || { },
+      selectedNote: await Notes.findOneAsync({ notebookId: activeNotebook._id }) || { }
     },
 
     notebooks: {
       notebooks: await Notebooks.findAsync({}),
-      activeNotebook,
+      activeNotebook
     },
 
     settings: await settings.get()
-  }
-}
+  };
+};
 
 export default function configureStore(scope = 'main', filter = defaultFilter) {
   const composeEnhancers = scope === 'renderer'

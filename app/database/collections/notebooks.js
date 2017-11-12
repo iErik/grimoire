@@ -1,8 +1,13 @@
+import path from 'path';
 import Datastore from 'nedb';
+import electron from 'electron';
 import { promisify, promisifyAll } from 'bluebird';
 
+const app = electron.remote ? electron.remote.app : electron.app;
+const dbPath = path.join(app.getPath('userData'), 'storage/notebooks.db');
+
 const Notebooks = new Datastore({
-  filename: './app/storage/notebooks.db',
+  filename: dbPath,
   timestampData: true,
   autoload: true,
 });

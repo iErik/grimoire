@@ -69,7 +69,7 @@ export function *updateNoteTitle({ payload }) {
       { returnUpdatedDocs: true }
     );
 
-    yield put(actions.updateNoteFulfilled(updatePayload));
+    yield put(actions.updateNoteFulfilled(updatePayload[1]));
   } catch (error) {
     yield put(actions.updateNoteTitleRejected(error));
   }
