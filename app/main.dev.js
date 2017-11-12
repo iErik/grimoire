@@ -59,6 +59,9 @@ app.on('ready', async () => {
   await initialSetup();
 
   const store = configureStore('main');
+  const entryFile = process.env.NODE_ENV === 'development'
+    ? `file://${__dirname}/app.dev.html`
+    : `file://${__dirname}/app.html`
 
   mainWindow = new BrowserWindow({
     width: 1080,
@@ -67,7 +70,7 @@ app.on('ready', async () => {
     frame: false,
   });
 
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
+  mainWindow.loadURL(entryFile);
 
   mainWindow.webContents.on('did-finish-load', () => {
     mainWindow.show();

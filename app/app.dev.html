@@ -6,6 +6,7 @@
 
   <script>
     (function() {
+      /*
       if (process.env.NODE_ENV !== 'development') {
         const link = document.createElement('link');
         link.rel = 'stylesheet';
@@ -13,6 +14,9 @@
 
         document.getElementsByTagName('head')[0].appendChild(link);
       }
+      */
+
+      return;
     }());
   </script>
 </head>
@@ -21,13 +25,13 @@
 
   <script>
     {
-      const script = document.createElement('script');
-      const port = process.env.PORT || 8080;
-      script.src = (process.env.NODE_ENV === 'development')
-        ? 'http://localhost:' + port + '/assets/app.js'
-        : './assets/scripts/app.js';
+      if (process.env.NODE_ENV === 'development') {
+        const script = document.createElement('script');
+        const port = process.env.PORT || 8080;
+        script.src =  'http://localhost:' + port + '/assets/app.js'
 
-      document.body.appendChild(script);
+        document.body.appendChild(script);
+      }
     }
   </script>
 </body>
