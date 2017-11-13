@@ -7,7 +7,8 @@ import config from '../config';
 import webpackMainConfig from './webpack.electron.config';
 import webpackRendererConfig from './webpack.prod.config';
 
-env.NODE_ENV = 'production';
+if (!process.env.NODE_ENV)
+  process.env.NODE_ENV = JSON.parse(config.build.env.NODE_ENV);
 
 var spinner = ora('building for production...');
 spinner.start();

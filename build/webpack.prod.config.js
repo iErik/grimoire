@@ -28,12 +28,21 @@ export default merge(baseConfig,
      , loader: ExtractTextPlugin.extract({
          fallback: "style-loader",
          use:
-         [ { loader: 'css-loader' }
-         , { loader: 'postcss-loader'
-           , options: { plugins: [autoprefixer({ browsers: ['electron 1.4'] })] }
+         [ { loader: 'css-loader'
+           , options: { sourceMap: config.build.cssSourceMap }
            }
+         , { loader: 'postcss-loader'
+           , options:
+             { plugins: [autoprefixer({ browsers: ['electron 1.4'] })]
+             , sorceMap: config.build.cssSourceMap
+             }
+           }
+         , { loader: 'resolve-url-loader' }
          , { loader: 'sass-loader'
-           , options: { importer: jsonImporter }
+           , options:
+             { importer: jsonImporter
+             , sourceMap: config.build.cssSourceMap
+             }
            }
          ]
        })
