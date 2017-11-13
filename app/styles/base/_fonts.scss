@@ -7,3 +7,103 @@
   font-style:  normal;
   src: url("../static/fonts/grimoire_icons/grimoire_icons.woff") format("woff");
 }
+
+//  Lato
+//  ----
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 400;
+  font-style:  normal;
+  src: url("../static/fonts/lato/Lato-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 500;
+  font-style:  normal;
+  src: url("../static/fonts/lato/Lato-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 400;
+  font-style:  italic;
+  src: url("../static/fonts/lato/Lato-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 500;
+  font-style:  italic;
+  src: url("../static/fonts/lato/Lato-BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 200;
+  font-style:  normal;
+  src: url("../static/fonts/lato/Lato-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 200;
+  font-style:  italic;
+  src: url("../static/fonts/lato/Lato-LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 100;
+  font-style:  normal;
+  src: url("../static/fonts/lato/Lato-Hairline.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Lato";
+  font-weight: 100;
+  font-style:  italic;
+  src: url("../static/fonts/lato/Lato-HairlineItalic.woff2") format("woff2");
+}
+
+//  Libre Baskerville
+//  -----------------
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-weight: 400;
+  font-style:  normal;
+  src: url("../static/fonts/libre_baskerville/LibreBaskerville-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-weight: 400;
+  font-style:  italic;
+  src: url("../static/fonts/libre_baskerville/LibreBaskerville-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  font-weight: 500;
+  font-style:  normal;
+  src: url("../static/fonts/libre_baskerville/LibreBaskerville-Bold.woff") format("woff");
+}
+
+//  Inconsolata
+//  -----------
+
+@font-face {
+  font-family: "Inconsolata";
+  font-weight: 400;
+  font-style:  normal;
+  src: url("../static/fonts/inconsolata/Inconsolata-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inconsolata";
+  font-weight: 500;
+  font-style:  normal;
+  src: url("../static/fonts/inconsolata/Inconsolata-Bold.woff2") format("woff2");
+}
