@@ -34,7 +34,7 @@ export default merge(baseConfig,
          , { loader: 'postcss-loader'
            , options:
              { plugins: [autoprefixer({ browsers: ['electron 1.4'] })]
-             , sorceMap: config.build.cssSourceMap
+             , sourceMap: config.build.cssSourceMap
              }
            }
          , { loader: 'resolve-url-loader' }
