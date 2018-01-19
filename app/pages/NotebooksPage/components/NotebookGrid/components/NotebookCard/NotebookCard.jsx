@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ui from 'redux-ui';
 
@@ -10,7 +11,7 @@ import Input from 'components/Input';
   }
 })
 export default class NotebookCard extends React.Component {
-  static contextTypes = { router: React.PropTypes.object.isRequired }
+  static contextTypes = { router: PropTypes.object.isRequired }
 
   updateNotebookName(ev) {
     this.props.updateNotebookName(this.props.notebook, ev.target.value);
