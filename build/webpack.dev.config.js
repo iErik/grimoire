@@ -47,4 +47,8 @@ export default merge.smart(baseConfig,
     , new webpack.DefinePlugin({ 'process.env': config.dev.env })
     , new FriendlyErrors()
     ]
+, node:
+  { __dirname: false
+  , __filename: false
+  }
 });
