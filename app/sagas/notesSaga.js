@@ -87,9 +87,9 @@ export function *selectNextNote() {
 
 export function *editNote({ payload }) {
   try {
-    let appEntryFile = process.env.NODE_ENV === 'development'
-      ? 'app.dev.html'
-      : 'app.html';
+    let entryURL = process.env.NODE_ENV === 'development'
+      ? `file://${__dirname}/../app.dev.html`
+      : `file://${__dirname}/app.html`;
 
     var editorWindow = new BrowserWindow({
       width: 600,
@@ -100,12 +100,13 @@ export function *editNote({ payload }) {
     });
 
     editorWindow.loadURL(
-      `file://${__dirname}/../${appEntryFile}#/editor/${payload.notebookId}/${payload._id}`
+      `${entryURL}#/editor/${payload.notebookId}/${payload._id}`
     );
 
     editorWindow.webContents.once('did-finish-load', () => {
       editorWindow.show();
       editorWindow.focus();
+      editorWindow.webContents.openDevTools();
     });
 
     editorWindow.on('closed', () => editorWindow = null);
