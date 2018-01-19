@@ -75,7 +75,7 @@ export default class TitleBar extends React.Component {
   render() {
     return (
       <div className="notes-title-bar">
-        <div className="small-4 row columns">
+        <div className="small-4 flex row columns">
           <div className="control-container" >
             <BurgerButton
               isActive={ this.props.ui.showSidebar }
