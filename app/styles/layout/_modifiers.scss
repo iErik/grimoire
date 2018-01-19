@@ -1,3 +1,6 @@
+//  Layout Modifiers
+//  ----------------
+
 .draggable {
   -webkit-app-region: drag;
 }
@@ -9,6 +12,18 @@
 .full-screen-height {
   height: 100vh;
 }
+
+.flex {
+  display: flex !important;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+//  Color Modifiers
+//  ---------------
 
 .background-base {
   @include themify { background-color: background-color(); }
