@@ -33,7 +33,7 @@ export default merge(baseConfig,
            }
          , { loader: 'postcss-loader'
            , options:
-             { plugins: [autoprefixer({ browsers: ['electron 1.4'] })]
+             { plugins: [autoprefixer({ browsers: ['electron 1.7'] })]
              , sourceMap: config.build.cssSourceMap
              }
            }

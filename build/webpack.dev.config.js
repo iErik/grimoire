@@ -25,9 +25,16 @@ export default merge.smart(baseConfig,
   { rules:
     [{ test: /\.(scss|css)$/
      , use:
-       [{ loader: 'sass-loader'
-        , options: { sourceMap: config.dev.cssSourceMap }
-       }]
+       [ { loader: 'postcss-loader'
+         , options:
+           { sourceMap: config.dev.cssSourceMap
+           , sourceMapContents: false
+           }
+         }
+       , { loader: 'sass-loader'
+         , options: { sourceMap: config.dev.cssSourceMap }
+         }
+       ]
     }]
   }
 

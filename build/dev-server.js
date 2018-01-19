@@ -21,7 +21,7 @@ const hotMiddleware = webpackHotMiddleware(compiler, {
 
 const devMiddleware = webpackDevMiddleware(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true
+  logLevel: 'silent'
 });
 
 devMiddleware.waitUntilValid(function() {

@@ -59,7 +59,7 @@ export default {
         [ { loader: 'style-loader' }
         , { loader: 'css-loader' }
         , { loader: 'postcss-loader'
-          , options: { plugins: [autoprefixer({ browsers: ['electron 1.4'] })] }
+          , options: { plugins: [autoprefixer({ browsers: ['electron 1.7'] })] }
           }
         , { loader: 'sass-loader'
           , options: { importer: jsonImporter }
