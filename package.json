@@ -16,7 +16,11 @@
     "build": "node -r babel-register build/build.js",
     "dev": "node -r babel-register build/dev-server.js",
     "start-dev": "cross-env NODE_ENV=development electron -r babel-register -r babel-polyfill ./app/main.dev",
-    "pack": "electron-builder"
+    "build:pack": "npm run build && node_modules/.bin/electron-builder",
+    "build:pack:multi": "npm run build && node_modules/.bin/electron-builder -mlw --x64",
+    "build:pack:mac": "npm run build && node_modules/.bin/electron-builder --mac --x64",
+    "build:pack:win": "npm run build && node_modules/.bin/electron-builder --win --x64",
+    "build:pack:linux": "npm run build && node_modules/.bin/electron-builder --linux --x64"
   },
   "build": {
     "productName": "Grimoire",
@@ -50,7 +54,7 @@
     "cross-env": "5.1.3",
     "css-loader": "^0.28.1",
     "devtron": "^1.4.0",
-    "electron": "1.7.10",
+    "electron": "^1.7.10",
     "electron-builder": "^19.45.0",
     "electron-debug": "^1.1.0",
     "electron-devtools-installer": "^2.1.0",
