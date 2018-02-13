@@ -21,7 +21,7 @@ export default class Sidebar extends React.Component {
           <li className="nav-entry">
             <Link className="nav-link" activeClassName="is-active"
               to="/dashboard/notebooks">
-              <i className="icn-exclamation"></i>
+              <i className="icn-notebook"></i>
             </Link>
           </li>
           <li className="nav-entry">
