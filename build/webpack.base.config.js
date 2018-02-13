@@ -43,7 +43,7 @@ export default {
     , 'utils': path.resolve(__dirname, '../app/utils')
     }
   }
-, externals: Object.keys(externals || {})
+//, externals: Object.keys(externals || {})
 
 , module:
   { rules:
