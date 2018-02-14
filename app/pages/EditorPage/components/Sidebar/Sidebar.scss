@@ -37,6 +37,7 @@ $sidebar-document-entry-icon-size: 0.8em;
 
   .document-actions {
     display: flex;
+    flex-shrink: 0;
 
     height: $sidebar-document-action-height;
 
@@ -73,6 +74,7 @@ $sidebar-document-entry-icon-size: 0.8em;
 
   .document-list-entries {
     flex-grow: 1;
+    flex-shrink: 0;
     padding: 5px 0 0;
 
     .document-list-entry {
@@ -136,6 +138,7 @@ $sidebar-document-entry-icon-size: 0.8em;
 
   .document-action {
     display: flex;
+    flex-shrink: 0;
     align-items: center;
 
     height: $sidebar-document-action-height;
