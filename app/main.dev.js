@@ -54,7 +54,7 @@ const initialSetup = async () => {
   }
 }
 
-app.on('ready', async () => {
+async function openMainWindow() {
   await installExtensions();
   await initialSetup();
 
@@ -66,8 +66,10 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     width: 1080,
     height: 660,
+
     show: false,
     frame: false,
+    hasShadow: true
   });
 
   mainWindow.loadURL(entryFile);
@@ -99,7 +101,14 @@ app.on('ready', async () => {
       }]).popup(mainWindow);
     });
   }
-});
+}
+
+app.on('ready', openMainWindow);
+
+app.on('activate', () => {
+  if (mainWindow === null)
+    openMainWindow();
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin')
