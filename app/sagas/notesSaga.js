@@ -94,9 +94,12 @@ export function *editNote({ payload }) {
     var editorWindow = new BrowserWindow({
       width: 600,
       height: 610,
+      minWidth: 490,
+      minHeight: 260,
+
       frame: false,
       show: false,
-      transparent: true,
+      hasShadow: true
     });
 
     editorWindow.loadURL(
@@ -106,7 +109,6 @@ export function *editNote({ payload }) {
     editorWindow.webContents.once('did-finish-load', () => {
       editorWindow.show();
       editorWindow.focus();
-      editorWindow.webContents.openDevTools();
     });
 
     editorWindow.on('closed', () => editorWindow = null);
