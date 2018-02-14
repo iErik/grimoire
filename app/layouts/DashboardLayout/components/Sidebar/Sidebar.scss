@@ -78,3 +78,10 @@ $sidebar-icon-size: 1.4em;
     }
   }
 }
+
+.root-container:not(.darwin) .narrow-sidebar {
+  height: calc(100% - #{60px + ($win32-border-width * 2)}) !important;
+  bottom: $win32-border-width !important;
+
+  &.is-active { left: $win32-border-width !important; }
+}

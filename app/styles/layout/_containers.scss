@@ -1,8 +1,3 @@
-.root-container {
-  width: 100vw;
-  height: 100vh;
-}
-
 .container {
   @include flex-grid-row(collapse, none);
 
@@ -18,6 +13,23 @@
     > .column > .row, .columns > .row, .container > .row, > .row, > .container {
       margin-left: 0;
       margin-right: 0;
+    }
+  }
+}
+
+.root-container {
+  width: 100vw;
+  height: 100vh;
+
+  &:not(.darwin) {
+    border-width: $win32-border-width;
+    border-style: solid;
+
+    @include themify { border-color: darken(primary-color(), 10%); }
+
+    .full.container {
+      width: calc(100vw - #{$win32-border-width * 2});
+      height: calc(100vh - #{$win32-border-width * 2});
     }
   }
 }
