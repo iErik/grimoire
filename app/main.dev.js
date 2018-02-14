@@ -66,6 +66,8 @@ async function openMainWindow() {
   mainWindow = new BrowserWindow({
     width: 1080,
     height: 660,
+    minWidth: 960,
+    minHeight: 260,
 
     show: false,
     frame: false,
