@@ -6,7 +6,7 @@
 $titlebar-height: 60px;
 $titlebar-icons-size: 1.3em;
 $titlebar-title-font-size: 1.3em;
-$titlebar-title-font-weight: 100;
+$titlebar-title-font-weight: 300;
 
 $control-container-width: 60px;
 
@@ -25,6 +25,21 @@ $control-container-width: 60px;
   @include themify { background-color: primary-color(); }
 
   .column { padding: 0 !important; }
+
+  .section {
+    position: absolute;
+    z-index: 300;
+
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    -webkit-app-region: no-drag;
+
+    &.section-left { left: 0px; }
+    &.section-right { right: 0px; }
+  }
 
   .control-container {
     display: flex;
@@ -70,4 +85,8 @@ $control-container-width: 60px;
 
 .notebooks-titlebar {
   @extend %notebooks-titlebar;
+}
+
+.darwin .notebooks-titlebar {
+  .title { font-weight: 100; }
 }

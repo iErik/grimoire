@@ -97,11 +97,11 @@ export default class TitleBar extends React.Component {
           </div>
         </div>
 
-        <div className="draggable note-actions small-8 columns">
+        <div className="note-actions small-8 columns">
 
           { this.renderNotesActions() }
 
-          <div className="title-container">
+          <div className="draggable title-container">
             <p className="title">{ APP_NAME }</p>
           </div>
 

@@ -118,7 +118,7 @@ $control-container-width: 60px;
 
     .title {
       font-size:   $title-bar-title-font-size;
-      font-weight: 100;
+      font-weight: 300;
       @include themify { color: foreground-color('primary'); }
 
       user-select: none;
@@ -139,4 +139,8 @@ $control-container-width: 60px;
 
 .notes-title-bar {
   @extend %notes-title-bar;
+}
+
+.darwin .notes-title-bar {
+  .title { font-weight: 100; }
 }

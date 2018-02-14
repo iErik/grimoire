@@ -4,16 +4,16 @@
 //  ---------
 
 $entry-contents-font-size: 0.75em;
-$entry-contents-font-weight: 100;
+$entry-contents-font-weight: 400;
 
 $entry-title-font-size: 1em;
-$entry-title-font-weight: 300;
+$entry-title-font-weight: 400;
 
 $entry-meta-date-font-size: 0.625em;
-$entry-meta-date-font-weight: 100;
+$entry-meta-date-font-weight: 400;
 
 $entry-meta-empty-font-size: 0.75em;
-$entry-meta-empty-font-weight: 100;
+$entry-meta-empty-font-weight: 400;
 
 $entry-height: 130px;
 
@@ -105,4 +105,12 @@ $entry-height: 130px;
 
 .notes-list {
   @extend %notes-list;
+}
+
+.darwin .notes-list {
+  .entry-title .title { font-weight: 300 !important; }
+  .entry-title .meta-date { font-weight: 100 !important; }
+
+  .entry-contents .meta-empty { font-weight: 100 !important; }
+  .entry-contents .contents { font-weight: 100 !important; }
 }

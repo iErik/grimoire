@@ -11,7 +11,7 @@ export default class Titlebar extends React.Component {
   render() {
     return (
       <div className="notebooks-titlebar">
-        <div className="column">
+        <div className="section section-left column">
           <div className="control-container">
             <BurgerButton
               isActive={ this.props.ui.showSidebar }
@@ -22,7 +22,7 @@ export default class Titlebar extends React.Component {
         <div className="column title-container draggable">
           <p className="title">Notebooks</p>
         </div>
-        <div className="column">
+        <div className="section section-right column">
           <div className="wrapper-window-controls">
             <WindowControls { ...this.props } />
           </div>
