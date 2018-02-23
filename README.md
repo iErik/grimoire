@@ -119,3 +119,8 @@ npm run build:pack:multi
 ## Screenshot
 
 ![Application Screenshot](/resources/screenshot.png?raw=true)
+
+## License
+
+Grimoire Editor is distributed under the GNU GPL license 2.0
+http://www.gnu.org/licenses/gpl-2.0.html
