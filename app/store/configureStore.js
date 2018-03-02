@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { hashHistory } from 'react-router';
 
 import {
   outerReducer as hydrateReducers,
@@ -20,7 +19,6 @@ import Notebooks from '../database/collections/notebooks';
 import Notes from '../database/collections/notes';
 
 const logger = createLogger({ level: 'info', collapsed: true });
-const router = routerMiddleware(hashHistory);
 const sagas  = createSagaMiddleware();
 
 const defaultFilter = {
@@ -56,6 +54,11 @@ export default function configureStore(scope = 'main', filter = defaultFilter) {
   const composeEnhancers = scope === 'renderer'
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose;
+
+  if (scope === 'renderer')
+    var history = require('./hashHistory');
+
+  const router = scope === 'main' ? undefined : routerMiddleware(history);
 
   const reducer = scope === 'main'
     ? hydrateReducers(createRootReducer(scope))

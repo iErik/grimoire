@@ -1,31 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, hashHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import { Router, Route } from 'react-router-dom';
 
+import { ConnectedRouter } from 'react-router-redux';
 import configureStore from 'store/configureStore';
-import routes from 'config/routes';
+import hashHistory from 'store/hashHistory';
 import styles from 'styles/index';
 
+import RootLayout from 'containers/layouts/RootLayout';
+
 const store = configureStore('renderer');
-const history = syncHistoryWithStore(hashHistory, store);
 
 render(
   <Provider store={ store }>
-    <Router
-      routes={ routes }
-      history={ history }
-      createElement={ (component, props) => {
-        const { location, routes } = props;
-        const isPageComponent = component === routes[routes.length - 1].component
-
-        if (isPageComponent)
-          props = { ...props, key: `${location.pathname}${location.search}` }
-
-        return React.createElement(component, props);
-      }}
-    />
+    <ConnectedRouter history={ hashHistory }>
+      <Route path="/" component={ RootLayout } />
+    </ConnectedRouter>
   </Provider>
 , document.getElementById('root')
 );

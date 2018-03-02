@@ -1,6 +1,10 @@
 import React from 'react';
 import ui from 'redux-ui';
 
+import { Route } from 'react-router-dom';
+
+import EditorPage from 'pages/EditorPage';
+
 @ui({
   state: {
     isDark: false,
@@ -10,9 +14,10 @@ import ui from 'redux-ui';
 })
 export default class EditorLayout extends React.Component {
   render() {
+    let basePath = this.props.match.url;
     return (
       <main className="full container">
-        { React.cloneElement(this.props.children, this.props) }
+        <Route path={basePath} render={(props) => <EditorPage { ...this.props } />} />
       </main>
     );
   }
