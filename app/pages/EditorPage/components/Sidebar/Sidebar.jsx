@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import ui from 'redux-ui';
 
 import Input from 'components/Input';
@@ -56,12 +56,12 @@ export default class Sidebar extends React.Component {
             }}
           />
 
-          <Link className="title" activeClassName="is-active"
+          <NavLink className="title" activeClassName="is-active"
             to={ `/editor/${this.props.params.notebookId}/${note._id}` }
             onClick={ this.renameNote.bind(this, note) } >
 
             { note.title }.md
-          </Link>
+          </NavLink>
 
           <button
             className="btn btn-delete"

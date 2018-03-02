@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Link, IndexLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 
 export default class Sidebar extends React.Component {
   render() {
@@ -13,22 +13,22 @@ export default class Sidebar extends React.Component {
       <nav className={ classState }>
         <ul className="nav-entries">
           <li className="nav-entry">
-            <IndexLink className="nav-link" activeClassName="is-active"
+            <NavLink className="nav-link" exact={true} activeClassName="is-active"
               to="/dashboard">
               <i className="icn-newspaper"></i>
-            </IndexLink>
+            </NavLink>
           </li>
           <li className="nav-entry">
-            <Link className="nav-link" activeClassName="is-active"
+            <NavLink className="nav-link" exact={true} activeClassName="is-active"
               to="/dashboard/notebooks">
               <i className="icn-notebook"></i>
-            </Link>
+            </NavLink>
           </li>
           <li className="nav-entry">
-            <Link className="nav-link" activeClassName="is-active"
+            <NavLink className="nav-link" exact={true} activeClassName="is-active"
               to="/dashboard/settings">
               <i className="icn-gear"></i>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
