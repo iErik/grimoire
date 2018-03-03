@@ -17,7 +17,6 @@ import { editorThemes } from 'config/themes';
 export default ui({
   key: 'editorPage',
   state: {
-    mdContents: ({ selectedNote }) => toMarkdown(selectedNote.contents) || '',
     editorOptions: (props) => ({
       name: props.selectedNote._id || 'brace-editor',
       fontSize: props.editorFontSize,

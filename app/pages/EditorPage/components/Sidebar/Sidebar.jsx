@@ -12,7 +12,7 @@ import Input from 'components/Input';
 })
 export default class Sidebar extends React.Component {
   createNote() {
-    this.props.createNote(this.props.params.notebookId);
+    this.props.createNote(decodeURIComponent(this.props.match.params.notebookId));
   }
 
   renameNote(note, ev) {
@@ -35,6 +35,7 @@ export default class Sidebar extends React.Component {
 
   renderDocuments() {
     return this.props.notes.map((note) => {
+      let notebookId = decodeURIComponent(this.props.match.params.notebookId);
       let style = classNames({
         'document-list-entry': true,
         'is-editing': note._id === this.props.selectedNote._id &&
@@ -57,7 +58,7 @@ export default class Sidebar extends React.Component {
           />
 
           <NavLink className="title" activeClassName="is-active"
-            to={ `/editor/${this.props.params.notebookId}/${note._id}` }
+            to={ `/editor/${notebookId}/${note._id}` }
             onClick={ this.renameNote.bind(this, note) } >
 
             { note.title }.md
