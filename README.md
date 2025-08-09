@@ -1,126 +1,87 @@
-## Grimoire
-Grimoire is an open-source Markdown editor built entirely with web
-techonologies, the project is currently under beta development phase and
-it's available for download for Windows, macOS and Linux.
+# Welcome to React Router!
 
-The goal of this project is to offer the user a clean, simple and elegant tool
-for composing and organizing notes and documents written in Markdown.
+A modern, production-ready template for building full-stack React applications using React Router.
 
-If you're interesed, you can also check out the entire design process for this
-project on [this GitLab repo](https://gitlab.com/Isidore/grimoire-mockup), there
-you can find the Photoshop project file, icons, fonts and everything that was
-used during the design process of this project.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
 
-## Building
+## Features
 
-### Requirements
+- 🚀 Server-side rendering
+- ⚡️ Hot Module Replacement (HMR)
+- 📦 Asset bundling and optimization
+- 🔄 Data loading and mutations
+- 🔒 TypeScript by default
+- 🎉 TailwindCSS for styling
+- 📖 [React Router docs](https://reactrouter.com/)
 
-- Node.js 6.x or later
-- npm 3.10.x or later
-- yarn (optional)
+## Getting Started
 
-### Building for development
+### Installation
 
-To run the development version of the application localy you can simply run the
-following command in a terminal:
+Install the dependencies:
+
+```bash
+npm install
+```
+
+### Development
+
+Start the development server with HMR:
 
 ```bash
 npm run dev
 ```
 
-This will actually start a local development server on port `5000` by default,
-you can change that by simply editing the `PORT` environment variable located
-in the `config/dev.env.js` file. This development server is necessary so that
-the application's assets are re-compiled and re-sent to the running application
-whenever any change is made to app's code. This is called
-[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/),
-any changes made to the application's code should reflect in the running app
-window.
+Your application will be available at `http://localhost:5173`.
 
-### Buidling for production
+## Building for Production
 
-You can generate the application binaries for your specific platform simply
-by running:
+Create a production build:
 
 ```bash
-npm run build:pack
+npm run build
 ```
 
-Once finished, you can find the application binary file unde the `release`
-directory
+## Deployment
 
-### Multi-platform build
+### Docker Deployment
 
-Depending on your system, there are a few packages that you need to install
-first before you can actually build the application's binaries for other
-platforms.
-
-#### macOS
-
-All required system dependencies (except rpm) will be downloaded automatically
-on demand on macOS 10.12+ (macOS Sierra). You can install the rpm package with
-the [Homebrew package manager](https://brew.sh/) by running the following in a
-terminal:
+To build and run using Docker:
 
 ```bash
-brew install rpm
+docker build -t my-app .
+
+# Run the container
+docker run -p 3000:3000 my-app
 ```
 
-With that taken care of, you can build the app's binaries for all platforms
-by running a single command in the terminal:
+The containerized application can be deployed to any platform that supports Docker, including:
 
-```bash
-npm run build:pack:multi
+- AWS ECS
+- Google Cloud Run
+- Azure Container Apps
+- Digital Ocean App Platform
+- Fly.io
+- Railway
+
+### DIY Deployment
+
+If you're familiar with deploying Node applications, the built-in app server is production-ready.
+
+Make sure to deploy the output of `npm run build`
+
+```
+├── package.json
+├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
+├── build/
+│   ├── client/    # Static assets
+│   └── server/    # Server-side code
 ```
 
-Once the process is finished, you can find the application's binaries under
-the `release` directory.
+## Styling
 
-#### Linux
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
 
-You can use [Docker](https://www.electron.build/multi-platform-build#docker)
-to avoid installing system dependencies.
+---
 
-To build the application in distributable format on Linux, you'll need the
-`icnsutils` package:
-
-```bash
-sudo apt-get install --no-install-recommends -y icnsutils
-```
-
-You'll also need to install the rpm package:
-
-```bash
-sudo apt-get install --no-install-recommends -y rpm
-```
-
-Replace `apt-get` with your distribution's package manager.
-
-After that you can run:
-
-```bash
-npm run build:pack:multi
-```
-
-#### Windows
-
-[Docker](https://www.electron.build/multi-platform-build#docker) is recommended
-to avoid installing system dependencies, but if you choose not to use Docker,
-you'll need to install Wine 2.0+ – see
-[WineHQ Binary Packages](https://www.winehq.org/download#binary).
-
-Having the required packages installed, you can simply run the following
-command in a command line:
-
-```bash
-npm run build:pack:multi
-```
-
-## Screenshot
-
-![Application Screenshot](/resources/screenshot.png?raw=true)
-
-## License
-
-Grimoire Editor is distributed under the GNU GPL license 2.0
-http://www.gnu.org/licenses/gpl-2.0.html
+Built with ❤️ using React Router.

@@ -1,12 +1,6 @@
-*.DS_Store
-*.cache
-*.log
-*.db
-
 .DS_Store
-.cache/
-.bundle/
-.sass-cache/
-node_modules
+/node_modules/
 
-/release/
+# React Router
+/.react-router/
+/build/
