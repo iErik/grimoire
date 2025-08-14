@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare:panda": "panda codegen",
+    "prepare:icons": "svgr app/icons/svg",
     "dev": "bun run ./scripts/dev-server.ts"
   },
   "env": {
@@ -12,23 +14,35 @@
     "HOST": "127.0.0.1"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^5.0.0",
+    "@codemirror/commands": "^6.8.1",
+    "@codemirror/lang-markdown": "^6.3.4",
+    "@codemirror/language-data": "^6.5.1",
+    "@codemirror/state": "^6.5.2",
+    "@codemirror/view": "^6.38.1",
+    "@emdashcodes/codemirror-markdown-canvas": "https://github.com/emdashcodes/codemirror-markdown-canvas.git",
+    "@lezer/highlight": "^1.2.1",
+    "@lezer/markdown": "^1.4.3",
+    "@markdoc/markdoc": "^0.5.4",
+    "@uiw/react-codemirror": "^4.24.2",
+    "immer": "^10.1.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router": "^7.7.1"
+    "react-router": "^7.7.1",
+    "wouter": "^3.7.1",
+    "zustand": "^5.0.7"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.4",
+    "@pandacss/dev": "^1.0.1",
+    "@pandacss/types": "^1.0.1",
+    "@svgr/cli": "^8.1.0",
     "@types/bun": "^1.2.19",
-    "@types/electron": "^1.6.12",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "bun-types": "^1.2.19",
+    "@vitejs/plugin-react": "^5.0.0",
     "electron": "^37.2.6",
     "sass-embedded": "^1.90.0",
     "tailwindcss": "^4.1.4",
-    "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "vite": "^6.3.3",
     "vite-tsconfig-paths": "^5.1.4"
