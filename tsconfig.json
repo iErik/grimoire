@@ -1,8 +1,10 @@
 {
   "include": [
     "app/**/*",
+    "./styled-system/**/*",
     "scripts/**/*",
-    "env.d.ts"
+    "env.d.ts",
+    "panda.config.ts"
   ],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2015", "es6", "ES2022"],
@@ -23,9 +25,20 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./app/*"],
+      "@assets/*": ["./app/assets/*"],
+      "@vendor/*": ["./app/vendor/*"],
       "@layouts/*": ["./app/layouts/*"],
       "@components/*": ["./app/components/*"],
-      "@views/*": ["./app/views/*"]
+      "@views/*": ["./app/views/*"],
+      "@state": ["./app/state/index.ts"],
+      "@state/*": ["./app/state/*"],
+      "@utils/*": ["./app/utils/*"],
+      "@icons": ["./app/icons/index.tsx"],
+      "@icons/*": ["./app/icons/*"],
+      "@pages/*": ["./app/pages/*"],
+      "@styles/*": ["./app/styles/*"],
+      "@css": ["./styled-system/css"],
+      "@styled-system/*": ["./styled-system/*"]
     }
   }
 }
