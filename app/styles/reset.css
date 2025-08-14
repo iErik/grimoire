@@ -1,0 +1,116 @@
+@layer reset {
+  /* Use a more-intuitive box-sizing model */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    /* 5. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Remove default margin */
+  * { margin: 0; }
+
+  /* Add accessible line-height */
+  body { line-height: 1.5; }
+
+  /* Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  /* Inherit fonts for form controls */
+  input, button, textarea, select { font: inherit; }
+
+  /* Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 { overflow-wrap: break-word; }
+
+  /* Improve line wrapping */
+  p { text-wrap: pretty; }
+  h1, h2, h3, h4, h5, h6 { text-wrap: balance; }
+
+  /* Create a root stacking context */
+  #root, #__next { isolation: isolate; }
+
+  /* Allow transitions from/to 'auto' keyword and more */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      interpolate-size: allow-keywords;
+    }
+  }
+
+  /* Remove default styling for buttons (we don't need it)
+   */
+  button {
+    background: none;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  /**
+  * Correct the cursor style of increment and decrement
+  * buttons in Safari.
+  */
+
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    height: auto;
+  }
+
+  /**
+  * 1. Correct the odd appearance in Chrome, Edge, and Safari.
+  * 2. Correct the outline style in Safari.
+  */
+
+  :where(input[type="search" i]) {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+  }
+
+  /**
+  * Remove the inner padding in Chrome, Edge, and Safari
+  * on macOS.
+  */
+
+  ::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  /**
+  * 1. Correct the inability to style upload buttons in iOS
+  * and Safari.
+  * 2. Change font properties to `inherit` in Safari.
+  */
+
+  ::-webkit-file-upload-button {
+    -webkit-appearance: button; /* 1 */
+    font: inherit; /* 2 */
+  }
+
+  /* Interactive
+  * ====================================================== */
+
+  /* Add the correct styles in Safari. */
+
+  :where(dialog) {
+    background-color: white;
+    border: solid;
+    color: black;
+    height: -moz-fit-content;
+    height: fit-content;
+    left: 0;
+    margin: auto;
+    padding: 1em;
+    position: absolute;
+    right: 0;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+
+  :where(dialog:not([open])) { display: none; }
+
+  /* Add the correct display in all browsers. */
+
+  :where(summary) { display: list-item; }
+}
