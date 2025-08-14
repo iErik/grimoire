@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 
 import tsconfigPaths from 'vite-tsconfig-paths'
-import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 import pkg from './package.json'
@@ -15,7 +14,6 @@ const WS   = pkg.env?.WS || 3001   // WebSocket port
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss(),
     tsconfigPaths()
   ],
 
