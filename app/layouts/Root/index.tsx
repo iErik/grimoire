@@ -1,10 +1,14 @@
 import type { PropsWithChildren } from 'react'
 import { css } from '@css'
 
+import Draggable from '@components/Draggable'
+
 export default function RootLayout(props: PropsWithChildren) {
   return (
     <div className={styles.root}>
-      {props.children}
+      <Draggable.Provider>
+        {props.children}
+      </Draggable.Provider>
     </div>
   )
 }
