@@ -1,4 +1,5 @@
-import { useCallback, useMemo } from 'react'
+import { createPortal } from 'react-dom'
+import { useCallback, useMemo, memo } from 'react'
 
 import { css } from '@css'
 import useStore, {
@@ -19,7 +20,7 @@ import NoteEditor from '@components/NoteEditor'
 import EmptyState from '@components/EmptyState'
 
 
-export default function JournalView() {
+const JournalView = () => {
   const activeNoteId = useStore(state => state.activeNoteId)
   const notes = useStore(state => state.notes)
   const folders = useStore(state => state.folders)
@@ -64,7 +65,6 @@ export default function JournalView() {
   const onEditorChange = useCallback((contents: string) => {
     console.log('onEditorChange: ', { contents })
   }, [])
-
 
   return(
     <div className={styles.root}>
@@ -161,3 +161,4 @@ const useSidebarItems = (
   ]
 }
 
+export default memo(JournalView)

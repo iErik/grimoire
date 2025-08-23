@@ -1,10 +1,15 @@
+import { memo } from 'react'
+
 import { css, sva } from '@css'
 import Icon, { type IconName } from '@icons'
 
+import {
+  useDraggable,
+  useDragArea
+} from '@components/Draggable'
+
 
 export default function Sidebar(props: SidebarProps) {
-  console.log('Sidebar.props: ', { props })
-
   return (
     <div className={styles.root}>
       <div className={styles.toolbar}>
@@ -39,23 +44,43 @@ export default function Sidebar(props: SidebarProps) {
 }
 
 
-const NoteItem = (props: {
+const NoteItem = memo((props: {
   note: NoteItem,
-  active: boolean
+  active: boolean,
+  nested?: boolean
 }) => {
   const classes = styles.item({
     type: 'note',
-    active: props.active
+    active: props.active,
+    nested: props.nested
+  })
+
+  const dragEl = () => <p>{ props.note.name }</p>
+  const onDrag = () => {
+    console.log('Note being dragged: ', props.note.id)
+  }
+
+  const dragRef = useDraggable({
+    renderEl: ({ activeArea }) => (
+      <>
+        <p>{props.note.name}</p>
+        <p>{ activeArea }</p>
+      </>
+    ),
+    payload: {
+      type: 'NoteItem',
+      data: props.note
+    }
   })
 
   return (
-    <div className={classes.root}>
+    <div ref={dragRef} className={classes.item}>
       <p className={classes.label}>
         { props.note.name }
       </p>
     </div>
   )
-}
+})
 
 const FolderItem = (props: {
   folder: FolderItem,
@@ -63,17 +88,48 @@ const FolderItem = (props: {
 }) => {
   const classes = styles.item({ type: 'folder' })
 
-  return (
-    <div className={classes.root}>
-      <Icon
-        icon="ArrowLeftThick"
-        className={classes.icon}
-        size={15}
-      />
+  const dragAreaRef = useDragArea({
+    accept: (payload: any) => {
+      if (payload.type === 'FolderItem')
+        return payload.data.id !== props.folder.id
 
-      <p className={classes.label}>
-        { props.folder.name }
-      </p>
+      if (payload.type === 'NoteItem')
+        return true
+
+      return false
+    },
+    onDrop: (payload: any) => {
+      if (payload.type === 'FolderItem') {}
+
+      if (payload.type === 'NoteItem') {}
+    },
+    areaName: 'Folder'
+  })
+
+  return (
+    <div ref={dragAreaRef} className={classes.container}>
+      <div className={classes.item}>
+        <Icon
+          icon="ArrowLeftThick"
+          className={classes.icon}
+          size={15}
+        />
+
+        <p className={classes.label}>
+          { props.folder.name }
+        </p>
+      </div>
+
+      <div className={classes.children}>
+      { (props.folder.items || []).map(note =>
+          <NoteItem
+            key={note.id}
+            note={note}
+            active={false}
+            nested
+          />
+      ) }
+      </div>
     </div>
   )
 }
@@ -109,9 +165,22 @@ const styles = {
   }),
 
   item: sva({
-    slots: [ 'root', 'label', 'icon' ],
+    slots: [
+      'container',
+      'item',
+      'label',
+      'icon',
+      'children'
+    ],
     base: {
-      root: {
+      container: {
+
+      },
+      children: {
+
+      },
+
+      item: {
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -129,9 +198,9 @@ const styles = {
         fontFamily: 'sans',
         fontSize: 'base',
         fontWeight: 'medium',
-        //color: 'fg.dark',
         color: 'fg',
-        marginLeft: '18px'
+        marginLeft: '18px',
+        userSelect: 'none'
       },
       icon:{
         position: 'absolute',
@@ -145,12 +214,14 @@ const styles = {
         note: { },
         folder: { }
       },
-
+      nested: {
+        true: {
+          label: { marginLeft: '36px' }
+        }
+      },
       active: {
         true: {
-          root: {
-            background: 'rgba({colors.fg.rgb}, 0.2)'
-          }
+          item: { background: 'rgba({colors.fg.rgb}, 0.2)' }
         }
       }
     }
