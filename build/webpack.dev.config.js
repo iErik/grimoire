@@ -32,7 +32,10 @@ export default merge.smart(baseConfig,
            }
          }
        , { loader: 'sass-loader'
-         , options: { sourceMap: config.dev.cssSourceMap }
+         , options:
+           { sourceMap:config.dev.cssSourceMap
+           , api: 'modern'
+           }
          }
        ]
     }]

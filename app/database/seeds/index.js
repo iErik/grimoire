@@ -3,8 +3,8 @@ import { omit, pick, map, each } from 'underscore';
 import Notebooks from '../collections/notebooks';
 import Notes from '../collections/notes';
 
-import notebooksSeeds from './notebooks';
-import notesSeeds from './notes';
+import notebooksSeeds from './notebooks.json';
+import notesSeeds from './notes.json';
 
 export default async function runSeeders() {
   await notebooksSeeder(notebooksSeeds);

@@ -1,9 +1,19 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 
+/*
 import {
   outerReducer as hydrateReducers,
   middleware as hydrateMiddleware
 } from 'redux-async-initial-state';
+*/
+
+import asyncInitialState from 'redux-async-initial-state'
+
+const {
+  outerReducer: hydrateReducers,
+  middleware: hydrateMiddleware
+} = asyncInitialState
+
 
 import { electronEnhancer } from 'redux-electron-store';
 

@@ -1,7 +1,7 @@
-import express from 'express';
-import webpack from 'webpack';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
+import express from 'express'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
 import { spawn } from 'child_process';
 
 import config from '../config';
@@ -35,7 +35,9 @@ const server = app.listen(PORT, serverError => {
   if (serverError)
     return console.error(serverError);
 
-  spawn('npm', ['run', 'start-dev'], { shell: true, env: process.env, stdio: 'inherit' })
+  spawn('npm',
+    ['run', 'start-dev'],
+    { shell: true, env: process.env, stdio: 'inherit' })
     .on('close', code => process.exit(code))
     .on('error', spawnError => console.error(spawnError));
 });

@@ -1,6 +1,9 @@
 import path from 'path';
 import autoprefixer from 'autoprefixer';
-import jsonImporter from 'node-sass-json-importer';
+//import jsonImporter from 'node-sass-json-importer';
+import jsonImporter from '@blakedarlin/sass-json-importer'
+//const jsonImporter  = require('@blakedarlin/sass-json-importer')
+//
 
 import { assetsPath } from './utils';
 import { dependencies as externals } from '../app/package.json';
@@ -62,7 +65,10 @@ export default {
           , options: { plugins: [autoprefixer({ browsers: ['electron 1.7'] })] }
           }
         , { loader: 'sass-loader'
-          , options: { importer: jsonImporter }
+          , options:
+            { importers: [jsonImporter()]
+            , api: 'modern'
+            }
           }
         ]
       }

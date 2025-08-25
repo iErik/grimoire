@@ -1,7 +1,8 @@
 import path from 'path';
 import Datastore from 'nedb';
 import electron from 'electron';
-import { promisify, promisifyAll } from 'bluebird';
+//import { promisify, promisifyAll } from 'bluebird';
+import Bluebird from 'bluebird';
 
 const app = electron.remote ? electron.remote.app : electron.app;
 const dbPath = path.join(app.getPath('userData'), 'storage/notebooks.db');
@@ -12,9 +13,9 @@ const Notebooks = new Datastore({
   autoload: true,
 });
 
-Notebooks.updateAsync = promisify(Notebooks.update, {
+Notebooks.updateAsync = Bluebird.promisify(Notebooks.update, {
   multiArgs: true,
   context: Notebooks
 });
 
-export default promisifyAll(Notebooks, { filter: name => name !== 'update' });
+export default Bluebird.promisifyAll(Notebooks, { filter: name => name !== 'update' });
