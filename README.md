@@ -15,9 +15,19 @@ used during the design process of this project.
 
 ### Requirements
 
-- Node.js 6.x or later
-- npm 3.10.x or later
-- yarn (optional)
+- [Nix](https://nixos.org/) with flakes enabled (recommended), or
+- Node.js 22.x and pnpm 10.x
+
+With Nix, enter the development shell (or let [direnv](https://direnv.net/)
+do it automatically via the provided `.envrc`) and install the dependencies:
+
+```bash
+nix develop
+pnpm install
+```
+
+`pnpm install` also installs the application's runtime dependencies under
+`app/` through a `postinstall` hook.
 
 ### Building for development
 
@@ -25,14 +35,15 @@ To run the development version of the application localy you can simply run the
 following command in a terminal:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 This will actually start a local development server on port `5000` by default,
-you can change that by simply editing the `PORT` environment variable located
-in the `config/dev.env.js` file. This development server is necessary so that
-the application's assets are re-compiled and re-sent to the running application
-whenever any change is made to app's code. This is called
+you can change that by setting the `PORT` environment variable (e.g.
+`PORT=5050 pnpm dev`; on macOS port 5000 is taken by the AirPlay Receiver).
+This development server is necessary so that the application's assets are
+re-compiled and re-sent to the running application whenever any change is made
+to app's code. This is called
 [Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/),
 any changes made to the application's code should reflect in the running app
 window.
@@ -43,7 +54,7 @@ You can generate the application binaries for your specific platform simply
 by running:
 
 ```bash
-npm run build:pack
+pnpm build:pack
 ```
 
 Once finished, you can find the application binary file unde the `release`
@@ -70,7 +81,7 @@ With that taken care of, you can build the app's binaries for all platforms
 by running a single command in the terminal:
 
 ```bash
-npm run build:pack:multi
+pnpm build:pack:multi
 ```
 
 Once the process is finished, you can find the application's binaries under
@@ -99,7 +110,7 @@ Replace `apt-get` with your distribution's package manager.
 After that you can run:
 
 ```bash
-npm run build:pack:multi
+pnpm build:pack:multi
 ```
 
 #### Windows
@@ -113,7 +124,7 @@ Having the required packages installed, you can simply run the following
 command in a command line:
 
 ```bash
-npm run build:pack:multi
+pnpm build:pack:multi
 ```
 
 ## Screenshot

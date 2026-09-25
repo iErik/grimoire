@@ -2,6 +2,7 @@ import path from 'path';
 import webpack from 'webpack';
 import merge from 'webpack-merge';
 import autoprefixer from 'autoprefixer';
+import sass from 'sass';
 import jsonImporter from 'node-sass-json-importer';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -33,14 +34,19 @@ export default merge(baseConfig,
            }
          , { loader: 'postcss-loader'
            , options:
-             { plugins: [autoprefixer({ browsers: ['electron 1.7'] })]
+             { ident: 'postcss-prod'
+             , plugins: [autoprefixer({ overrideBrowserslist: ['electron 1.7'] })]
              , sourceMap: config.build.cssSourceMap
              }
            }
          , { loader: 'resolve-url-loader' }
          , { loader: 'sass-loader'
            , options:
-             { importer: jsonImporter
+             { ident: 'sass-prod'
+             , implementation: sass
+             , importer: jsonImporter()
+             , silenceDeprecations: ['legacy-js-api', 'import']
+             , quietDeps: true
              , sourceMap: config.build.cssSourceMap
              }
            }
