@@ -38,9 +38,9 @@ following command in a terminal:
 pnpm dev
 ```
 
-This will actually start a local development server on port `5000` by default,
+This will actually start a local development server on port `5050` by default,
 you can change that by setting the `PORT` environment variable (e.g.
-`PORT=5050 pnpm dev`; on macOS port 5000 is taken by the AirPlay Receiver).
+`PORT=6000 pnpm dev`).
 This development server is necessary so that the application's assets are
 re-compiled and re-sent to the running application whenever any change is made
 to app's code. This is called

@@ -10,6 +10,7 @@ import {
 
 import { BrowserWindow } from 'electron';
 
+import webPreferences from '../config/windowPreferences';
 import { notesActions as actions } from '../actions';
 import Notes from '../database/collections/notes';
 
@@ -99,7 +100,8 @@ export function *editNote({ payload }) {
 
       frame: false,
       show: false,
-      hasShadow: true
+      hasShadow: true,
+      webPreferences
     });
 
     editorWindow.loadURL(

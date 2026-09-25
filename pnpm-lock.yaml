@@ -53,9 +53,6 @@ importers:
       css-loader:
         specifier: ^0.28.1
         version: 0.28.9
-      devtron:
-        specifier: ^1.4.0
-        version: 1.4.0
       electron:
         specifier: ^37.3.1
         version: 37.10.3
@@ -66,8 +63,8 @@ importers:
         specifier: ^1.1.0
         version: 1.5.0
       electron-devtools-installer:
-        specifier: ^2.1.0
-        version: 2.2.3
+        specifier: ^4.0.0
+        version: 4.0.0
       express:
         specifier: ^4.14.1
         version: 4.16.2
@@ -151,11 +148,6 @@ packages:
 
   7zip-bin@2.4.1:
     resolution: {integrity: sha512-QU3oR1dLLVrYGRkb7LU17jMCpIkWtXXW7q71ECXWXkR9vOv37VjykqpvFgs29HgSCNLZHnNKJzdG6RwAW0LwIA==}
-
-  7zip@0.0.6:
-    resolution: {integrity: sha512-ns8vKbKhIQm338AeWo/YdDSWil3pldwCMoyR2npoM2qDAzF8Vuko8BtDxpNt/wE15SXOh5K5WbjSLR4kTOAHLA==}
-    deprecated: 'Deprecated as outdated and risky. Please migrate to some modern alternatives. See: https://www.npmjs.com/search'
-    hasBin: true
 
   '@electron/get@2.0.3':
     resolution: {integrity: sha512-Qkzpg2s9GnVV2I2BjRksUi43U5e6+zaQMcjoJy0C+C5oxaKl+fmckGDQFtRpZpZV0NQekuZZ+tGz7EA9TVnQtQ==}
@@ -272,9 +264,6 @@ packages:
   accepts@1.3.4:
     resolution: {integrity: sha512-2wzn4SzQLKl9o0pwlXIRG3YBZj8aGUGfcJTIjhrOWusCZ6c5mjjvUnpf+07pjdheuuOtRIKYAd/3CX973Qv/vw==}
     engines: {node: '>= 0.6'}
-
-  accessibility-developer-tools@2.12.0:
-    resolution: {integrity: sha512-ltexLD/Bzwr1tDskQQFi88L4akbn8zFLIFIc00vFkH3G4hNEHruuJVcJuJTeUXLxms9dSon+cHSCmfFThnowFQ==}
 
   acorn-dynamic-import@2.0.2:
     resolution: {integrity: sha512-GKp5tQ8h0KMPWIYGRHHXI1s5tUpZixZ3IHF2jAu42wSCf6In/G873s6/y4DdKdhWvzhu1T6mE1JgvnhAKqyYYQ==}
@@ -1055,9 +1044,6 @@ packages:
   cross-spawn@5.1.0:
     resolution: {integrity: sha512-pTgQJ5KC0d2hcY8eyL1IzlBPYjTkyH72XRZPnLyKus2mBfNjQs3klqbJU2VILqZryAZUt9JOb3h/mWMy23/f5A==}
 
-  cross-unzip@0.0.2:
-    resolution: {integrity: sha512-nRJ5c+aqHz0OJVU4V1bqoaDggydfauK/Gha/H/ScBvuIjhZvl8YIpdWVzSR3vUhzCloqB1tvBdQ4V7J8qK7HzQ==}
-
   cryptiles@3.1.2:
     resolution: {integrity: sha512-XBDBQo47RxVcR5GNxNOI38Cac044AdfU60sJBGZsmWw5TDuG5BAby8W/soTp4SIKeCl37sCGwkbh9wGLEd0cLw==}
     engines: {node: '>=4.0.0'}
@@ -1196,10 +1182,6 @@ packages:
   detect-node@2.1.0:
     resolution: {integrity: sha512-T0NIuQpnTvFDATNuHN5roPwSBG83rFsuO+MXXH9/3N1eFbn4wcPjttvjMLEPWJ0RGUYgQE7cGgS3tNxbqCGM7g==}
 
-  devtron@1.4.0:
-    resolution: {integrity: sha512-BFWB7plA0PSprN1l3UnI4jtzV4xopPFaB87nF1Kl5yNjMwdHDxUVb8ov9ymQA1ZfeulbstVLYGDkUTJ8YZpKJw==}
-    deprecated: Please use @electron/devtron moving forward. The newer package works with modern versions of Electron.
-
   diffie-hellman@5.0.2:
     resolution: {integrity: sha512-6bFNThpXO1MSkYrHm2SPXvfJQ3h4gChXxj5RToODJGCs7Df79q+KNJAiB71Nut2n50ZLc35NTOPVc7jYPPWwtg==}
 
@@ -1268,8 +1250,8 @@ packages:
   electron-debug@1.5.0:
     resolution: {integrity: sha512-23CLHQXW+gMgdlJbeW1EinPX7DpwuLtfdzSuFL0OnsqEhKGJVJufAZTyq2hc3sr+R53rr3P+mJiYoR5VzAHKJQ==}
 
-  electron-devtools-installer@2.2.3:
-    resolution: {integrity: sha512-KFVP2lt3guvhXsUKE3YxbddMOJtpdvTsWfloV/8395Df5Td9Z+YvNl8LFW864mVqdDJsiy2qQ8y95NT5C+avSA==}
+  electron-devtools-installer@4.0.0:
+    resolution: {integrity: sha512-9Tntu/jtfSn0n6N/ZI6IdvRqXpDyLQiDuuIbsBI+dL+1Ef7C8J2JwByw58P3TJiNeuqyV3ZkphpNWuZK5iSY2w==}
 
   electron-download-tf@4.3.4:
     resolution: {integrity: sha512-SQYDGMLpTgty1bx3NycuDb7dNPzktVSdK2sqPZjyRocauq/uN/V4S2lcpFVLupaHhKlD8zozm9fTpm5UdohvTg==}
@@ -1683,10 +1665,6 @@ packages:
     resolution: {integrity: sha512-z/GDPjlRMNOa2XJiB4em8wJpuuBfrFOlYKTZxtpkdr1uPdibHI8rYA3MY0KDObpVyaes0e/aunid/t88ZI2EKA==}
     hasBin: true
 
-  highlight.js@9.12.0:
-    resolution: {integrity: sha512-qNnYpBDO/FQwYVur1+sQBQw7v0cxso1nOYLklqWh6af8ROwwTVoII5+kf/BVa8354WL4ad6rURHYGUXCbD9mMg==}
-    deprecated: Version no longer supported. Upgrade to @latest
-
   hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
 
@@ -1741,10 +1719,6 @@ packages:
   https-browserify@0.0.1:
     resolution: {integrity: sha512-EjDQFbgJr1vDD/175UJeSX3ncQ3+RUnCL5NkthQGHvF4VNHlzTy8ifJfTqz47qiPRqaFH58+CbuG3x51WuB1XQ==}
 
-  humanize-plus@1.8.2:
-    resolution: {integrity: sha512-jaLeQyyzjjINGv7O9JJegjsaUcWjSj/1dcXvLEgU3pGdqCdP1PiC/uwr+saJXhTNBHZtmKnmpXyazgh+eceRxA==}
-    engines: {node: '>= 0.8.0'}
-
   iconv-lite@0.4.19:
     resolution: {integrity: sha512-oTZqweIP51xaGPI4uPa56/Pri/480R+mo7SeU+YETByQNhDG55ycFyNLIgta9vXhILrxXDmF7ZGhqZIcuN0gJQ==}
     engines: {node: '>=0.10.0'}
@@ -1757,6 +1731,9 @@ packages:
 
   ieee754@1.1.8:
     resolution: {integrity: sha512-/aoyv2Nt7mGLnCAWzE0C1WH9Xd8ZsqR0f4Pjwxputi1JNm01+InyAYQotF4N+ulEIjbEsJo22NOHr+U/XEZ1Pw==}
+
+  immediate@3.0.6:
+    resolution: {integrity: sha512-XXOFtyqDjNDAQxVfYxuF7g9Il/IbWmmlQg2MYKOH8ExIT1qg6xc4zyS3HaEEATgs1btfzxq15ciUiY7gjSXRGQ==}
 
   immutable@5.1.9:
     resolution: {integrity: sha512-m8nVez3rwrgmWxtLMt1ZYXB2Lv7OKYn/disyxAlSDYAlKSlFoPPfIAmAM/M5xqL4m4C/wAPw7S2/CNaUii1Hxg==}
@@ -2022,6 +1999,9 @@ packages:
     resolution: {integrity: sha512-4Dj8Rf+fQ+/Pn7C5qeEX02op1WfOss3PKTE9Nsop3Dx+6UPxlm1dr/og7o2cRa5hNN07CACr4NFzRLtj/rjWog==}
     engines: {'0': node >=0.6.0}
 
+  jszip@3.10.2:
+    resolution: {integrity: sha512-3l+rb15IOWtUhU0H5MFqES/T6Kh7abYwjosBey/vD6hDt8zoEffkSC5Ws5SGtgVw3gBx2NEbhTeSW1+kWkpyTQ==}
+
   keyboardevent-from-electron-accelerator@1.1.0:
     resolution: {integrity: sha512-VDC4vKWGrR3VgIKCE4CsXnvObGgP8C2idnTKEMUkuEuvDGE1GEBX9FtNdJzrD00iQlhI3xFxRaeItsUmlERVng==}
 
@@ -2057,6 +2037,9 @@ packages:
   lcid@1.0.0:
     resolution: {integrity: sha512-YiGkH6EnGrDGqLMITnGjXtGmNtjoXw9SVUzcaos8RBi7Ps0VBylkq+vOcY9QE5poLasPCR849ucFUkl0UzUyOw==}
     engines: {node: '>=0.10.0'}
+
+  lie@3.3.0:
+    resolution: {integrity: sha512-UaiMJzeWRlEujzAuw5LokY1L5ecNQYZKfmyZ9L7wDHb/p5etKaxXhohBcrw0EYby+G/NA52vRSN4N39dxHAIwQ==}
 
   load-json-file@1.1.0:
     resolution: {integrity: sha512-cy7ZdNRXdablkXYNI049pthVeXFurRyb9+hA/dZzerZ0pGTx42z+y+ssxBaVV2l70t1muq5IdKhn4UtcoGUY9A==}
@@ -2430,6 +2413,9 @@ packages:
   pako@0.2.9:
     resolution: {integrity: sha512-NUcwaKxUxWrZLpDG+z/xZaCgQITkA/Dv4V/T6bw7VON6l1Xz/VnrBqrYjZQ12TamKHzITTfOEIYUj48y2KXImA==}
 
+  pako@1.0.11:
+    resolution: {integrity: sha512-4hLB8Py4zZce5s4yd9XzopqwVv/yGNhV1Bl8NTmCq1763HeK2+EwVTv+leGeL13Dnh2wfbqowVPXCIO0z4taYw==}
+
   param-case@2.1.1:
     resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
 
@@ -2684,6 +2670,9 @@ packages:
   process-nextick-args@1.0.7:
     resolution: {integrity: sha512-yN0WQmuCX63LP/TMvAg31nvT6m4vDqJEiiv2CAZqWOGNWutc9DfDk1NPYYmKUFmaVM2UwDowH4u5AHWYP/jxKw==}
 
+  process-nextick-args@2.0.1:
+    resolution: {integrity: sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==}
+
   process@0.11.10:
     resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
     engines: {node: '>= 0.6.0'}
@@ -2803,6 +2792,9 @@ packages:
 
   readable-stream@2.3.3:
     resolution: {integrity: sha512-m+qzzcn7KUxEmd1gMbchF+Y2eIUbieUaxkWtptyHywrX0rE8QEYqPC07Vuy4Wm32/xE16NcdBctb8S0Xe/5IeQ==}
+
+  readable-stream@2.3.8:
+    resolution: {integrity: sha512-8p0AUk4XODgIewSi0l8Epjs+EVnWiK7NoDIEGU0HhE7+ZyY8D1IMY7odu5lRrFXGg71L15KG8QrPmum45RTtdA==}
 
   readdirp@2.1.0:
     resolution: {integrity: sha512-LgQ8mdp6hbxJUZz27qxVl7gmFM/0DfHRO52c5RUbKAgMvr81tour7YYWW1JYNmrXyD/o0Myy9/DC3fUYkqnyzg==}
@@ -2935,11 +2927,6 @@ packages:
   right-align@0.1.3:
     resolution: {integrity: sha512-yqINtL/G7vs2v+dFIZmFUDbnVyFUJFKd6gK22Kgo6R4jfJGFtisKyncWDDULgjfqf4ASQuIQyjJ7XZ+3aWpsAg==}
     engines: {node: '>=0.10.0'}
-
-  rimraf@2.6.2:
-    resolution: {integrity: sha512-lreewLK/BlghmxtfH36YYVg1i8IAce4TI7oao75I1g245+6BctqTVQiBP3YUJ9C6DQOXJmkYR9X9fCLtCOJc5w==}
-    deprecated: Rimraf versions prior to v4 are no longer supported
-    hasBin: true
 
   ripemd160@2.0.1:
     resolution: {integrity: sha512-J7f4wutN8mdbV08MJnXibYpCOPHR+yzy+iQ/AsjMv2j8cLavQ8VGagDFUwwTAdF8FmRKVeNpbTTEwNHCW1g94w==}
@@ -3162,6 +3149,9 @@ packages:
   string_decoder@1.0.3:
     resolution: {integrity: sha512-4AH6Z5fzNNBcH+6XDMfA/BTt87skxqJlO0lAh3Dker5zThcAxG6mKz+iGu308UKoPPQ8Dcqx/4JhujzltRa+hQ==}
 
+  string_decoder@1.1.1:
+    resolution: {integrity: sha512-n/ShnvDi6FHbbVfviro+WojiFzv+s8MPMHBczVePfUpDJLwoLT0ht1l4YwBCbi8pJAveEEdnkHyPyTP/mzRfwg==}
+
   stringstream@0.0.5:
     resolution: {integrity: sha512-QUQ1kThMjLRt4jA8lsn9lyIkE9bKafE7LDOL/nBBUY9Tfv2i3x1NAsVHG0uMCusFOWeeI6COhY/F20+avxRWSw==}
 
@@ -3337,6 +3327,9 @@ packages:
     resolution: {integrity: sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ==}
     engines: {node: '>= 0.8'}
 
+  unzip-crx-3@0.2.0:
+    resolution: {integrity: sha512-0+JiUq/z7faJ6oifVB5nSwt589v1KCduqIJupNVDoWSXZtWDmjDGO3RAEOvwJ07w90aoXoP4enKsR7ecMrJtWQ==}
+
   unzip-response@2.0.1:
     resolution: {integrity: sha512-N0XH6lqDtFH84JxptQoZYmloF4nzrQqqrAymNj+/gW60AO2AZgOcf4O/nUXJcYfyQkqvMo9lSupBZmmgvuVXlw==}
     engines: {node: '>=4'}
@@ -3511,6 +3504,9 @@ packages:
   y18n@3.2.1:
     resolution: {integrity: sha512-Vd1yWKYGMtzFB6bAuTI7/POwJnwQStQXOe1PW1GmjUZgkaKYGc6/Pl3IDGFgplEklF65niuwBHeS5yve4+U01Q==}
 
+  yaku@0.16.7:
+    resolution: {integrity: sha512-Syu3IB3rZvKvYk7yTiyl1bo/jiEFaaStrgv1V2TIJTqYPStSMQVO8EQjg/z+DRzLq/4LIIharNT3iH1hylEIRw==}
+
   yallist@2.1.2:
     resolution: {integrity: sha512-ncTzHV7NvsQZkYe1DW7cbDLm0YpzHmZF5r/iyP3ZnQtMiJ+pjzisCiMNI+Sj+xQF5pXhSHxSB3uDbsBTzY/c2A==}
 
@@ -3548,8 +3544,6 @@ snapshots:
       7zip-bin-linux: 1.3.1
       7zip-bin-mac: 1.0.1
       7zip-bin-win: 2.1.1
-
-  7zip@0.0.6: {}
 
   '@electron/get@2.0.3':
     dependencies:
@@ -3658,8 +3652,6 @@ snapshots:
     dependencies:
       mime-types: 2.1.17
       negotiator: 0.6.1
-
-  accessibility-developer-tools@2.12.0: {}
 
   acorn-dynamic-import@2.0.2:
     dependencies:
@@ -4861,8 +4853,6 @@ snapshots:
       shebang-command: 1.2.0
       which: 1.3.0
 
-  cross-unzip@0.0.2: {}
-
   cryptiles@3.1.2:
     dependencies:
       boom: 5.2.0
@@ -5041,12 +5031,6 @@ snapshots:
   detect-node@2.1.0:
     optional: true
 
-  devtron@1.4.0:
-    dependencies:
-      accessibility-developer-tools: 2.12.0
-      highlight.js: 9.12.0
-      humanize-plus: 1.8.2
-
   diffie-hellman@5.0.2:
     dependencies:
       bn.js: 4.11.8
@@ -5166,12 +5150,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron-devtools-installer@2.2.3:
+  electron-devtools-installer@4.0.0:
     dependencies:
-      7zip: 0.0.6
-      cross-unzip: 0.0.2
-      rimraf: 2.6.2
-      semver: 5.5.0
+      unzip-crx-3: 0.2.0
 
   electron-download-tf@4.3.4:
     dependencies:
@@ -5699,8 +5680,6 @@ snapshots:
 
   he@1.1.1: {}
 
-  highlight.js@9.12.0: {}
-
   hmac-drbg@1.0.1:
     dependencies:
       hash.js: 1.1.3
@@ -5770,8 +5749,6 @@ snapshots:
 
   https-browserify@0.0.1: {}
 
-  humanize-plus@1.8.2: {}
-
   iconv-lite@0.4.19: {}
 
   icss-replace-symbols@1.1.0: {}
@@ -5781,6 +5758,8 @@ snapshots:
       postcss: 6.0.16
 
   ieee754@1.1.8: {}
+
+  immediate@3.0.6: {}
 
   immutable@5.1.9: {}
 
@@ -5980,6 +5959,13 @@ snapshots:
       json-schema: 0.2.3
       verror: 1.10.0
 
+  jszip@3.10.2:
+    dependencies:
+      lie: 3.3.0
+      pako: 1.0.11
+      readable-stream: 2.3.8
+      setimmediate: 1.0.5
+
   keyboardevent-from-electron-accelerator@1.1.0: {}
 
   keyboardevents-areequal@0.2.2: {}
@@ -6009,6 +5995,10 @@ snapshots:
   lcid@1.0.0:
     dependencies:
       invert-kv: 1.0.0
+
+  lie@3.3.0:
+    dependencies:
+      immediate: 3.0.6
 
   load-json-file@1.1.0:
     dependencies:
@@ -6406,6 +6396,8 @@ snapshots:
 
   pako@0.2.9: {}
 
+  pako@1.0.11: {}
+
   param-case@2.1.1:
     dependencies:
       no-case: 2.3.2
@@ -6731,6 +6723,8 @@ snapshots:
 
   process-nextick-args@1.0.7: {}
 
+  process-nextick-args@2.0.1: {}
+
   process@0.11.10: {}
 
   progress-stream@1.2.0:
@@ -6876,6 +6870,16 @@ snapshots:
       process-nextick-args: 1.0.7
       safe-buffer: 5.1.1
       string_decoder: 1.0.3
+      util-deprecate: 1.0.2
+
+  readable-stream@2.3.8:
+    dependencies:
+      core-util-is: 1.0.2
+      inherits: 2.0.3
+      isarray: 1.0.0
+      process-nextick-args: 2.0.1
+      safe-buffer: 5.1.1
+      string_decoder: 1.1.1
       util-deprecate: 1.0.2
 
   readdirp@2.1.0:
@@ -7045,10 +7049,6 @@ snapshots:
   right-align@0.1.3:
     dependencies:
       align-text: 0.1.4
-
-  rimraf@2.6.2:
-    dependencies:
-      glob: 7.1.2
 
   ripemd160@2.0.1:
     dependencies:
@@ -7291,6 +7291,10 @@ snapshots:
     dependencies:
       safe-buffer: 5.1.1
 
+  string_decoder@1.1.1:
+    dependencies:
+      safe-buffer: 5.1.1
+
   stringstream@0.0.5: {}
 
   strip-ansi@3.0.1:
@@ -7456,6 +7460,12 @@ snapshots:
   universalify@0.1.1: {}
 
   unpipe@1.0.0: {}
+
+  unzip-crx-3@0.2.0:
+    dependencies:
+      jszip: 3.10.2
+      mkdirp: 0.5.1
+      yaku: 0.16.7
 
   unzip-response@2.0.1: {}
 
@@ -7643,6 +7653,8 @@ snapshots:
   xtend@4.0.1: {}
 
   y18n@3.2.1: {}
+
+  yaku@0.16.7: {}
 
   yallist@2.1.2: {}
 
