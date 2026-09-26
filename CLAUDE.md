@@ -74,6 +74,11 @@ There are no tests or linters.
     `app/pnpm-workspace.yaml`) to replace removed `webContents` APIs.
   - Dev entry: Electron's Node loads a `.js` file containing `import` syntax as
     native ESM, which bypasses babel-register. `bootstrap.dev.cjs` avoids that.
+  - Frameless windows: Electron applies `-webkit-app-region` rects in document
+    order, so a later `drag` region overrides an earlier overlapping `no-drag`
+    one and swallows its clicks. Put `no-drag` controls after any `.draggable`
+    element that overlaps them. Controls *inside* `.draggable` are opted out
+    by `app/styles/layout/_modifiers.scss`.
   - An uncaught exception in the main process shows a modal error dialog that
     freezes the main process: no IPC, no timers. If the app hangs, look for
     that dialog.
