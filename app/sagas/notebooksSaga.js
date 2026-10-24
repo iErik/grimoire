@@ -7,7 +7,8 @@ export function *createNotebook({ payload }) {
   try {
     yield put(actions.createNotebookPending(payload))
 
-    const newNotebook = yield call([Notebooks, Notebooks.insertAsync], payload)
+    const newNotebook =
+      yield call([Notebooks, Notebooks.insertAsync], payload)
 
     yield put(actions.createNotebookFulfilled(newNotebook))
   } catch (error) {
@@ -19,7 +20,10 @@ export function *deleteNotebook({ payload }) {
   try {
     yield put(actions.deleteNotebookPending(payload))
 
-    yield call([Notebooks, Notebooks.removeAsync], { _id: payload._id })
+    yield call(
+      [Notebooks, Notebooks.removeAsync],
+      { _id: payload._id }
+    )
 
     yield put(actions.deleteNotebookFulfilled(payload))
   } catch (error) {

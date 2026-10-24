@@ -44,7 +44,9 @@ export default class NotesList extends React.Component {
           </div>
           <div className="entry-contents">
             { note.contents
-              ? <p className="contents">{ this.renderNoteExcerpt(note) }</p>
+              ? <p className="contents">
+                { this.renderNoteExcerpt(note) }
+              </p>
               : <p className="meta-empty">Empty Note&hellip;</p>
             }
           </div>

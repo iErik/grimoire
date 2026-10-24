@@ -17,4 +17,6 @@ Notes.updateAsync = promisify(Notes.update, {
   context: Notes
 })
 
-export default promisifyAll(Notes, { filter: name => name !== 'update' })
+export default promisifyAll(Notes, {
+  filter: name => name !== 'update'
+})

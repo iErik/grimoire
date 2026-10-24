@@ -13,7 +13,6 @@ if (!process.env.NODE_ENV)
 const app = express()
 const compiler = webpack(webpackConfig)
 const PORT = process.env.PORT = config.dev.port || 8080
-const URI = `http://localhost:${PORT}`
 
 const hotMiddleware = webpackHotMiddleware(compiler, {
   log: () => {}
@@ -35,7 +34,11 @@ const server = app.listen(PORT, serverError => {
   if (serverError)
     return console.error(serverError)
 
-  spawn('pnpm', ['run', 'start-dev'], { shell: true, env: process.env, stdio: 'inherit' })
+  spawn('pnpm', ['run', 'start-dev'], {
+    shell: true,
+    env: process.env,
+    stdio: 'inherit'
+  })
     .on('close', code => process.exit(code))
     .on('error', spawnError => console.error(spawnError))
 })

@@ -5,7 +5,10 @@ const initialState = {
   activeNotebook: { },
 }
 
-export default function notebooksReducer(state = initialState, { type, payload }) {
+export default function notebooksReducer(
+  state = initialState,
+  { type, payload }
+) {
   switch (type) {
     case 'CREATE_NOTEBOOK_FULFILLED':
       return {
@@ -17,7 +20,10 @@ export default function notebooksReducer(state = initialState, { type, payload }
       return {
         ...state,
         notebooks: [
-          ...reject(state.notebooks, notebook => notebook._id === payload._id),
+          ...reject(
+            state.notebooks,
+            notebook => notebook._id === payload._id
+          ),
           payload,
         ],
 
@@ -29,7 +35,8 @@ export default function notebooksReducer(state = initialState, { type, payload }
     case 'DELETE_NOTEBOOK_FULFILLED':
       return {
         ...state,
-        notebooks: reject(state.notebooks, ({ _id }) => _id === payload._id),
+        notebooks:
+          reject(state.notebooks, ({ _id }) => _id === payload._id),
         activeNotebook: payload._id === state.activeNotebook._id
           ? find(sortBy(state.notebooks,
             notebook => -(new Date(notebook.createdAt).getTime())),
@@ -41,7 +48,8 @@ export default function notebooksReducer(state = initialState, { type, payload }
     case 'CHANGE_ACTIVE_NOTEBOOK':
       return {
         ...state,
-        activeNotebook: find(state.notebooks, ({ _id }) => _id === payload._id)
+        activeNotebook:
+          find(state.notebooks, ({ _id }) => _id === payload._id)
       }
 
     default:

@@ -5,7 +5,6 @@ import AceEditor from 'react-ace'
 import 'brace/mode/markdown'
 
 import MarkdownIt from 'markdown-it'
-import toMarkdown from 'to-markdown'
 
 import TitleBar from './components/TitleBar'
 import Sidebar from './components/Sidebar'
@@ -32,7 +31,7 @@ export default ui({
 })(({ updateNoteContents, ...props }) => {
   var editor
 
-  const loadThemes = async (e) => {
+  const loadThemes = async () => {
     if (props.ui.areThemesLoaded) return
 
     let { light, dark } = editorThemes
@@ -66,7 +65,10 @@ export default ui({
 
   const docActions = {
     saveDocument: () => {
-      updateNoteContents(props.selectedNote, toHtml(props.ui.mdContents))
+      updateNoteContents(
+        props.selectedNote,
+        toHtml(props.ui.mdContents)
+      )
     },
     switchMode: () => {
       props.updateUI({ isDark: !props.ui.isDark })
@@ -141,7 +143,8 @@ export default ui({
       }
 
       if (/^(\d+)\./.test(previousLineContent))
-        listItemNumber = parseInt(previousLineContent.match(/^(\d+)\./)[1]) + 1
+        listItemNumber =
+          parseInt(previousLineContent.match(/^(\d+)\./)[1]) + 1
 
       editor.navigateTo(editor.getCursorPosition().row, 0)
       editor.insert(`${listItemNumber}. `)

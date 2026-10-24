@@ -1,7 +1,6 @@
-import path from 'path'
 import ora from 'ora'
 import webpack from 'webpack'
-import 'shelljs/global'
+import { rm, mkdir } from 'shelljs'
 
 import config from '../config'
 import webpackMainConfig from './webpack.electron.config'
@@ -17,7 +16,9 @@ var assetsPath = config.build.assetsRoot
 rm('-rf', assetsPath)
 mkdir('-p', assetsPath)
 
-webpack([webpackMainConfig, webpackRendererConfig], function(err, stats) {
+const configs = [webpackMainConfig, webpackRendererConfig]
+
+webpack(configs, function(err, stats) {
   spinner.stop()
   if (err) throw err
 

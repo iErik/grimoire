@@ -4,7 +4,8 @@ import electron from 'electron'
 import { promisify, promisifyAll } from 'bluebird'
 
 const app = electron.remote ? electron.remote.app : electron.app
-const dbPath = path.join(app.getPath('userData'), 'storage/notebooks.db')
+const dbPath =
+  path.join(app.getPath('userData'), 'storage/notebooks.db')
 
 const Notebooks = new Datastore({
   filename: dbPath,
@@ -17,4 +18,6 @@ Notebooks.updateAsync = promisify(Notebooks.update, {
   context: Notebooks
 })
 
-export default promisifyAll(Notebooks, { filter: name => name !== 'update' })
+export default promisifyAll(Notebooks, {
+  filter: name => name !== 'update'
+})

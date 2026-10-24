@@ -20,7 +20,9 @@ export default (
       <Route path="settings" component={ SettingsPage } />
     </Route>
 
-    <Route path="editor/:notebookId/:noteId" component={ EditorLayout }>
+    <Route
+      path="editor/:notebookId/:noteId"
+      component={ EditorLayout }>
       <IndexRoute component={ EditorPage } />
     </Route>
   </Route>

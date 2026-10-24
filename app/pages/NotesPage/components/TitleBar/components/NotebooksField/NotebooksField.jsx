@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import ui from 'redux-ui'
 import classNames from 'classnames'
-import { isEqual } from 'underscore'
 
 /*
  * TODO: Use the SelectField component and integrate it with
@@ -54,9 +53,15 @@ export default class NotebooksField extends React.Component {
 
     return (
       <div className={ styles.select }>
-        <div className="select-field-value" onClick={ this.toggleOptions.bind(this) }>
-          <span className="value-label">{ this.props.value.label }</span>
-          <button className="btn"><i className="icn-arrow-down"></i></button>
+        <div
+          className="select-field-value"
+          onClick={ this.toggleOptions.bind(this) }>
+          <span className="value-label">
+            { this.props.value.label }
+          </span>
+          <button className="btn">
+            <i className="icn-arrow-down"></i>
+          </button>
         </div>
         <div className="select-field-options">
           <div className="entries">

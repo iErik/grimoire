@@ -8,7 +8,11 @@ function *updateSettingKeypath({ payload }) {
 
     yield put(actions.updateSettingsKeypathPending(payload))
 
-    yield call([settings, settings.set], payload.keyPath, payload.value)
+    yield call(
+      [settings, settings.set],
+      payload.keyPath,
+      payload.value
+    )
     const nextSettings = yield call([settings, settings.get])
 
     yield put(actions.updateSettingsKeypathFulfilled(nextSettings))

@@ -11,7 +11,8 @@ export default class NotebooksPage extends React.Component {
           <TitleBar { ...this.props } />
         </section>
 
-        <section className="full-height expanded row background-light">
+        <section
+          className="full-height expanded row background-light">
           <NotebookGrid { ...this.props } />
         </section>
       </div>

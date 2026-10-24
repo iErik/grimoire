@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { sortBy, filter } from 'underscore'
+import { sortBy } from 'underscore'
 import DashboardLayout from 'layouts/DashboardLayout'
 
 import storeActions from 'actions'

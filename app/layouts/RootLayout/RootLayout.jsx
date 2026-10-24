@@ -18,10 +18,15 @@ export default class RootLayout extends React.Component {
     let platform = os.platform()
 
     return (
-      <div className={`root-container ${ platform } theme-${this.props.appTheme}`}>
+      <div className={
+        `root-container ${ platform } theme-${this.props.appTheme}`
+      }>
         <Switch>
           <Route path="/dashboard" component={ DashboardLayout } />
-          <Route exact path="/editor/:notebookId/:noteId" component={ EditorLayout } />
+          <Route
+            exact
+            path="/editor/:notebookId/:noteId"
+            component={ EditorLayout } />
           <Redirect to="/dashboard" />
         </Switch>
       </div>

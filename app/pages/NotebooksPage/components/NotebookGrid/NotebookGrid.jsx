@@ -28,13 +28,18 @@ export default class NotebookGrid extends React.Component {
         return (
           <li
             key={ notebook._id }
-            className="notebook-card-entry small-6 medium-3 xlarge-2 column">
+            className={
+              'notebook-card-entry small-6 medium-3 xlarge-2 column'
+            }>
 
             <NotebookCard
               { ...this.props }
 
               notebook={ notebook }
-              notes={ filter(this.props.notes, note => note.notebookId === notebook._id) }
+              notes={ filter(
+                this.props.notes,
+                note => note.notebookId === notebook._id
+              ) }
             />
           </li>
         )
@@ -56,7 +61,9 @@ export default class NotebookGrid extends React.Component {
         </div>
         <div className="action-btn-container">
           <ActionButton
-            onClick={ this.props.createNotebook.bind(null, undefined) }
+            onClick={
+              this.props.createNotebook.bind(null, undefined)
+            }
           />
         </div>
       </div>

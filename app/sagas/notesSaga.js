@@ -1,8 +1,6 @@
 import {
   takeLatest,
   takeEvery,
-  select,
-  apply,
   take,
   call,
   put

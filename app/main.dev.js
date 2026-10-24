@@ -30,7 +30,8 @@ if (process.env.NODE_ENV === 'development') {
   // about that online.
 
   const path = require('path')
-  const modulesPath = path.join(__dirname, '..', 'app', 'node_modules')
+  const modulesPath =
+    path.join(__dirname, '..', 'app', 'node_modules')
   require('module').globalPaths.push(modulesPath)
 }
 
@@ -46,7 +47,10 @@ const installExtensions = async () => {
 
     return Promise
       .all(extensions.map(
-        name => installer.default(installer[name], { forceDownload })))
+        name => installer.default(
+          installer[name],
+          { forceDownload }
+        )))
       .catch(console.log)
   }
 }
@@ -92,7 +96,7 @@ async function openMainWindow() {
     mainWindow = null
   })
 
-  ipcMain.on('renderer-reload', (ev, action) => {
+  ipcMain.on('renderer-reload', (ev) => {
     delete require.cache[require.resolve('./reducers')]
     store.replaceReducer(require('./reducers'))
     ev.returnValue = true

@@ -41,19 +41,27 @@ export default class TitleBar extends React.Component {
       return (
         <div className="actions-container">
           <div className="action-container">
-            <button className="btn" onClick={ this.createNote.bind(this) }>
+            <button
+              className="btn"
+              onClick={ this.createNote.bind(this) }>
               <i className="icn-plus"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn"
-              onClick={ this.props.editNote.bind(null, this.props.selectedNote) }>
+              onClick={ this.props.editNote.bind(
+                null,
+                this.props.selectedNote
+              ) }>
               <i className="icn-pen"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn"
-              onClick={ this.props.deleteNote.bind(null, this.props.selectedNote) }>
+              onClick={ this.props.deleteNote.bind(
+                null,
+                this.props.selectedNote
+              ) }>
               <i className="icn-trashbin"></i>
             </button>
           </div>
@@ -62,7 +70,9 @@ export default class TitleBar extends React.Component {
     } else {
       return (
         <div className="actions-container">
-          <div className="action-container" onClick={ this.createNote.bind(this) }>
+          <div
+            className="action-container"
+            onClick={ this.createNote.bind(this) }>
             <button className="btn">
               <i className="icn-plus"></i>
             </button>

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 export default class Input extends React.Component {
   constructor(props) {
@@ -15,7 +14,10 @@ export default class Input extends React.Component {
 
   onChange(ev) {
     ev.persist()
-    this.setState({ value: ev.target.value }, () => this.props.onChange(ev))
+    this.setState(
+      { value: ev.target.value },
+      () => this.props.onChange(ev)
+    )
   }
 
   render() {

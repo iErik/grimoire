@@ -5,7 +5,10 @@ const initialState = {
   selectedNote: undefined
 }
 
-export default function notesReducer(state = initialState, { type, payload }) {
+export default function notesReducer(
+  state = initialState,
+  { type, payload }
+) {
   switch (type) {
     case 'CREATE_NOTE_FULFILLED':
       return {
@@ -44,7 +47,8 @@ export default function notesReducer(state = initialState, { type, payload }) {
     case 'CHANGE_SELECTED_NOTE':
       return {
         ...state,
-        selectedNote: find(state.notes, note => note._id === payload._id) || {},
+        selectedNote:
+          find(state.notes, note => note._id === payload._id) || {},
       }
 
     case 'CHANGE_ACTIVE_NOTEBOOK':

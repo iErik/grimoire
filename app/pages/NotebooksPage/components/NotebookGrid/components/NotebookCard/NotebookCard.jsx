@@ -14,7 +14,10 @@ export default class NotebookCard extends React.Component {
   static contextTypes = { router: PropTypes.object.isRequired }
 
   updateNotebookName(ev) {
-    this.props.updateNotebookName(this.props.notebook, ev.target.value)
+    this.props.updateNotebookName(
+      this.props.notebook,
+      ev.target.value
+    )
   }
 
   openNotebook() {
@@ -36,7 +39,9 @@ export default class NotebookCard extends React.Component {
     if (this.props.notes.length > 0) {
       return this.props.notes.map((note) => (
         <li className="card-notes-list-entry" key={ note._id }>
-          <p className="title" onClick={ this.openNote.bind(this, note) }>
+          <p
+            className="title"
+            onClick={ this.openNote.bind(this, note) }>
             { note.title }
           </p>
 
@@ -76,12 +81,19 @@ export default class NotebookCard extends React.Component {
             />
           </div>
           <div className="control-container">
-            <button className="btn" onClick={ this.props.deleteNotebook.bind(null, this.props.notebook) }>
+            <button
+              className="btn"
+              onClick={ this.props.deleteNotebook.bind(
+                null,
+                this.props.notebook
+              ) }>
               <i className="icn-close"></i>
             </button>
           </div>
         </div>
-        <div className="card-contents" onClick={ this.openNotebook.bind(this) }>
+        <div
+          className="card-contents"
+          onClick={ this.openNotebook.bind(this) }>
           <ul className="card-notes-list-entries">
             { this.renderNotes() }
           </ul>

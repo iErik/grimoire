@@ -51,7 +51,9 @@ export default class SelectField extends React.Component {
         <div className={ styles.selectField }>
           <div className="select-field-value"
             onClick={ this.toggleOptions.bind(this) }>
-            <span className="value-label">{ this.props.value.label }</span>
+            <span className="value-label">
+              { this.props.value.label }
+            </span>
             <button className="btn">
               <i className="icn-arrow-down"></i>
             </button>

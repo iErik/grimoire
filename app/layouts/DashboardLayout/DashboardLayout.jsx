@@ -26,15 +26,15 @@ export default class DashboardLayout extends React.Component {
             <Route
               exact
               path={`${basePath}/notebooks`}
-              render={(props) => <NotebooksPage {...this.props} /> } />
+              render={() => <NotebooksPage {...this.props} /> } />
             <Route
               exact
               path={`${basePath}/settings`}
-              render={(props) => <SettingsPage {...this.props} /> } />
+              render={() => <SettingsPage {...this.props} /> } />
             <Route
               exact
               path={`${basePath}`}
-              render={(props) => <NotesPage {...this.props} /> } />
+              render={() => <NotesPage {...this.props} /> } />
           </Switch>
         </main>
       </div>

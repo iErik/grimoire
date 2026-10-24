@@ -14,9 +14,10 @@ export default class TitleBar extends React.Component {
         <div className="draggable title-container column">
           <p className="title">Settings</p>
         </div>
-        {/* Electron applies drag regions in document order, so this no-drag
-            section must come after the full-width draggable title, which
-            it overlaps, or the title's drag region swallows its clicks. */}
+        {/* Electron applies drag regions in document order, so
+            this no-drag section must come after the full-width
+            draggable title, which it overlaps, or the title's drag
+            region swallows its clicks. */}
         <div className="section section-left column">
           <div className="control-container">
             <BurgerButton
@@ -25,7 +26,8 @@ export default class TitleBar extends React.Component {
             />
           </div>
         </div>
-        <div className="section section-right wrapper-window-controls">
+        <div
+          className="section section-right wrapper-window-controls">
           <WindowControls { ...this.props } />
         </div>
       </div>

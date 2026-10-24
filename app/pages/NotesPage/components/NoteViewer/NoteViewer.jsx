@@ -5,12 +5,17 @@ import Input from 'components/Input'
 
 export default class NoteViewer extends React.Component {
   renameNote(ev) {
-    this.props.updateNoteTitle(this.props.selectedNote, ev.target.value)
+    this.props.updateNoteTitle(
+      this.props.selectedNote,
+      ev.target.value
+    )
   }
 
   renderCreationDate() {
     if (this.props.selectedNote.createdAt) {
-      return moment(this.props.selectedNote.createdAt).calendar(null, {
+      const createdAt = moment(this.props.selectedNote.createdAt)
+
+      return createdAt.calendar(null, {
         sameDay: 'HH:mm',
         lastDay: '[Yesterday]',
         lastWeek: '[Last] dddd',
@@ -34,7 +39,9 @@ export default class NoteViewer extends React.Component {
             <Input
               type="text"
               className="input-title"
-              value={ this.props.isStoreLoading ? '' : this.props.selectedNote.title }
+              value={ this.props.isStoreLoading
+                ? ''
+                : this.props.selectedNote.title }
               onChange={ this.renameNote.bind(this) }
             />
           </div>

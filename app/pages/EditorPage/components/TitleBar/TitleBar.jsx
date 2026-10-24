@@ -3,7 +3,7 @@ import React from 'react'
 import BurgerButton from 'components/BurgerButton'
 import WindowControls from 'components/WindowControls'
 
-export default (props) => {
+const TitleBar = (props) => {
   const { editorActions } = props
 
   const toggleSidebar = () => {
@@ -24,37 +24,51 @@ export default (props) => {
       <div className="actions-container draggable">
         <div className="inner">
           <div className="action-container">
-            <button className="btn" onClick={ editorActions.insertBold }>
+            <button
+              className="btn"
+              onClick={ editorActions.insertBold }>
               <i className="icn-bold"></i>
             </button>
           </div>
           <div className="action-container">
-            <button className="btn" onClick={ editorActions.insertItalic }>
+            <button
+              className="btn"
+              onClick={ editorActions.insertItalic }>
               <i className="icn-italic"></i>
             </button>
           </div>
           <div className="action-container">
-            <button className="btn" onClick={ editorActions.insertStrikethrough }>
+            <button
+              className="btn"
+              onClick={ editorActions.insertStrikethrough }>
               <i className="icn-strikethrough"></i>
             </button>
           </div>
           <div className="action-container">
-            <button className="btn" onClick={ editorActions.insertUnorderedList }>
+            <button
+              className="btn"
+              onClick={ editorActions.insertUnorderedList }>
               <i className="icn-ul-list"></i>
             </button>
           </div>
           <div className="action-container">
-            <button className="btn" onClick={ editorActions.insertOrderedList }>
+            <button
+              className="btn"
+              onClick={ editorActions.insertOrderedList }>
               <i className="icn-ol-list"></i>
             </button>
           </div>
           <div className="action-container">
-            <button className="btn" onClick={ editorActions.insertLink }>
+            <button
+              className="btn"
+              onClick={ editorActions.insertLink }>
               <i className="icn-link-o"></i>
             </button>
           </div>
           <div className="action-container">
-            <button className="btn" onClick={ editorActions.insertQuote }>
+            <button
+              className="btn"
+              onClick={ editorActions.insertQuote }>
               <i className="icn-quote-left"></i>
             </button>
           </div>
@@ -82,3 +96,5 @@ export default (props) => {
     </div>
   )
 }
+
+export default TitleBar

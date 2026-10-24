@@ -1,5 +1,3 @@
-import { omit, pick, map, each } from 'underscore'
-
 import Notebooks from '../collections/notebooks'
 import Notes from '../collections/notes'
 

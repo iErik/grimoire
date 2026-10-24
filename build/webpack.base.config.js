@@ -4,7 +4,6 @@ import sass from 'sass'
 import jsonImporter from 'node-sass-json-importer'
 
 import { assetsPath } from './utils'
-import { dependencies as externals } from '../app/package.json'
 import config from '../config'
 
 var projectRoot = path.resolve(__dirname, '../')
@@ -29,7 +28,8 @@ export default {
       'layouts': path.resolve(__dirname, '../app/layouts'),
       'pages': path.resolve(__dirname, '../app/pages'),
 
-      'collections': path.resolve(__dirname, '../app/database/collections'),
+      'collections':
+        path.resolve(__dirname, '../app/database/collections'),
       'database': path.resolve(__dirname, '../app/database'),
       'seeds': path.resolve(__dirname, '../app/database/seeds'),
       'storage': path.resolve(__dirname, '../app/storage'),
@@ -59,10 +59,23 @@ export default {
         [ { loader: 'style-loader' },
           { loader: 'css-loader' },
           { loader: 'postcss-loader',
-            options: { ident: 'postcss-base', plugins: [autoprefixer({ overrideBrowserslist: ['electron 1.7'] })] }
+            options: {
+              ident: 'postcss-base',
+              plugins: [
+                autoprefixer({
+                  overrideBrowserslist: ['electron 1.7']
+                })
+              ]
+            }
           },
           { loader: 'sass-loader',
-            options: { ident: 'sass-base', implementation: sass, importer: jsonImporter(), silenceDeprecations: ['legacy-js-api', 'import'], quietDeps: true }
+            options: {
+              ident: 'sass-base',
+              implementation: sass,
+              importer: jsonImporter(),
+              silenceDeprecations: ['legacy-js-api', 'import'],
+              quietDeps: true
+            }
           }
         ]
       },      

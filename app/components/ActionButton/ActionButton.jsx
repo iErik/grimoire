@@ -10,7 +10,9 @@ export default class ActionButton extends React.Component {
   render() {
     return (
       <button className="action-btn">
-        <span className="action-btn-trigger" onClick={ this.props.onClick }>
+        <span
+          className="action-btn-trigger"
+          onClick={ this.props.onClick }>
           <p className="action-btn-trigger-label">+</p>
         </span>
       </button>

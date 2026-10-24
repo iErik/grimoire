@@ -12,13 +12,15 @@ import Input from 'components/Input'
 })
 export default class Sidebar extends React.Component {
   createNote() {
-    this.props.createNote(decodeURIComponent(this.props.match.params.notebookId))
+    this.props.createNote(
+      decodeURIComponent(this.props.match.params.notebookId)
+    )
   }
 
   renameNote(note, ev) {
     if (note._id === this.props.selectedNote._id) ev.preventDefault()
 
-    const handler = (ev) => {
+    const handler = () => {
       this.props.updateUI('hightlightSelectedNote', false)
       document.removeEventListener('click', handler)
     }
@@ -35,7 +37,8 @@ export default class Sidebar extends React.Component {
 
   renderDocuments() {
     return this.props.notes.map((note) => {
-      let notebookId = decodeURIComponent(this.props.match.params.notebookId)
+      let notebookId =
+        decodeURIComponent(this.props.match.params.notebookId)
       let style = classNames({
         'document-list-entry': true,
         'is-editing': note._id === this.props.selectedNote._id &&
@@ -105,7 +108,9 @@ export default class Sidebar extends React.Component {
           <div className="document-action">
             <button className="btn"
               onClick={ this.props.docActions.switchMode }>
-              <i className={ this.props.ui.isDark ? 'icn-moon-dark' : 'icn-moon' }></i>
+              <i className={
+                this.props.ui.isDark ? 'icn-moon-dark' : 'icn-moon'
+              }></i>
             </button>
           </div>
         </div>
@@ -114,7 +119,9 @@ export default class Sidebar extends React.Component {
           { this.renderDocuments() }
         </ul>
 
-        <div className="document-action" onClick={ this.createNote.bind(this) }>
+        <div
+          className="document-action"
+          onClick={ this.createNote.bind(this) }>
           <button className="btn" >
             <i className="icn-plus"></i>
           </button>

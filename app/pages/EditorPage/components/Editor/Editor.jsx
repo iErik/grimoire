@@ -1,7 +1,9 @@
 import React from 'react'
 
-export default ({ children }) => (
+const Editor = ({ children }) => (
   <div className="editor">
     { children }
   </div>
 )
+
+export default Editor

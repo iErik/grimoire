@@ -38,7 +38,9 @@ const loadState = async (currentState) => {
 
     notes: {
       notes: await Notes.findAsync({}),
-      selectedNote: await Notes.findOneAsync({ notebookId: activeNotebook._id }) || { }
+      selectedNote: await Notes.findOneAsync({
+        notebookId: activeNotebook._id
+      }) || { }
     },
 
     notebooks: {
@@ -50,7 +52,10 @@ const loadState = async (currentState) => {
   }
 }
 
-export default function configureStore(scope = 'main', filter = defaultFilter) {
+export default function configureStore(
+  scope = 'main',
+  filter = defaultFilter
+) {
   const composeEnhancers = scope === 'renderer'
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose
@@ -58,7 +63,9 @@ export default function configureStore(scope = 'main', filter = defaultFilter) {
   if (scope === 'renderer')
     var history = require('./hashHistory')
 
-  const router = scope === 'main' ? undefined : routerMiddleware(history)
+  const router = scope === 'main'
+    ? undefined
+    : routerMiddleware(history)
 
   const reducer = scope === 'main'
     ? hydrateReducers(createRootReducer(scope))
@@ -75,7 +82,10 @@ export default function configureStore(scope = 'main', filter = defaultFilter) {
     )
     : composeEnhancers(
       applyMiddleware(...middleware),
-      electronEnhancer({ filter, dispatchProxy: a => store.dispatch(a) })
+      electronEnhancer({
+        filter,
+        dispatchProxy: a => store.dispatch(a)
+      })
     )
 
   const store = createStore(reducer, enhancer)

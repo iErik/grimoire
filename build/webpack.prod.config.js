@@ -1,4 +1,3 @@
-import path from 'path'
 import webpack from 'webpack'
 import merge from 'webpack-merge'
 import autoprefixer from 'autoprefixer'
@@ -35,7 +34,11 @@ export default merge(baseConfig,
          { loader: 'postcss-loader',
            options:
              { ident: 'postcss-prod',
-               plugins: [autoprefixer({ overrideBrowserslist: ['electron 1.7'] })],
+               plugins: [
+                 autoprefixer({
+                   overrideBrowserslist: ['electron 1.7']
+                 })
+               ],
                sourceMap: config.build.cssSourceMap
              }
          },
