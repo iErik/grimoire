@@ -3,6 +3,9 @@
 
 .draggable {
   -webkit-app-region: drag;
+
+  // The window swallows clicks inside a drag region, so controls must opt out.
+  button, a, input, select, textarea { -webkit-app-region: no-drag; }
 }
 
 .full-height {

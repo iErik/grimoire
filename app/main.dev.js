@@ -1,11 +1,17 @@
 import { app, BrowserWindow, ipcMain, Menu } from 'electron';
+import * as remoteMain from '@electron/remote/main';
 import settings from 'electron-settings';
 import defaults from './config/settings';
+import webPreferences from './config/windowPreferences';
 
 import configureStore from './store/configureStore';
 import runSeeders from './database/seeds';
 
 let mainWindow = null;
+
+remoteMain.initialize();
+app.on('browser-window-created', (ev, window) =>
+  remoteMain.enable(window.webContents));
 
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
@@ -40,7 +46,7 @@ const installExtensions = async () => {
 
     return Promise
       .all(extensions.map(
-        name => installer.default(installer[name], forceDownload)))
+        name => installer.default(installer[name], { forceDownload })))
       .catch(console.log);
   }
 };
@@ -71,7 +77,8 @@ async function openMainWindow() {
 
     show: false,
     frame: false,
-    hasShadow: true
+    hasShadow: true,
+    webPreferences
   });
 
   mainWindow.loadURL(entryFile);
@@ -98,7 +105,7 @@ async function openMainWindow() {
       Menu.buildFromTemplate([{
         label: 'Inspect element',
         click: function() {
-          mainWindow.inspectElement(x, y);
+          mainWindow.webContents.inspectElement(x, y);
         }
       }]).popup(mainWindow);
     });

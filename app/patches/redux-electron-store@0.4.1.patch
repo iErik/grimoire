@@ -1,0 +1,38 @@
+diff --git a/.npmignore b/.npmignore
+deleted file mode 100644
+index e69de29bb2d1d6434b8b29ae775ad8c2e48c5391..0000000000000000000000000000000000000000
+diff --git a/lib/electronBrowserEnhancer.js b/lib/electronBrowserEnhancer.js
+index f94f9b7704c5fbcbbeff8f5d5e93d8af7ee66a19..0e4ee7f31aad7033d963789d2de716de28494093 100644
+--- a/lib/electronBrowserEnhancer.js
++++ b/lib/electronBrowserEnhancer.js
+@@ -58,6 +58,7 @@ function electronBrowserEnhancer() {
+       var _require = require('electron');
+ 
+       var ipcMain = _require.ipcMain;
++      var BrowserWindow = _require.BrowserWindow;
+ 
+       var store = storeCreator(reducer, initialState);
+ 
+@@ -103,18 +104,18 @@ function electronBrowserEnhancer() {
+         var filter = _ref3.filter;
+         var clientId = _ref3.clientId;
+ 
+-        var webContentsId = sender.getId();
++        var webContentsId = sender.id;
+         clients[webContentsId] = {
+           webContents: sender,
+           filter: filter,
+           clientId: clientId,
+-          windowId: sender.getOwnerBrowserWindow().id,
++          windowId: BrowserWindow.fromWebContents(sender).id,
+           active: true
+         };
+ 
+-        if (!sender.isGuest()) {
++        if (sender.getType() !== 'webview') {
+           // For windowMap (not webviews)
+-          var browserWindow = sender.getOwnerBrowserWindow();
++          var browserWindow = BrowserWindow.fromWebContents(sender);
+           if (windowMap[browserWindow.id] !== undefined) {
+             unregisterRenderer(windowMap[browserWindow.id]);
+           }

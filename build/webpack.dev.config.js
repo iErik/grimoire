@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import merge from 'webpack-merge';
+import sass from 'sass';
 
 import FriendlyErrors from 'friendly-errors-webpack-plugin';
 
@@ -32,7 +33,13 @@ export default merge.smart(baseConfig,
            }
          }
        , { loader: 'sass-loader'
-         , options: { sourceMap: config.dev.cssSourceMap }
+         , options:
+           { ident: 'sass-dev'
+           , implementation: sass
+           , silenceDeprecations: ['legacy-js-api', 'import']
+           , quietDeps: true
+           , sourceMap: config.dev.cssSourceMap
+           }
          }
        ]
     }]

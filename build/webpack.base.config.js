@@ -1,5 +1,6 @@
 import path from 'path';
 import autoprefixer from 'autoprefixer';
+import sass from 'sass';
 import jsonImporter from 'node-sass-json-importer';
 
 import { assetsPath } from './utils';
@@ -59,10 +60,10 @@ export default {
         [ { loader: 'style-loader' }
         , { loader: 'css-loader' }
         , { loader: 'postcss-loader'
-          , options: { plugins: [autoprefixer({ browsers: ['electron 1.7'] })] }
+          , options: { ident: 'postcss-base', plugins: [autoprefixer({ overrideBrowserslist: ['electron 1.7'] })] }
           }
         , { loader: 'sass-loader'
-          , options: { importer: jsonImporter }
+          , options: { ident: 'sass-base', implementation: sass, importer: jsonImporter(), silenceDeprecations: ['legacy-js-api', 'import'], quietDeps: true }
           }
         ]
       }
