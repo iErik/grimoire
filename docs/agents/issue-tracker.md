@@ -58,7 +58,8 @@ A PR has **at most 700 changed lines**, counted as additions plus deletions, lea
   - `pnpm-lock.yaml` (both the root and `app/` lockfiles);
   - SVG markup files;
   - image files
-  - test snapshots (`__snapshots__/`).
+  - test snapshots (`__snapshots__/`);
+  - autofix-only formatting commits. One is a commit that contains only the output of `eslint --fix --fix-type layout` and is listed in `.git-blame-ignore-revs`. Commit it with `--no-verify`, so the pre-commit hook can't add non-layout fixes, and merge its PR with a merge commit, not a squash, so the listed hash stays real. A reviewer can check one by re-running `pnpm exec eslint . --fix --fix-type layout` on its parent commit and comparing the result with the commit.
 
   Binary files add no lines anyway. If a PR adds a new kind of generated file, add it here and to the command below.
 - **Measure it** before opening the PR, and again before asking for review:
@@ -66,12 +67,27 @@ A PR has **at most 700 changed lines**, counted as additions plus deletions, lea
   ```bash
   git fetch origin master
   git diff --shortstat FETCH_HEAD...HEAD -- . \
-    ':(exclude)**/pnpm-lock.yaml' \
-    ':(exclude)app/**/*.svg' \
-    ':(exclude)**/__snapshots__/**'
+    ':(exclude,glob)**/pnpm-lock.yaml' \
+    ':(exclude,glob)app/**/*.svg' \
+    ':(exclude,glob)**/__snapshots__/**'
   ```
 
   The insertions plus deletions it reports must be 700 or fewer. The repo is a bare clone without remote-tracking branches, so there's no `origin/master` to compare against: `FETCH_HEAD` is the `master` just fetched.
+
+  If the PR contains an autofix-only formatting commit, that diff includes it. Count the PR commit by commit instead, leaving out every commit listed in `.git-blame-ignore-revs`:
+
+  ```bash
+  git fetch origin master
+  git log --no-merges --format=%H FETCH_HEAD..HEAD \
+    | grep -vxF -f <(grep -oE '^[0-9a-f]{40}' .git-blame-ignore-revs) \
+    | xargs -I{} git show --numstat --format= {} -- . \
+      ':(exclude,glob)**/pnpm-lock.yaml' \
+      ':(exclude,glob)app/**/*.svg' \
+      ':(exclude,glob)**/__snapshots__/**' \
+    | awk '{ n += $1 + $2 } END { print n + 0 }'
+  ```
+
+  It prints the insertions plus deletions of the remaining commits, which must be 700 or fewer. A line changed by two of those commits counts twice, so this can overcount, never undercount.
 - **Plan the split up front.** When a ticket needs more than that, the plan comment lists the PRs and what each one covers, and each PR gets a sub-issue ([Sub-issues](#sub-issues)). Split along seams that each stand on their own. Every PR builds, lints and passes its tests by itself, and can be reviewed and merged on its own.
 - **Order the parts.** A part that depends on an earlier one waits until that one is merged, then branches from `master`. Independent parts can be open at the same time.
 - **Announce each PR on the ticket** when it opens: a comment with the link, "part N of M", what it covers, and what's left for the remaining parts. Also say so in the PR description.
