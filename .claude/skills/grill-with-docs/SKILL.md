@@ -1,15 +1,7 @@
 ---
-name: implement
-description: "Implement a piece of work based on a spec or set of tickets."
+name: grill-with-docs
+description: A relentless interview to sharpen a plan or design, which also creates docs (ADR's and glossary) as we go.
 disable-model-invocation: true
 ---
 
-Implement the work described by the user in the spec or tickets.
-
-Use /tdd where possible, at pre-agreed seams.
-
-Run typechecking regularly, single test files regularly, and the full test suite once at the end.
-
-Once done, use /code-review to review the work.
-
-Commit your work to the current branch.
+Call the Skill tool twice, for "grilling" and "domain-modeling".
