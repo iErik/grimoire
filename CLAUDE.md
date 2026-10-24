@@ -87,3 +87,17 @@ There are no tests or linters.
 
 - The webpack configs use comma-first object and array literals. Match that.
 - JS/JSX uses 2-space indentation, single quotes, and ES module imports.
+
+## Agent skills
+
+### Issue tracker
+
+Issues are Linear tickets in the Grimoire team (`GRM`), managed through the Linear MCP. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Default vocabulary: `needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: one `CONTEXT.md` and `docs/adr/` at the repo root. See `docs/agents/domain.md`.

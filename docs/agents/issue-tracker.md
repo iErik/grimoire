@@ -1,0 +1,113 @@
+## Working from Linear tickets
+
+Work in this repo is organized as Linear tickets (team prefix: `GRM`). Use the Linear MCP tools to read and update them. A ticket is the source of truth for what to build; this file is the source of truth for how.
+
+### Picking up a ticket
+
+1. Read the full ticket: description, acceptance criteria, comments, linked documents, sub-issues, and relations.
+2. Check that every "blocked by" issue is Done. If not, stop and tell me.
+3. Only start a ticket that is in **Ready**, or one I explicitly name in my prompt.
+4. If the ticket is ambiguous, has no checkable acceptance criteria, or contradicts the code, do not guess. Post your questions as a comment on the ticket, leave its status as it is, set its triage label back to `needs-info`, and stop.
+5. For anything beyond a small fix, post a short plan as a comment (files you'll touch, approach, risks) and wait for my go-ahead before writing code.
+
+### Branches and scope
+
+- One ticket = one worktree. A ticket can need several PRs to stay within the size limit (see [PR size](#pr-size)). Each of those PRs has a sub-issue of its own ([Sub-issues](#sub-issues)), and gets its own branch:
+  - a single-PR ticket uses the branch name Linear generates for the issue (it contains the ticket ID, which the GitHub integration relies on);
+  - a part uses the branch name Linear generates for its sub-issue, so the GitHub integration links the PR to that part.
+- When starting new work, always create a new worktree, the worktree directory name must be the ticket's ID (e.g. GRM-123), if the current directory belongs to another ticket's worktree, simply move to the correct worktree or create it if it doesn't exist yet.
+- Stay inside the ticket's scope. Respect its "Out of scope" section.
+- If a ticket has a "Dont's" or "Don't do" section, make sure to absolutely not do any of the things listed in that section.
+- If you find unrelated bugs, refactors, or follow-up work, do not fix them in this PR. Create a new ticket in **Backlog** (or comment, if unsure) with what you found and where, and let me know.
+- Do not edit a ticket's title, description, or acceptance criteria, unless explicitly told to. Add comments instead.
+
+### Status changes
+
+| When | Move to |
+|---|---|
+| Triage labels it `ready-for-agent` or `ready-for-human` | **Ready** |
+| You start working | **In Progress** |
+| PR is open and checks pass | **In Review** |
+| You start the ticket's next PR | **In Progress** |
+| You need input or are blocked | Comment explaining why; leave status as is |
+
+**Never move a ticket to Done or Canceled.** I do that after reviewing and merging.
+
+### Before moving to In Review
+
+- [ ] Every acceptance criterion is met, and you can say how you verified each one
+- [ ] Tests added or updated for the change
+- [ ] `pnpm lint` passes
+- [ ] `<typecheck command>` passes
+- [ ] `pnpm test` passes
+- [ ] No unrelated changes in the diff
+- [ ] The PR is within the [size limit](#pr-size)
+
+The test, lint and typecheck items apply only if the project has them. If it doesn't have tests, a linter or a typecheck yet, skip those items and don't add the tooling as part of the ticket.
+
+### Commits and PRs
+
+- Commit messages and the PR title start with the ticket ID: `GRM-12: Add retry to GraphQL client`.
+- PR description includes: link to the ticket, a short summary of the change, how it was verified, and any deviations from the ticket or decisions I should look at.
+
+### PR size
+
+A PR has **at most 700 changed lines**, counted as additions plus deletions, leaving out generated files.
+
+- **Generated files** are ones a tool produces rather than someone writing them by hand. For example:
+  - `pnpm-lock.yaml` (both the root and `app/` lockfiles);
+  - SVG markup files;
+  - image files
+  - test snapshots (`__snapshots__/`).
+
+  Binary files add no lines anyway. If a PR adds a new kind of generated file, add it here and to the command below.
+- **Measure it** before opening the PR, and again before asking for review:
+
+  ```bash
+  git fetch origin master
+  git diff --shortstat FETCH_HEAD...HEAD -- . \
+    ':(exclude)**/pnpm-lock.yaml' \
+    ':(exclude)app/**/*.svg' \
+    ':(exclude)**/__snapshots__/**'
+  ```
+
+  The insertions plus deletions it reports must be 700 or fewer. The repo is a bare clone without remote-tracking branches, so there's no `origin/master` to compare against: `FETCH_HEAD` is the `master` just fetched.
+- **Plan the split up front.** When a ticket needs more than that, the plan comment lists the PRs and what each one covers, and each PR gets a sub-issue ([Sub-issues](#sub-issues)). Split along seams that each stand on their own. Every PR builds, lints and passes its tests by itself, and can be reviewed and merged on its own.
+- **Order the parts.** A part that depends on an earlier one waits until that one is merged, then branches from `master`. Independent parts can be open at the same time.
+- **Announce each PR on the ticket** when it opens: a comment with the link, "part N of M", what it covers, and what's left for the remaining parts. Also say so in the PR description.
+- **The limit wins over the ticket's plan.** If a ticket or its brief plans fewer PRs than the work needs to stay within the limit, split it further anyway, and list that among the departures from the ticket.
+- **Review fixes count too.** If they push a PR over the limit, move them into the next part instead.
+
+### Sub-issues
+
+Whenever you determine that a ticket needs more than one PR, whether during triage, while planning, or partway through the work, create one sub-issue per PR right away. Don't wait to be asked.
+
+- **Parent:** the ticket (`parentId`), on the same team.
+- **Title:** `Part N of M: <what it covers>`.
+- **Description:** what this part covers and which of the parent's acceptance criteria it meets, with a link back to the parent's brief or plan comment. The parent's brief stays the contract; don't copy it. Sub-issues created during triage start with the triage disclaimer.
+- **Labels:** the parent's category label, plus its state label (`ready-for-agent` when the parent is).
+- **Status:** the parent's: **Ready** when the parent is `ready-for-agent` or `ready-for-human`, otherwise **Backlog**, like any new ticket.
+- **Order:** a part that depends on an earlier one is marked as blocked by that part's sub-issue (`blockedBy`).
+- **Changes later:** when the split changes (the limit wins, or a part moves), add, retitle or renumber the sub-issues to match, and say so on the parent.
+
+Work then moves through the sub-issues: each part's status changes ([Status changes](#status-changes)) apply to its sub-issue, and the parent is **In Progress** while any part is. Commit messages and PR titles start with the sub-issue's ID. Announcements and the final comment still go on the parent.
+
+### When you finish
+
+Comment on the ticket with each PR's link (with "part N of M" if there's more than one), a two or three line summary, and anything the reviewer should check first.
+
+### Project commands
+
+- Install: `pnpm install`
+- Dev server: `pnpm dev`
+- Lint: `pnpm lint`
+- Typecheck: `<typecheck command>`
+- Test: `pnpm test`
+
+## When a skill says "publish to the issue tracker"
+
+Create a new Linear issue.
+
+## When a skill says "fetch the relevant ticket"
+
+Use Linear's MCP to fetch information from the ticket
