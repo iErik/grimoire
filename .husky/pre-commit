@@ -1,0 +1,3 @@
+# --no-stash: the stash stack is shared by every worktree of this
+# repo, so lint-staged must not push its backup onto it.
+pnpm exec lint-staged --no-stash
