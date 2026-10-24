@@ -20,7 +20,7 @@ Single-context repo (most repos):
 ├── docs/adr/
 │   ├── 0001-event-sourced-orders.md
 │   └── 0002-postgres-for-write-model.md
-└── src/
+└── app/
 ```
 
 Multi-context repo (presence of `CONTEXT-MAP.md` at the root):

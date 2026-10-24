@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 Implement the work described by the user in the spec or tickets.
 
-Use /tdd where possible, at pre-agreed seams.
+Use /tdd where possible, at pre-agreed seams. Skip it while the project has no test runner.
 
 Run typechecking regularly, single test files regularly, and the full test suite once at the end. Skip any of these the project doesn't have yet.
 
