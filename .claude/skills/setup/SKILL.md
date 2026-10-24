@@ -27,7 +27,7 @@ Look at the current repo to understand its starting state. Read whatever exists;
 - `docs/agents/`: does this skill's prior output already exist?
 - `.scratch/`: a sign that a local-markdown issue tracker convention is already in use
 - Is the `triage` skill installed? (a `triage` skill folder alongside this one, or `triage` in your available skills.) This decides whether Section B runs at all.
-- Monorepo signals: a `pnpm-workspace.yaml`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo.
+- Monorepo signals: a `pnpm-workspace.yaml` that lists `packages`, a `workspaces` field in `package.json`, or a populated `packages/*` with its own `src/`. These are present only in a genuinely large multi-package repo; their absence means single-context, which is almost every repo. A workspace file that only configures pnpm (patches, catalogs, settings) is not a monorepo signal.
 - Project commands: the install, dev, lint, typecheck and test commands, from `package.json` scripts, a `Makefile`, a `justfile`, or the README and `CLAUDE.md`. Note which of them don't exist. The issue-tracker templates have placeholders for these.
 
 ### 2. Present findings and ask
