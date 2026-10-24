@@ -1,0 +1,2 @@
+patchedDependencies:
+  redux-electron-store@0.4.1: patches/redux-electron-store@0.4.1.patch
