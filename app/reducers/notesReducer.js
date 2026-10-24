@@ -2,7 +2,7 @@ import { find, sortBy, reject } from 'underscore'
 
 const initialState = {
   notes: [],
-  selectedNote: undefined
+  selectedNote: {}
 }
 
 export default function notesReducer(
