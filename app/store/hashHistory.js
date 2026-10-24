@@ -1,4 +1,4 @@
-import createHistory from 'history/createHashHistory';
+import createHistory from 'history/createHashHistory'
 
-const hashHistory = createHistory();
-export default hashHistory;
+const hashHistory = createHistory()
+export default hashHistory

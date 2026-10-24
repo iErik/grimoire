@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import ui from 'redux-ui';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import ui from 'redux-ui'
 
-import Input from 'components/Input';
+import Input from 'components/Input'
 
 @ui({
   state: {
@@ -14,22 +14,22 @@ export default class NotebookCard extends React.Component {
   static contextTypes = { router: PropTypes.object.isRequired }
 
   updateNotebookName(ev) {
-    this.props.updateNotebookName(this.props.notebook, ev.target.value);
+    this.props.updateNotebookName(this.props.notebook, ev.target.value)
   }
 
   openNotebook() {
-    this.props.changeActiveNotebook(this.props.notebook);
-    this.context.router.push('/dashboard/');
+    this.props.changeActiveNotebook(this.props.notebook)
+    this.context.router.push('/dashboard/')
   }
 
   openNote(note, ev) {
-    ev.stopPropagation();
+    ev.stopPropagation()
     this.props.editNote(note)
   }
 
   deleteNote(note, ev) {
-    ev.stopPropagation();
-    this.props.deleteNote(note);
+    ev.stopPropagation()
+    this.props.deleteNote(note)
   }
 
   renderNotes() {
@@ -46,7 +46,7 @@ export default class NotebookCard extends React.Component {
             <i className="icn-trashbin"></i>
           </button>
         </li>
-      ));
+      ))
     } else {
       return (
         <li className="card-notes-list-empty">
@@ -89,6 +89,6 @@ export default class NotebookCard extends React.Component {
           <div className={ styles.cardOptions }></div>
         </div>
       </div>
-    );
+    )
   }
 }

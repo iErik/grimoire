@@ -1,11 +1,11 @@
-import React from 'react';
-import moment from 'moment';
+import React from 'react'
+import moment from 'moment'
 
-import Input from 'components/Input';
+import Input from 'components/Input'
 
 export default class NoteViewer extends React.Component {
   renameNote(ev) {
-    this.props.updateNoteTitle(this.props.selectedNote, ev.target.value);
+    this.props.updateNoteTitle(this.props.selectedNote, ev.target.value)
   }
 
   renderCreationDate() {
@@ -15,7 +15,7 @@ export default class NoteViewer extends React.Component {
         lastDay: '[Yesterday]',
         lastWeek: '[Last] dddd',
         sameElse: 'DD/MM/YY'
-      });
+      })
     }
   }
 
@@ -41,8 +41,8 @@ export default class NoteViewer extends React.Component {
           <div className="note-meta">
             <p className="meta-date">
               { this.props.isStoreLoading
-              ? ''
-              : this.renderCreationDate()
+                ? ''
+                : this.renderCreationDate()
               }
             </p>
           </div>
@@ -51,6 +51,6 @@ export default class NoteViewer extends React.Component {
           dangerouslySetInnerHTML={ this.renderContent() }>
         </div>
       </div>
-    );
+    )
   }
 }

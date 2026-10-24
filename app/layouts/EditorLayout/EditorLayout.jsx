@@ -1,10 +1,10 @@
-import React from 'react';
-import ui from 'redux-ui';
-import { Route } from 'react-router-dom';
+import React from 'react'
+import ui from 'redux-ui'
+import { Route } from 'react-router-dom'
 
-import toMarkdown from 'to-markdown';
+import toMarkdown from 'to-markdown'
 
-import EditorPage from 'pages/EditorPage';
+import EditorPage from 'pages/EditorPage'
 
 @ui({
   state: {
@@ -19,16 +19,16 @@ export default class EditorLayout extends React.Component {
     if (this.props.selectedNote._id !== nextProps.selectedNote._id) {
       this.props.updateUI({
         mdContents: toMarkdown(nextProps.selectedNote.contents)
-      });
+      })
     }
   }
 
   render() {
-    let basePath = this.props.match.url;
+    let basePath = this.props.match.url
     return (
       <main className="full container">
         <Route path={basePath} render={(props) => <EditorPage { ...this.props } />} />
       </main>
-    );
+    )
   }
 }

@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import TitleBar from './components/TitleBar';
-import NotesList from './components/NotesList';
-import NoteViewer from './components/NoteViewer';
+import TitleBar from './components/TitleBar'
+import NotesList from './components/NotesList'
+import NoteViewer from './components/NoteViewer'
 
 export default class NotesPage extends React.Component {
   render() {
@@ -21,6 +21,6 @@ export default class NotesPage extends React.Component {
           </section>
         </section>
       </div>
-    );
+    )
   }
 }

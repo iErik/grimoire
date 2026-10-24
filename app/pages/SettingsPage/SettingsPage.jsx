@@ -1,14 +1,14 @@
-import React from 'react';
-import { keys } from 'underscore';
+import React from 'react'
+import { keys } from 'underscore'
 
-import TitleBar from './components/TitleBar';
-import Panel from './components/Panel';
+import TitleBar from './components/TitleBar'
+import Panel from './components/Panel'
 
-import SelectField from 'components/SelectField';
-import TextField from 'components/TextField';
+import SelectField from 'components/SelectField'
+import TextField from 'components/TextField'
 
-import { editorThemes, applicationThemes } from 'config/themes';
-import { capitalize } from 'utils/stringTools';
+import { editorThemes, applicationThemes } from 'config/themes'
+import { capitalize } from 'utils/stringTools'
 
 export default class SettingsPage extends React.Component {
   render() {
@@ -74,6 +74,6 @@ export default class SettingsPage extends React.Component {
           </Panel>
         </section>
       </div>
-    );
+    )
   }
 }

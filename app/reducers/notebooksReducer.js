@@ -1,9 +1,9 @@
-import { find, sortBy, reject } from 'underscore';
+import { find, sortBy, reject } from 'underscore'
 
 const initialState = {
   notebooks: [],
   activeNotebook: { },
-};
+}
 
 export default function notebooksReducer(state = initialState, { type, payload }) {
   switch (type) {
@@ -32,9 +32,9 @@ export default function notebooksReducer(state = initialState, { type, payload }
         notebooks: reject(state.notebooks, ({ _id }) => _id === payload._id),
         activeNotebook: payload._id === state.activeNotebook._id
           ? find(sortBy(state.notebooks,
-              notebook => -(new Date(notebook.createdAt).getTime())),
-              notebook => notebook._id !== payload._id
-            ) || { }
+            notebook => -(new Date(notebook.createdAt).getTime())),
+          notebook => notebook._id !== payload._id
+          ) || { }
           : { ...state.activeNotebook }
       }
 
@@ -45,6 +45,6 @@ export default function notebooksReducer(state = initialState, { type, payload }
       }
 
     default:
-      return state;
+      return state
   }
 }

@@ -4,4 +4,4 @@
 export default {
   nodeIntegration: true,
   contextIsolation: false
-};
+}

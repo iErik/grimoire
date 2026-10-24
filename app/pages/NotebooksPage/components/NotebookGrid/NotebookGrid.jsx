@@ -1,10 +1,10 @@
-import React from 'react';
-import ui from 'redux-ui';
-import { filter } from 'underscore';
+import React from 'react'
+import ui from 'redux-ui'
+import { filter } from 'underscore'
 
-import NotebookCard from './components/NotebookCard';
-import SearchBar from './components/SearchBar';
-import ActionButton from 'components/ActionButton';
+import NotebookCard from './components/NotebookCard'
+import SearchBar from './components/SearchBar'
+import ActionButton from 'components/ActionButton'
 
 @ui({
   state: {
@@ -13,17 +13,17 @@ import ActionButton from 'components/ActionButton';
 })
 export default class NotebookGrid extends React.Component {
   updateSearchFilter(ev) {
-    this.props.updateUI('searchFilter', ev.target.value);
+    this.props.updateUI('searchFilter', ev.target.value)
   }
 
   createNotebook() {
-    this.props.createNotebook();
+    this.props.createNotebook()
   }
 
   renderNotebookCards() {
     return this.props.notebooks.map((notebook) => {
       if (notebook.name.indexOf(this.props.ui.searchFilter) < 0) {
-        return;
+        return
       } else {
         return (
           <li
@@ -60,6 +60,6 @@ export default class NotebookGrid extends React.Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }

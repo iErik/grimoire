@@ -1,18 +1,18 @@
-import React from 'react';
-import ui from 'redux-ui';
+import React from 'react'
+import ui from 'redux-ui'
 
 export default class WindowControls extends React.Component {
   closeWindow() {
-    console.log("WindowControls.ui: ", this.props.ui);
-    this.props.ui.currentWindow.close();
+    console.log('WindowControls.ui: ', this.props.ui)
+    this.props.ui.currentWindow.close()
   }
 
   minimizeWindow() {
-    this.props.ui.currentWindow.minimize();
+    this.props.ui.currentWindow.minimize()
   }
 
   maximizeWindow() {
-    this.props.ui.currentWindow.maximize();
+    this.props.ui.currentWindow.maximize()
   }
 
   render() {
@@ -28,6 +28,6 @@ export default class WindowControls extends React.Component {
           <i className="icn-close"></i>
         </button>
       </div>
-    );
+    )
   }
 }

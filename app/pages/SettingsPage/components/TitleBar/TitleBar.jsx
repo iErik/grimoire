@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import BurgerButton from 'components/BurgerButton';
-import WindowControls from 'components/WindowControls';
+import BurgerButton from 'components/BurgerButton'
+import WindowControls from 'components/WindowControls'
 
 export default class TitleBar extends React.Component {
   toggleSidebar() {
-    this.props.updateUI('showSidebar', !this.props.ui.showSidebar);
+    this.props.updateUI('showSidebar', !this.props.ui.showSidebar)
   }
 
   render() {
@@ -29,6 +29,6 @@ export default class TitleBar extends React.Component {
           <WindowControls { ...this.props } />
         </div>
       </div>
-    );
+    )
   }
 }

@@ -1,5 +1,5 @@
-import SelectField from './SelectField.jsx';
-import SelectFieldStyle from './SelectField.scss';
+import SelectField from './SelectField.jsx'
+import SelectFieldStyle from './SelectField.scss'
 
-export default SelectField;
-export { SelectFieldStyle };
+export default SelectField
+export { SelectFieldStyle }

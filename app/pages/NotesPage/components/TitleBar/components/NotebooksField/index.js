@@ -1,5 +1,5 @@
-import NotebooksField from './NotebooksField.jsx';
-import NotebooksFieldStyle from './NotebooksField.scss';
+import NotebooksField from './NotebooksField.jsx'
+import NotebooksFieldStyle from './NotebooksField.scss'
 
-export default NotebooksField;
-export { NotebooksFieldStyle };
+export default NotebooksField
+export { NotebooksFieldStyle }

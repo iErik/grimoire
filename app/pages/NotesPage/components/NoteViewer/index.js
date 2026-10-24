@@ -1,5 +1,5 @@
-import NoteViewer from './NoteViewer.jsx';
+import NoteViewer from './NoteViewer.jsx'
 import NoteViewerStyle from './NoteViewer.scss'
 
-export default NoteViewer;
-export { NoteViewer, NoteViewerStyle };
+export default NoteViewer
+export { NoteViewer, NoteViewerStyle }

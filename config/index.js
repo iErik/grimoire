@@ -1,7 +1,7 @@
-import path from 'path';
+import path from 'path'
 
-import devEnv from './dev.env';
-import prodEnv from './prod.env';
+import devEnv from './dev.env'
+import prodEnv from './prod.env'
 
 export default {
   build: {

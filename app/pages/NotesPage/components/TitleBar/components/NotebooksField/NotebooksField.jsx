@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ui from 'redux-ui';
-import classNames from 'classnames';
-import { isEqual } from 'underscore';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ui from 'redux-ui'
+import classNames from 'classnames'
+import { isEqual } from 'underscore'
 
 /*
  * TODO: Use the SelectField component and integrate it with
@@ -22,12 +22,12 @@ export default class NotebooksField extends React.Component {
   }
 
   onChange(option) {
-    this.props.onChange(option);
-    this.props.updateUI('showOptions', false);
+    this.props.onChange(option)
+    this.props.updateUI('showOptions', false)
   }
 
   toggleOptions() {
-    this.props.updateUI('showOptions', !this.props.ui.showOptions);
+    this.props.updateUI('showOptions', !this.props.ui.showOptions)
   }
 
   renderOptions() {
@@ -37,11 +37,11 @@ export default class NotebooksField extends React.Component {
         <span className="option-label">{ option.label }</span>
 
         { option.key === this.props.value.key
-        ? <i className="icn-check"></i>
-        : ''
+          ? <i className="icn-check"></i>
+          : ''
         }
       </div>
-    ));
+    ))
   }
 
   render() {
@@ -64,6 +64,6 @@ export default class NotebooksField extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

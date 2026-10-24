@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import TitleBar from './components/TitleBar';
-import NotebookGrid from './components/NotebookGrid';
+import TitleBar from './components/TitleBar'
+import NotebookGrid from './components/NotebookGrid'
 
 export default class NotebooksPage extends React.Component {
   render() {
@@ -15,6 +15,6 @@ export default class NotebooksPage extends React.Component {
           <NotebookGrid { ...this.props } />
         </section>
       </div>
-    );
+    )
   }
 }

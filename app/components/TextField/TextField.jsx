@@ -1,8 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
 
-import Input from 'components/Input';
+import Input from 'components/Input'
 
 export default class TextField extends React.Component {
   static propTypes = {
@@ -12,7 +12,7 @@ export default class TextField extends React.Component {
   }
 
   onChange(ev) {
-    this.props.onChange(ev.target.value);
+    this.props.onChange(ev.target.value)
   }
 
   render() {
@@ -28,6 +28,6 @@ export default class TextField extends React.Component {
         onChange={ this.onChange.bind(this) }
         value={ this.props.value }
       />
-    );
+    )
   }
 }

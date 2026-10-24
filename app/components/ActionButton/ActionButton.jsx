@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class ActionButton extends React.Component {
   static propTypes = {
@@ -14,6 +14,6 @@ export default class ActionButton extends React.Component {
           <p className="action-btn-trigger-label">+</p>
         </span>
       </button>
-    );
+    )
   }
 }

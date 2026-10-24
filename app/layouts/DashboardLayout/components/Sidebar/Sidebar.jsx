@@ -1,6 +1,6 @@
-import React from 'react';
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import React from 'react'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
 
 export default class Sidebar extends React.Component {
   render() {
@@ -32,6 +32,6 @@ export default class Sidebar extends React.Component {
           </li>
         </ul>
       </nav>
-    );
+    )
   }
 }

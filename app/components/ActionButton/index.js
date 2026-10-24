@@ -1,5 +1,5 @@
-import ActionButton from './ActionButton.jsx';
-import ActionButtonStyle from './ActionButton.scss';
+import ActionButton from './ActionButton.jsx'
+import ActionButtonStyle from './ActionButton.scss'
 
-export default ActionButton;
-export { ActionButtonStyle };
+export default ActionButton
+export { ActionButtonStyle }

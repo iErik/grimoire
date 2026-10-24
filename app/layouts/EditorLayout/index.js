@@ -1,3 +1,3 @@
-import EditorLayout from './EditorLayout';
+import EditorLayout from './EditorLayout'
 
-export default EditorLayout;
+export default EditorLayout

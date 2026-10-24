@@ -1,18 +1,18 @@
-import React from 'react';
-import ui from 'redux-ui';
-import AceEditor from 'react-ace';
+import React from 'react'
+import ui from 'redux-ui'
+import AceEditor from 'react-ace'
 
-import 'brace/mode/markdown';
+import 'brace/mode/markdown'
 
-import MarkdownIt from 'markdown-it';
-import toMarkdown from 'to-markdown';
+import MarkdownIt from 'markdown-it'
+import toMarkdown from 'to-markdown'
 
-import TitleBar from './components/TitleBar';
-import Sidebar from './components/Sidebar';
-import Editor from './components/Editor';
+import TitleBar from './components/TitleBar'
+import Sidebar from './components/Sidebar'
+import Editor from './components/Editor'
 
-import { without, union, map } from 'underscore';
-import { editorThemes } from 'config/themes';
+import { without, union, map } from 'underscore'
+import { editorThemes } from 'config/themes'
 
 export default ui({
   key: 'editorPage',
@@ -30,38 +30,38 @@ export default ui({
     })
   }
 })(({ updateNoteContents, ...props }) => {
-  var editor;
+  var editor
 
   const loadThemes = async (e) => {
-    if (props.ui.areThemesLoaded) return;
+    if (props.ui.areThemesLoaded) return
 
     let { light, dark } = editorThemes
 
     await Promise.all(map(union(light, dark), (theme) => {
-      return import(`brace/theme/${theme.name}`);
-    }));
+      return import(`brace/theme/${theme.name}`)
+    }))
 
-    props.updateUI({ areThemesLoaded: true });
+    props.updateUI({ areThemesLoaded: true })
   }
 
   const getTheme = () => {
-    if (!props.ui.areThemesLoaded) return '';
+    if (!props.ui.areThemesLoaded) return ''
 
     return props.ui.isDark
-    ? props.editorTheme.dark.name
-    : props.editorTheme.light.name;
+      ? props.editorTheme.dark.name
+      : props.editorTheme.light.name
   }
 
   const getSelection = () => {
-    return editor.session.getTextRange(editor.getSelectionRange());
+    return editor.session.getTextRange(editor.getSelectionRange())
   }
 
   const toHtml = (md) => {
-    return MarkdownIt({ linkify: true }).render(md);
+    return MarkdownIt({ linkify: true }).render(md)
   }
 
   const updateValue = (newValue) => {
-    props.updateUI({ mdContents: newValue });
+    props.updateUI({ mdContents: newValue })
   }
 
   const docActions = {
@@ -72,89 +72,89 @@ export default ui({
       props.updateUI({ isDark: !props.ui.isDark })
     },
     increaseFontSize: () => {
-      if (props.editorFontSize >= 90) return;
+      if (props.editorFontSize >= 90) return
 
-      props.changeEditorFontSize(props.editorFontSize + 1);
+      props.changeEditorFontSize(props.editorFontSize + 1)
     },
     decreaseFontSize: () => {
-      if (props.editorFontSize <= 1) return;
+      if (props.editorFontSize <= 1) return
 
-      props.changeEditorFontSize(props.editorFontSize - 1);
+      props.changeEditorFontSize(props.editorFontSize - 1)
     }
-  };
+  }
 
   const editorActions = {
     insertBold: () => {
-      let selection = without(getSelection().split(''), '*');
+      let selection = without(getSelection().split(''), '*')
 
-      selection.unshift('**');
-      selection.push('**');
+      selection.unshift('**')
+      selection.push('**')
 
-      editor.insert(selection.join(''));
-      editor.focus();
+      editor.insert(selection.join(''))
+      editor.focus()
     },
 
     insertItalic: () => {
-      let selection = without(getSelection().split(''), '*');
+      let selection = without(getSelection().split(''), '*')
 
-      selection.unshift('*');
+      selection.unshift('*')
       selection.push('*')
 
-      editor.insert(selection.join(''));
-      editor.focus();
+      editor.insert(selection.join(''))
+      editor.focus()
     },
 
     insertEmpashis: () => {
-      let selection = without(getSelection().split(''), '*');
+      let selection = without(getSelection().split(''), '*')
 
-      selection.unshift('***');
+      selection.unshift('***')
       selection.push('***')
 
-      editor.insert(selection.join(''));
-      editor.focus();
+      editor.insert(selection.join(''))
+      editor.focus()
     },
 
     insertStrikethrough: () => {
-      let selection = without(getSelection().split(''), '*');
+      let selection = without(getSelection().split(''), '*')
 
-      selection.unshift('~~');
+      selection.unshift('~~')
       selection.push('~~')
 
-      editor.insert(selection.join(''));
-      editor.focus();
+      editor.insert(selection.join(''))
+      editor.focus()
     },
 
     insertUnorderedList: () => {
-      editor.navigateTo(editor.getCursorPosition().row, 0);
-      editor.insert('* ');
-      editor.focus();
+      editor.navigateTo(editor.getCursorPosition().row, 0)
+      editor.insert('* ')
+      editor.focus()
     },
 
     insertOrderedList: () => {
-      var previousLineRow = editor.getCursorPosition().row - 1;
-      var previousLineContent = '';
-      var listItemNumber = 1;
+      var previousLineRow = editor.getCursorPosition().row - 1
+      var previousLineContent = ''
+      var listItemNumber = 1
 
       while ((previousLineRow > -1) && (previousLineContent === '')) {
-        previousLineContent = editor.session.getLine(previousLineRow);
-        --previousLineRow;
+        previousLineContent = editor.session.getLine(previousLineRow)
+        --previousLineRow
       }
 
       if (/^(\d+)\./.test(previousLineContent))
-        listItemNumber = parseInt(previousLineContent.match(/^(\d+)\./)[1]) + 1;
+        listItemNumber = parseInt(previousLineContent.match(/^(\d+)\./)[1]) + 1
 
-      editor.navigateTo(editor.getCursorPosition().row, 0);
-      editor.insert(`${listItemNumber}. `);
-      editor.focus();
+      editor.navigateTo(editor.getCursorPosition().row, 0)
+      editor.insert(`${listItemNumber}. `)
+      editor.focus()
     },
 
     insertLink: () => {
-      let selection = getSelection();
-      var newCursorPosition = selection === '' ? 10 : 1;
+      let selection = getSelection()
+      var newCursorPosition = selection === '' ? 10 : 1
 
-      editor.insert(`[${selection}](http://)`);
-      editor.navigateLeft(newCursorPosition);
-      editor.focus();
+      editor.insert(`[${selection}](http://)`)
+      editor.navigateLeft(newCursorPosition)
+      editor.focus()
     },
 
     insertQuote: () => {
@@ -192,5 +192,5 @@ export default ui({
         </Editor>
       </section>
     </div>
-  );
+  )
 })

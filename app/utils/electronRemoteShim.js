@@ -2,7 +2,7 @@
 // dependencies (redux-electron-store, electron-settings) still reach for
 // `require('electron').remote`, so put @electron/remote back in its place.
 // Must be imported before anything that touches `remote`.
-import electron from 'electron';
+import electron from 'electron'
 
 if (!electron.remote)
-  electron.remote = require('@electron/remote');
+  electron.remote = require('@electron/remote')

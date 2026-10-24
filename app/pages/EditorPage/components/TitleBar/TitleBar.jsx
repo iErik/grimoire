@@ -1,13 +1,13 @@
-import React from 'react';
+import React from 'react'
 
-import BurgerButton from 'components/BurgerButton';
-import WindowControls from 'components/WindowControls';
+import BurgerButton from 'components/BurgerButton'
+import WindowControls from 'components/WindowControls'
 
 export default (props) => {
-  const { editorActions } = props;
+  const { editorActions } = props
 
   const toggleSidebar = () => {
-    props.updateUI('showSidebar', !props.ui.showSidebar);
+    props.updateUI('showSidebar', !props.ui.showSidebar)
   }
 
   return (
@@ -80,5 +80,5 @@ export default (props) => {
         <WindowControls { ...props } />
       </div>
     </div>
-  );
+  )
 }

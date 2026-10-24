@@ -1,3 +1,3 @@
-import DashboardLayout from './DashboardLayout';
+import DashboardLayout from './DashboardLayout'
 
-export default DashboardLayout;
+export default DashboardLayout

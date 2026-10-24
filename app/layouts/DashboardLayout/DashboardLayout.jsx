@@ -1,12 +1,12 @@
-import React from 'react';
-import ui from 'redux-ui';
+import React from 'react'
+import ui from 'redux-ui'
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom'
 
-import Sidebar from './components/Sidebar';
-import NotebooksPage from 'pages/NotebooksPage';
-import SettingsPage from 'pages/SettingsPage';
-import NotesPage from 'pages/NotesPage';
+import Sidebar from './components/Sidebar'
+import NotebooksPage from 'pages/NotebooksPage'
+import SettingsPage from 'pages/SettingsPage'
+import NotesPage from 'pages/NotesPage'
 
 @ui({
   state: {
@@ -15,7 +15,7 @@ import NotesPage from 'pages/NotesPage';
 })
 export default class DashboardLayout extends React.Component {
   render() {
-    let basePath = this.props.match.url;
+    let basePath = this.props.match.url
 
     return (
       <div className="full container">
@@ -38,6 +38,6 @@ export default class DashboardLayout extends React.Component {
           </Switch>
         </main>
       </div>
-    );
+    )
   }
 }

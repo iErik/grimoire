@@ -1,61 +1,61 @@
-import webpack from 'webpack';
-import merge from 'webpack-merge';
-import sass from 'sass';
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import sass from 'sass'
 
-import FriendlyErrors from 'friendly-errors-webpack-plugin';
+import FriendlyErrors from 'friendly-errors-webpack-plugin'
 
-import baseConfig from './webpack.base.config';
-import config from '../config';
+import baseConfig from './webpack.base.config'
+import config from '../config'
 
-const port = process.env.PORT || config.dev.port;
+const port = process.env.PORT || config.dev.port
 
 Object.keys(baseConfig.entry).forEach((name) => {
   baseConfig.entry[name] =
     [ `webpack-hot-middleware/client?path=http://localhost:${port}/__webpack_hmr`
-    ].concat(baseConfig.entry[name]);
-});
+    ].concat(baseConfig.entry[name])
+})
 
 export default merge.smart(baseConfig,
-{ output:
-    { path: config.dev.assetsRoot
-    , publicPath: config.dev.assetsPublicPath
-    , filename: 'app.js'
-    }
+  { output:
+    { path: config.dev.assetsRoot,
+      publicPath: config.dev.assetsPublicPath,
+      filename: 'app.js'
+    },
 
-, module:
+  module:
   { rules:
-    [{ test: /\.(scss|css)$/
-     , use:
-       [ { loader: 'postcss-loader'
-         , options:
-           { sourceMap: config.dev.cssSourceMap
-           , sourceMapContents: false
+    [{ test: /\.(scss|css)$/,
+      use:
+       [ { loader: 'postcss-loader',
+         options:
+           { sourceMap: config.dev.cssSourceMap,
+             sourceMapContents: false
            }
-         }
-       , { loader: 'sass-loader'
-         , options:
-           { ident: 'sass-dev'
-           , implementation: sass
-           , silenceDeprecations: ['legacy-js-api', 'import']
-           , quietDeps: true
-           , sourceMap: config.dev.cssSourceMap
+       },
+       { loader: 'sass-loader',
+         options:
+           { ident: 'sass-dev',
+             implementation: sass,
+             silenceDeprecations: ['legacy-js-api', 'import'],
+             quietDeps: true,
+             sourceMap: config.dev.cssSourceMap
            }
-         }
+       }
        ]
     }]
-  }
+  },
 
-, devtool: '#eval-source-map'
-, target: 'electron-renderer'
-, plugins:
-    [ new webpack.HotModuleReplacementPlugin()
-    , new webpack.NoEmitOnErrorsPlugin()
-    , new webpack.LoaderOptionsPlugin({ debug: true })
-    , new webpack.DefinePlugin({ 'process.env': config.dev.env })
-    , new FriendlyErrors()
-    ]
-, node:
-  { __dirname: false
-  , __filename: false
+  devtool: '#eval-source-map',
+  target: 'electron-renderer',
+  plugins:
+    [ new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.LoaderOptionsPlugin({ debug: true }),
+      new webpack.DefinePlugin({ 'process.env': config.dev.env }),
+      new FriendlyErrors()
+    ],
+  node:
+  { __dirname: false,
+    __filename: false
   }
-});
+  })

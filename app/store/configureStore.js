@@ -1,25 +1,25 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux'
 
 import {
   outerReducer as hydrateReducers,
   middleware as hydrateMiddleware
-} from 'redux-async-initial-state';
+} from 'redux-async-initial-state'
 
-import { electronEnhancer } from 'redux-electron-store';
+import { electronEnhancer } from 'redux-electron-store'
 
-import { routerMiddleware } from 'react-router-redux';
-import createSagaMiddleware from 'redux-saga';
-import createLogger from 'redux-logger';
+import { routerMiddleware } from 'react-router-redux'
+import createSagaMiddleware from 'redux-saga'
+import createLogger from 'redux-logger'
 
-import createRootReducer from '../reducers';
-import rootSaga from '../sagas';
+import createRootReducer from '../reducers'
+import rootSaga from '../sagas'
 
-import settings from 'electron-settings';
-import Notebooks from '../database/collections/notebooks';
-import Notes from '../database/collections/notes';
+import settings from 'electron-settings'
+import Notebooks from '../database/collections/notebooks'
+import Notes from '../database/collections/notes'
 
-const logger = createLogger({ level: 'info', collapsed: true });
-const sagas  = createSagaMiddleware();
+const logger = createLogger({ level: 'info', collapsed: true })
+const sagas  = createSagaMiddleware()
 
 const defaultFilter = {
   initialState: true,
@@ -31,7 +31,7 @@ const defaultFilter = {
 }
 
 const loadState = async (currentState) => {
-  let activeNotebook = await Notebooks.findOneAsync({}) || { };
+  let activeNotebook = await Notebooks.findOneAsync({}) || { }
 
   return {
     ...currentState,
@@ -47,47 +47,47 @@ const loadState = async (currentState) => {
     },
 
     settings: await settings.get()
-  };
-};
+  }
+}
 
 export default function configureStore(scope = 'main', filter = defaultFilter) {
   const composeEnhancers = scope === 'renderer'
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-    : compose;
+    : compose
 
   if (scope === 'renderer')
-    var history = require('./hashHistory');
+    var history = require('./hashHistory')
 
-  const router = scope === 'main' ? undefined : routerMiddleware(history);
+  const router = scope === 'main' ? undefined : routerMiddleware(history)
 
   const reducer = scope === 'main'
     ? hydrateReducers(createRootReducer(scope))
-    : createRootReducer(scope);
+    : createRootReducer(scope)
 
   const middleware = scope === 'main'
     ? [sagas, hydrateMiddleware(loadState)]
-    : [router, logger, sagas];
+    : [router, logger, sagas]
 
   const enhancer = scope === 'main'
     ? composeEnhancers(
-        applyMiddleware(...middleware),
-        electronEnhancer({ dispatchProxy: a => store.dispatch(a) })
-      )
+      applyMiddleware(...middleware),
+      electronEnhancer({ dispatchProxy: a => store.dispatch(a) })
+    )
     : composeEnhancers(
-        applyMiddleware(...middleware),
-        electronEnhancer({ filter, dispatchProxy: a => store.dispatch(a) })
-      );
+      applyMiddleware(...middleware),
+      electronEnhancer({ filter, dispatchProxy: a => store.dispatch(a) })
+    )
 
-  const store = createStore(reducer, enhancer);
+  const store = createStore(reducer, enhancer)
 
   if (scope === 'main')
-    sagas.run(rootSaga);
+    sagas.run(rootSaga)
 
   if (scope === 'renderer' && module.hot) {
     module.hot.accept('../reducers', () =>
       store.replaceReducer(require('../reducers'))
-    );
+    )
   }
 
-  return store;
+  return store
 }
