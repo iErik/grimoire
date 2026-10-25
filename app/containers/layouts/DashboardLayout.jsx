@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
-import { sortBy, filter } from 'underscore';
-import DashboardLayout from 'layouts/DashboardLayout';
+import { connect } from 'react-redux'
+import { sortBy } from 'underscore'
+import DashboardLayout from 'layouts/DashboardLayout'
 
-import storeActions from 'actions';
+import storeActions from 'actions'
 
 const mapStateToProps = (state) => ({
   notebooks: sortBy(state.notebooks.notebooks,
@@ -16,6 +16,6 @@ const mapStateToProps = (state) => ({
 
   settings: state.settings,
   isStoreLoading: state.initialState.loading
-});
+})
 
-export default connect(mapStateToProps, storeActions)(DashboardLayout);
+export default connect(mapStateToProps, storeActions)(DashboardLayout)

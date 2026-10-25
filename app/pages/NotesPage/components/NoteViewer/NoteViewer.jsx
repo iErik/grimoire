@@ -1,21 +1,26 @@
-import React from 'react';
-import moment from 'moment';
+import React from 'react'
+import moment from 'moment'
 
-import Input from 'components/Input';
+import Input from 'components/Input'
 
 export default class NoteViewer extends React.Component {
   renameNote(ev) {
-    this.props.updateNoteTitle(this.props.selectedNote, ev.target.value);
+    this.props.updateNoteTitle(
+      this.props.selectedNote,
+      ev.target.value
+    )
   }
 
   renderCreationDate() {
     if (this.props.selectedNote.createdAt) {
-      return moment(this.props.selectedNote.createdAt).calendar(null, {
+      const createdAt = moment(this.props.selectedNote.createdAt)
+
+      return createdAt.calendar(null, {
         sameDay: 'HH:mm',
         lastDay: '[Yesterday]',
         lastWeek: '[Last] dddd',
         sameElse: 'DD/MM/YY'
-      });
+      })
     }
   }
 
@@ -34,15 +39,17 @@ export default class NoteViewer extends React.Component {
             <Input
               type="text"
               className="input-title"
-              value={ this.props.isStoreLoading ? '' : this.props.selectedNote.title }
+              value={ this.props.isStoreLoading
+                ? ''
+                : this.props.selectedNote.title }
               onChange={ this.renameNote.bind(this) }
             />
           </div>
           <div className="note-meta">
             <p className="meta-date">
               { this.props.isStoreLoading
-              ? ''
-              : this.renderCreationDate()
+                ? ''
+                : this.renderCreationDate()
               }
             </p>
           </div>
@@ -51,6 +58,6 @@ export default class NoteViewer extends React.Component {
           dangerouslySetInnerHTML={ this.renderContent() }>
         </div>
       </div>
-    );
+    )
   }
 }

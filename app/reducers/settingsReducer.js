@@ -4,14 +4,17 @@ const initialState = {
   editorFontSize: undefined,
   editorFontFamily: undefined,
   editorTheme: undefined,
-};
+}
 
-export default function settingsReducer(state = initialState, { type, payload }) {
+export default function settingsReducer(
+  state = initialState,
+  { type, payload }
+) {
   switch (type) {
     case 'UPDATE_SETTINGS_KEYPATH_FULFILLED':
-      return payload;
+      return payload
 
     default:
-      return state;
+      return state
   }
 }

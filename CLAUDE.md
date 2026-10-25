@@ -18,9 +18,22 @@ pnpm dev              # express + HMR dev server on :5050, then spawns Electron
 PORT=6000 pnpm dev    # override the dev server port
 pnpm build:pack       # build + electron-builder → release/
 pnpm build:pack:{mac,linux,win,multi}
+pnpm lint             # ESLint on all JS/JSX (eslint.config.mjs)
+pnpm lint:fix         # ESLint with autofix
 ```
 
-There are no tests or linters.
+There are no tests yet.
+
+`pnpm install` installs a husky pre-commit hook (via `prepare`) that runs
+`eslint --fix` on staged JS/JSX/CJS/MJS files through lint-staged,
+re-stages the fixes, and blocks the commit if errors remain. It calls
+`pnpm`, so commit from inside the nix/direnv shell. It runs lint-staged
+with `--no-stash`, because the stash stack is shared by every worktree.
+`pnpm build` and `pnpm dev` don't lint.
+
+Formatting-only commits are listed in `.git-blame-ignore-revs`. GitHub
+uses it automatically; locally, run
+`git config blame.ignoreRevsFile .git-blame-ignore-revs`.
 
 ## Layout
 
@@ -85,8 +98,17 @@ There are no tests or linters.
 
 ## Style
 
-- The webpack configs use comma-first object and array literals. Match that.
-- JS/JSX uses 2-space indentation, single quotes, and ES module imports.
+ESLint enforces the formatting; every rule is an error.
+
+- No semicolons. Keep a leading `;` where ASI needs one (a line
+  starting with `(`, `[` or a template literal).
+- Single quotes (double quotes in JSX attributes), 2-space indentation,
+  comma-last literals, and ES module imports.
+- Lines are at most 70 characters (only lines containing a URL are
+  exempt). Aim for about 61 where possible.
+- The parser is `@typescript-eslint/parser`, without type information,
+  because espree can't parse the legacy `@ui({...})` decorators. Don't
+  rewrite the decorators to suit the linter.
 
 ## Agent skills
 

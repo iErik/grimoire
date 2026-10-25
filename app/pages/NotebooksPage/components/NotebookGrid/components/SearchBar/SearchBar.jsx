@@ -1,8 +1,8 @@
-import React from 'react';
-import classNames from 'classnames';
-import ui from 'redux-ui';
+import React from 'react'
+import classNames from 'classnames'
+import ui from 'redux-ui'
 
-import Input from 'components/Input';
+import Input from 'components/Input'
 
 @ui({
   state: {
@@ -11,7 +11,10 @@ import Input from 'components/Input';
 })
 export default class SearchBar extends React.Component {
   toggleSearchInput() {
-    this.props.updateUI('hideSearchInput', !this.props.ui.hideSearchInput);
+    this.props.updateUI(
+      'hideSearchInput',
+      !this.props.ui.hideSearchInput
+    )
   }
 
   render() {
@@ -24,7 +27,9 @@ export default class SearchBar extends React.Component {
 
     return (
       <div className="floating-searchbar">
-        <button className="action-btn" onClick={ this.toggleSearchInput.bind(this) }>
+        <button
+          className="action-btn"
+          onClick={ this.toggleSearchInput.bind(this) }>
           <span className="action-btn-trigger">
             <i className="icn-search"></i>
           </span>
@@ -38,6 +43,6 @@ export default class SearchBar extends React.Component {
           />
         </div>
       </div>
-    );
+    )
   }
 }

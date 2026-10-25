@@ -1,13 +1,13 @@
-import { connect } from 'react-redux';
-import { sortBy, filter, find } from 'underscore';
+import { connect } from 'react-redux'
+import { sortBy, filter, find } from 'underscore'
 
-import EditorLayout from 'layouts/EditorLayout';
-import storeActions from 'actions';
+import EditorLayout from 'layouts/EditorLayout'
+import storeActions from 'actions'
 
 const mapStateToProps = (state, { match }) => ({
   notes: sortBy(filter(state.notes.notes,
     note => note.notebookId === match.params.notebookId),
-    note => -(new Date(note.createdAt).getTime())),
+  note => -(new Date(note.createdAt).getTime())),
 
   activeNotebook: find(state.notebooks.notebooks,
     notebook => notebook._id === match.params.notebookId),
@@ -21,4 +21,4 @@ const mapStateToProps = (state, { match }) => ({
   isStoreLoading: state.initialState.loading
 })
 
-export default connect(mapStateToProps, storeActions)(EditorLayout);
+export default connect(mapStateToProps, storeActions)(EditorLayout)

@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 
-import TitleBar from './components/TitleBar';
-import NotebookGrid from './components/NotebookGrid';
+import TitleBar from './components/TitleBar'
+import NotebookGrid from './components/NotebookGrid'
 
 export default class NotebooksPage extends React.Component {
   render() {
@@ -11,10 +11,11 @@ export default class NotebooksPage extends React.Component {
           <TitleBar { ...this.props } />
         </section>
 
-        <section className="full-height expanded row background-light">
+        <section
+          className="full-height expanded row background-light">
           <NotebookGrid { ...this.props } />
         </section>
       </div>
-    );
+    )
   }
 }

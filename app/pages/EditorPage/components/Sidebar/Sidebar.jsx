@@ -1,9 +1,9 @@
-import React from 'react';
-import classNames from 'classnames';
-import { NavLink } from 'react-router-dom';
-import ui from 'redux-ui';
+import React from 'react'
+import classNames from 'classnames'
+import { NavLink } from 'react-router-dom'
+import ui from 'redux-ui'
 
-import Input from 'components/Input';
+import Input from 'components/Input'
 
 @ui({
   state: {
@@ -12,30 +12,33 @@ import Input from 'components/Input';
 })
 export default class Sidebar extends React.Component {
   createNote() {
-    this.props.createNote(decodeURIComponent(this.props.match.params.notebookId));
+    this.props.createNote(
+      decodeURIComponent(this.props.match.params.notebookId)
+    )
   }
 
   renameNote(note, ev) {
-    if (note._id === this.props.selectedNote._id) ev.preventDefault();
+    if (note._id === this.props.selectedNote._id) ev.preventDefault()
 
-    const handler = (ev) => {
-      this.props.updateUI('hightlightSelectedNote', false);
-      document.removeEventListener('click', handler);
+    const handler = () => {
+      this.props.updateUI('hightlightSelectedNote', false)
+      document.removeEventListener('click', handler)
     }
 
     if (!this.props.ui.renameSelectedNote)
-      this.props.updateUI('hightlightSelectedNote', true);
+      this.props.updateUI('hightlightSelectedNote', true)
 
-    document.addEventListener('click', handler);
+    document.addEventListener('click', handler)
   }
 
   updateNoteTitle(note, ev) {
-    this.props.updateNoteTitle(note, ev.target.value);
+    this.props.updateNoteTitle(note, ev.target.value)
   }
 
   renderDocuments() {
     return this.props.notes.map((note) => {
-      let notebookId = decodeURIComponent(this.props.match.params.notebookId);
+      let notebookId =
+        decodeURIComponent(this.props.match.params.notebookId)
       let style = classNames({
         'document-list-entry': true,
         'is-editing': note._id === this.props.selectedNote._id &&
@@ -52,8 +55,8 @@ export default class Sidebar extends React.Component {
             value={ note.title }
 
             onClick={ (ev) => {
-              ev.stopPropagation();
-              ev.nativeEvent.stopImmediatePropagation();
+              ev.stopPropagation()
+              ev.nativeEvent.stopImmediatePropagation()
             }}
           />
 
@@ -70,9 +73,9 @@ export default class Sidebar extends React.Component {
             <i className="icn-trashbin"></i>
           </button>
 
-          </li>
-      );
-    });
+        </li>
+      )
+    })
   }
 
   render() {
@@ -105,7 +108,9 @@ export default class Sidebar extends React.Component {
           <div className="document-action">
             <button className="btn"
               onClick={ this.props.docActions.switchMode }>
-              <i className={ this.props.ui.isDark ? 'icn-moon-dark' : 'icn-moon' }></i>
+              <i className={
+                this.props.ui.isDark ? 'icn-moon-dark' : 'icn-moon'
+              }></i>
             </button>
           </div>
         </div>
@@ -114,13 +119,15 @@ export default class Sidebar extends React.Component {
           { this.renderDocuments() }
         </ul>
 
-        <div className="document-action" onClick={ this.createNote.bind(this) }>
+        <div
+          className="document-action"
+          onClick={ this.createNote.bind(this) }>
           <button className="btn" >
             <i className="icn-plus"></i>
           </button>
           <span className="label">New Document</span>
         </div>
       </nav>
-    );
+    )
   }
 }

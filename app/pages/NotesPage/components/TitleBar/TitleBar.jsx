@@ -1,19 +1,19 @@
-import React from 'react';
+import React from 'react'
 
-import { productName as APP_NAME } from 'app/package';
+import { productName as APP_NAME } from 'app/package'
 
-import BurgerButton from 'components/BurgerButton';
-import WindowControls from 'components/WindowControls';
-import NotebooksField from './components/NotebooksField';
+import BurgerButton from 'components/BurgerButton'
+import WindowControls from 'components/WindowControls'
+import NotebooksField from './components/NotebooksField'
 
 export default class TitleBar extends React.Component {
   createNote() {
-    this.props.selectNextNote();
-    this.props.createNote(this.props.activeNotebook._id);
+    this.props.selectNextNote()
+    this.props.createNote(this.props.activeNotebook._id)
   }
 
   toggleSidebar() {
-    this.props.updateUI('showSidebar', !this.props.ui.showSidebar);
+    this.props.updateUI('showSidebar', !this.props.ui.showSidebar)
   }
 
   renderNotebookSelector() {
@@ -32,8 +32,8 @@ export default class TitleBar extends React.Component {
         })) }
 
         onChange={ this.props.changeActiveNotebook }
-       />
-     );
+      />
+    )
   }
 
   renderNotesActions() {
@@ -41,34 +41,44 @@ export default class TitleBar extends React.Component {
       return (
         <div className="actions-container">
           <div className="action-container">
-            <button className="btn" onClick={ this.createNote.bind(this) }>
+            <button
+              className="btn"
+              onClick={ this.createNote.bind(this) }>
               <i className="icn-plus"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn"
-              onClick={ this.props.editNote.bind(null, this.props.selectedNote) }>
+              onClick={ this.props.editNote.bind(
+                null,
+                this.props.selectedNote
+              ) }>
               <i className="icn-pen"></i>
             </button>
           </div>
           <div className="action-container">
             <button className="btn"
-              onClick={ this.props.deleteNote.bind(null, this.props.selectedNote) }>
+              onClick={ this.props.deleteNote.bind(
+                null,
+                this.props.selectedNote
+              ) }>
               <i className="icn-trashbin"></i>
             </button>
           </div>
         </div>
-      );
+      )
     } else {
       return (
         <div className="actions-container">
-          <div className="action-container" onClick={ this.createNote.bind(this) }>
+          <div
+            className="action-container"
+            onClick={ this.createNote.bind(this) }>
             <button className="btn">
               <i className="icn-plus"></i>
             </button>
           </div>
         </div>
-      );
+      )
     }
   }
 
@@ -90,8 +100,8 @@ export default class TitleBar extends React.Component {
             </div>
             <div className="notebooks-selector">
               { this.props.isStoreLoading
-              ? ''
-              : this.renderNotebookSelector()
+                ? ''
+                : this.renderNotebookSelector()
               }
             </div>
           </div>
@@ -111,6 +121,6 @@ export default class TitleBar extends React.Component {
 
         </div>
       </div>
-    );
+    )
   }
 }

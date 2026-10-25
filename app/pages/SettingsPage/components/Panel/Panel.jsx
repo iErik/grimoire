@@ -1,7 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import ui from 'redux-ui';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import ui from 'redux-ui'
 
 @ui({
   state: {
@@ -14,7 +14,7 @@ export default class Panel extends React.Component {
   }
 
   toggleContents() {
-    this.props.updateUI('hideContents', !this.props.ui.hideContents);
+    this.props.updateUI('hideContents', !this.props.ui.hideContents)
   }
 
   render() {
@@ -40,6 +40,6 @@ export default class Panel extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

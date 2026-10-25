@@ -1,25 +1,25 @@
-import { app, BrowserWindow, ipcMain, Menu } from 'electron';
-import * as remoteMain from '@electron/remote/main';
-import settings from 'electron-settings';
-import defaults from './config/settings';
-import webPreferences from './config/windowPreferences';
+import { app, BrowserWindow, ipcMain, Menu } from 'electron'
+import * as remoteMain from '@electron/remote/main'
+import settings from 'electron-settings'
+import defaults from './config/settings'
+import webPreferences from './config/windowPreferences'
 
-import configureStore from './store/configureStore';
-import runSeeders from './database/seeds';
+import configureStore from './store/configureStore'
+import runSeeders from './database/seeds'
 
-let mainWindow = null;
+let mainWindow = null
 
-remoteMain.initialize();
+remoteMain.initialize()
 app.on('browser-window-created', (ev, window) =>
-  remoteMain.enable(window.webContents));
+  remoteMain.enable(window.webContents))
 
 if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support');
-  sourceMapSupport.install();
+  const sourceMapSupport = require('source-map-support')
+  sourceMapSupport.install()
 }
 
 if (process.env.NODE_ENV === 'development') {
-  require('electron-debug')();
+  require('electron-debug')()
 
   // Since we'll be loading our main script from a development server
   // using the https protocol, and Node's module system is supposed
@@ -29,42 +29,46 @@ if (process.env.NODE_ENV === 'development') {
   // module system and I find that there is little information
   // about that online.
 
-  const path = require('path');
-  const modulesPath = path.join(__dirname, '..', 'app', 'node_modules');
-  require('module').globalPaths.push(modulesPath);
+  const path = require('path')
+  const modulesPath =
+    path.join(__dirname, '..', 'app', 'node_modules')
+  require('module').globalPaths.push(modulesPath)
 }
 
 const installExtensions = async () => {
   if (process.env.NODE_ENV === 'development') {
-    const installer = require('electron-devtools-installer');
-    const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
+    const installer = require('electron-devtools-installer')
+    const forceDownload = !!process.env.UPGRADE_EXTENSIONS
 
     const extensions = [
       'REACT_DEVELOPER_TOOLS',
       'REDUX_DEVTOOLS'
-    ];
+    ]
 
     return Promise
       .all(extensions.map(
-        name => installer.default(installer[name], { forceDownload })))
-      .catch(console.log);
+        name => installer.default(
+          installer[name],
+          { forceDownload }
+        )))
+      .catch(console.log)
   }
-};
+}
 
 const initialSetup = async () => {
-  settings.defaults(defaults);
+  settings.defaults(defaults)
 
   if (await settings.get('runInitialSetup')) {
-    await runSeeders();
-    await settings.set('runInitialSetup', false);
+    await runSeeders()
+    await settings.set('runInitialSetup', false)
   }
 }
 
 async function openMainWindow() {
-  await installExtensions();
-  await initialSetup();
+  await installExtensions()
+  await initialSetup()
 
-  const store = configureStore('main');
+  const store = configureStore('main')
   const entryFile = process.env.NODE_ENV === 'development'
     ? `file://${__dirname}/app.dev.html`
     : `file://${__dirname}/app.html`
@@ -79,47 +83,47 @@ async function openMainWindow() {
     frame: false,
     hasShadow: true,
     webPreferences
-  });
+  })
 
-  mainWindow.loadURL(entryFile);
+  mainWindow.loadURL(entryFile)
 
   mainWindow.webContents.on('did-finish-load', () => {
-    mainWindow.show();
-    mainWindow.focus();
-  });
+    mainWindow.show()
+    mainWindow.focus()
+  })
 
   mainWindow.on('closed', () => {
-    mainWindow = null;
-  });
+    mainWindow = null
+  })
 
-  ipcMain.on('renderer-reload', (ev, action) => {
-    delete require.cache[require.resolve('./reducers')];
-    store.replaceReducer(require('./reducers'));
-    ev.returnValue = true;
-  });
+  ipcMain.on('renderer-reload', (ev) => {
+    delete require.cache[require.resolve('./reducers')]
+    store.replaceReducer(require('./reducers'))
+    ev.returnValue = true
+  })
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.webContents.on('context-menu', (e, props) => {
-      const { x, y } = props;
+      const { x, y } = props
 
       Menu.buildFromTemplate([{
         label: 'Inspect element',
         click: function() {
-          mainWindow.webContents.inspectElement(x, y);
+          mainWindow.webContents.inspectElement(x, y)
         }
-      }]).popup(mainWindow);
-    });
+      }]).popup(mainWindow)
+    })
   }
 }
 
-app.on('ready', openMainWindow);
+app.on('ready', openMainWindow)
 
 app.on('activate', () => {
   if (mainWindow === null)
-    openMainWindow();
+    openMainWindow()
 })
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin')
-    app.quit();
-});
+    app.quit()
+})

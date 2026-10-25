@@ -1,5 +1,5 @@
-import NotebookGrid from './NotebookGrid.jsx';
-import NotebookGridStyle from './NotebookGrid.scss';
+import NotebookGrid from './NotebookGrid.jsx'
+import NotebookGridStyle from './NotebookGrid.scss'
 
-export default NotebookGrid;
-export { NotebookGridStyle };
+export default NotebookGrid
+export { NotebookGridStyle }

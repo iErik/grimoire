@@ -1,10 +1,10 @@
-import React from 'react';
-import ui from 'redux-ui';
-import { filter } from 'underscore';
+import React from 'react'
+import ui from 'redux-ui'
+import { filter } from 'underscore'
 
-import NotebookCard from './components/NotebookCard';
-import SearchBar from './components/SearchBar';
-import ActionButton from 'components/ActionButton';
+import NotebookCard from './components/NotebookCard'
+import SearchBar from './components/SearchBar'
+import ActionButton from 'components/ActionButton'
 
 @ui({
   state: {
@@ -13,28 +13,33 @@ import ActionButton from 'components/ActionButton';
 })
 export default class NotebookGrid extends React.Component {
   updateSearchFilter(ev) {
-    this.props.updateUI('searchFilter', ev.target.value);
+    this.props.updateUI('searchFilter', ev.target.value)
   }
 
   createNotebook() {
-    this.props.createNotebook();
+    this.props.createNotebook()
   }
 
   renderNotebookCards() {
     return this.props.notebooks.map((notebook) => {
       if (notebook.name.indexOf(this.props.ui.searchFilter) < 0) {
-        return;
+        return
       } else {
         return (
           <li
             key={ notebook._id }
-            className="notebook-card-entry small-6 medium-3 xlarge-2 column">
+            className={
+              'notebook-card-entry small-6 medium-3 xlarge-2 column'
+            }>
 
             <NotebookCard
               { ...this.props }
 
               notebook={ notebook }
-              notes={ filter(this.props.notes, note => note.notebookId === notebook._id) }
+              notes={ filter(
+                this.props.notes,
+                note => note.notebookId === notebook._id
+              ) }
             />
           </li>
         )
@@ -56,10 +61,12 @@ export default class NotebookGrid extends React.Component {
         </div>
         <div className="action-btn-container">
           <ActionButton
-            onClick={ this.props.createNotebook.bind(null, undefined) }
+            onClick={
+              this.props.createNotebook.bind(null, undefined)
+            }
           />
         </div>
       </div>
-    );
+    )
   }
 }

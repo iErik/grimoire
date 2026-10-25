@@ -1,3 +1,3 @@
-import NotebooksPage from './NotebooksPage';
+import NotebooksPage from './NotebooksPage'
 
-export default NotebooksPage;
+export default NotebooksPage

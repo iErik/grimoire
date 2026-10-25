@@ -1,78 +1,76 @@
 import {
   takeLatest,
   takeEvery,
-  select,
-  apply,
   take,
   call,
   put
-} from 'redux-saga/effects';
+} from 'redux-saga/effects'
 
-import { BrowserWindow } from 'electron';
+import { BrowserWindow } from 'electron'
 
-import webPreferences from '../config/windowPreferences';
-import { notesActions as actions } from '../actions';
-import Notes from '../database/collections/notes';
+import webPreferences from '../config/windowPreferences'
+import { notesActions as actions } from '../actions'
+import Notes from '../database/collections/notes'
 
 export function *createNote({ payload }) {
   try {
-    yield put(actions.createNotePending(payload));
+    yield put(actions.createNotePending(payload))
 
-    const newNote = yield call([Notes, Notes.insertAsync], payload);
+    const newNote = yield call([Notes, Notes.insertAsync], payload)
 
-    yield put(actions.createNoteFulfilled(newNote));
+    yield put(actions.createNoteFulfilled(newNote))
   } catch (error) {
-    yield put(actions.createNoteRejected(error));
+    yield put(actions.createNoteRejected(error))
   }
 }
 
 export function *deleteNote({ payload }) {
   try {
-    yield put(actions.deleteNotePending(payload));
+    yield put(actions.deleteNotePending(payload))
 
-    yield call([Notes, Notes.removeAsync], { _id: payload._id });
+    yield call([Notes, Notes.removeAsync], { _id: payload._id })
 
-    yield put(actions.deleteNoteFulfilled(payload));
+    yield put(actions.deleteNoteFulfilled(payload))
   } catch (error) {
-    yield put(actions.deleteNoteRejected(error));
+    yield put(actions.deleteNoteRejected(error))
   }
 }
 
 export function *updateNoteContents({ payload }) {
   try {
-    const { note, contents } = payload;
+    const { note, contents } = payload
 
-    yield put(actions.updateNoteContentsPending(note, contents));
+    yield put(actions.updateNoteContentsPending(note, contents))
 
     const updatePayload = yield call(
       Notes.updateAsync,
       { _id: note._id },
       { $set: { contents } },
       { returnUpdatedDocs: true }
-    );
+    )
 
-    yield put(actions.updateNoteFulfilled(updatePayload[1]));
+    yield put(actions.updateNoteFulfilled(updatePayload[1]))
   } catch (error) {
-    yield put(actions.updateNoteContentsRejected(error));
+    yield put(actions.updateNoteContentsRejected(error))
   }
 }
 
 export function *updateNoteTitle({ payload }) {
   try {
-    const { note, title } = payload;
+    const { note, title } = payload
 
-    yield put(actions.updateNoteTitlePending(note, title));
+    yield put(actions.updateNoteTitlePending(note, title))
 
     const updatePayload = yield call(
       Notes.updateAsync,
       { _id: note._id },
       { $set: { title } },
       { returnUpdatedDocs: true }
-    );
+    )
 
-    yield put(actions.updateNoteFulfilled(updatePayload[1]));
+    yield put(actions.updateNoteFulfilled(updatePayload[1]))
   } catch (error) {
-    yield put(actions.updateNoteTitleRejected(error));
+    yield put(actions.updateNoteTitleRejected(error))
   }
 }
 
@@ -80,17 +78,17 @@ export function *selectNextNote() {
   const { type, payload } = yield take([
     'CREATE_NOTE_FULFILLED',
     'CREATE_NOTE_REJECTED'
-  ]);
+  ])
 
   if (type !== 'CREATE_NOTE_REJECTED')
-    yield put(actions.changeSelectedNote(payload));
+    yield put(actions.changeSelectedNote(payload))
 }
 
 export function *editNote({ payload }) {
   try {
     let entryURL = process.env.NODE_ENV === 'development'
       ? `file://${__dirname}/../app.dev.html`
-      : `file://${__dirname}/app.html`;
+      : `file://${__dirname}/app.html`
 
     var editorWindow = new BrowserWindow({
       width: 600,
@@ -102,20 +100,20 @@ export function *editNote({ payload }) {
       show: false,
       hasShadow: true,
       webPreferences
-    });
+    })
 
     editorWindow.loadURL(
       `${entryURL}#/editor/${payload.notebookId}/${payload._id}`
-    );
+    )
 
     editorWindow.webContents.once('did-finish-load', () => {
-      editorWindow.show();
-      editorWindow.focus();
-    });
+      editorWindow.show()
+      editorWindow.focus()
+    })
 
-    editorWindow.on('closed', () => editorWindow = null);
+    editorWindow.on('closed', () => editorWindow = null)
   } catch (error) {
-    yield put(actions.editNoteError(error));
+    yield put(actions.editNoteError(error))
   }
 }
 

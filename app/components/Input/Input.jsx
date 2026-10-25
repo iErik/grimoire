@@ -1,21 +1,23 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
 
 export default class Input extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { value: props.value };
+    this.state = { value: props.value }
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.state.value !== nextProps.value)
-      this.setState({ value: nextProps.value });
+      this.setState({ value: nextProps.value })
   }
 
   onChange(ev) {
-    ev.persist();
-    this.setState({ value: ev.target.value }, () => this.props.onChange(ev));
+    ev.persist()
+    this.setState(
+      { value: ev.target.value },
+      () => this.props.onChange(ev)
+    )
   }
 
   render() {
@@ -25,6 +27,6 @@ export default class Input extends React.Component {
         { ...this.state }
         onChange={ this.onChange.bind(this) }
       />
-    );
+    )
   }
 }

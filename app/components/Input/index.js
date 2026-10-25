@@ -1,5 +1,5 @@
-import Input from './Input.jsx';
-import InputStyle from './Input.scss';
+import Input from './Input.jsx'
+import InputStyle from './Input.scss'
 
-export default Input;
-export { InputStyle };
+export default Input
+export { InputStyle }

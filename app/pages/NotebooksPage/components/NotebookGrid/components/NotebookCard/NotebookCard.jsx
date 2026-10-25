@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import ui from 'redux-ui';
+import React from 'react'
+import PropTypes from 'prop-types'
+import classNames from 'classnames'
+import ui from 'redux-ui'
 
-import Input from 'components/Input';
+import Input from 'components/Input'
 
 @ui({
   state: {
@@ -14,29 +14,34 @@ export default class NotebookCard extends React.Component {
   static contextTypes = { router: PropTypes.object.isRequired }
 
   updateNotebookName(ev) {
-    this.props.updateNotebookName(this.props.notebook, ev.target.value);
+    this.props.updateNotebookName(
+      this.props.notebook,
+      ev.target.value
+    )
   }
 
   openNotebook() {
-    this.props.changeActiveNotebook(this.props.notebook);
-    this.context.router.push('/dashboard/');
+    this.props.changeActiveNotebook(this.props.notebook)
+    this.context.router.push('/dashboard/')
   }
 
   openNote(note, ev) {
-    ev.stopPropagation();
+    ev.stopPropagation()
     this.props.editNote(note)
   }
 
   deleteNote(note, ev) {
-    ev.stopPropagation();
-    this.props.deleteNote(note);
+    ev.stopPropagation()
+    this.props.deleteNote(note)
   }
 
   renderNotes() {
     if (this.props.notes.length > 0) {
       return this.props.notes.map((note) => (
         <li className="card-notes-list-entry" key={ note._id }>
-          <p className="title" onClick={ this.openNote.bind(this, note) }>
+          <p
+            className="title"
+            onClick={ this.openNote.bind(this, note) }>
             { note.title }
           </p>
 
@@ -46,7 +51,7 @@ export default class NotebookCard extends React.Component {
             <i className="icn-trashbin"></i>
           </button>
         </li>
-      ));
+      ))
     } else {
       return (
         <li className="card-notes-list-empty">
@@ -76,12 +81,19 @@ export default class NotebookCard extends React.Component {
             />
           </div>
           <div className="control-container">
-            <button className="btn" onClick={ this.props.deleteNotebook.bind(null, this.props.notebook) }>
+            <button
+              className="btn"
+              onClick={ this.props.deleteNotebook.bind(
+                null,
+                this.props.notebook
+              ) }>
               <i className="icn-close"></i>
             </button>
           </div>
         </div>
-        <div className="card-contents" onClick={ this.openNotebook.bind(this) }>
+        <div
+          className="card-contents"
+          onClick={ this.openNotebook.bind(this) }>
           <ul className="card-notes-list-entries">
             { this.renderNotes() }
           </ul>
@@ -89,6 +101,6 @@ export default class NotebookCard extends React.Component {
           <div className={ styles.cardOptions }></div>
         </div>
       </div>
-    );
+    )
   }
 }

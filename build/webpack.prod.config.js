@@ -1,79 +1,82 @@
-import path from 'path';
-import webpack from 'webpack';
-import merge from 'webpack-merge';
-import autoprefixer from 'autoprefixer';
-import sass from 'sass';
-import jsonImporter from 'node-sass-json-importer';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack'
+import merge from 'webpack-merge'
+import autoprefixer from 'autoprefixer'
+import sass from 'sass'
+import jsonImporter from 'node-sass-json-importer'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
 
-import { assetsPath } from './utils';
-import config from '../config';
-import baseConfig from './webpack.base.config';
+import { assetsPath } from './utils'
+import config from '../config'
+import baseConfig from './webpack.base.config'
 
 export default merge(baseConfig,
-{ output:
-    { path: config.build.assetsRoot
-    , filename: assetsPath('scripts/[name].[chunkhash].js')
-    , chunkFilename: assetsPath('scripts/[id].[chunkhash].js')
-    , publicPath: config.build.assetsPublicPath
-    , libraryTarget: 'commonjs2'
-    }
+  { output:
+    { path: config.build.assetsRoot,
+      filename: assetsPath('scripts/[name].[chunkhash].js'),
+      chunkFilename: assetsPath('scripts/[id].[chunkhash].js'),
+      publicPath: config.build.assetsPublicPath,
+      libraryTarget: 'commonjs2'
+    },
 
-, devtool: config.build.cssSourceMap ? '#source-map' : false
-, target: 'electron-renderer'
+  devtool: config.build.cssSourceMap ? '#source-map' : false,
+  target: 'electron-renderer',
 
-, module:
+  module:
   { rules:
-    [{ test: /\.(scss|css)$/
-     , loader: ExtractTextPlugin.extract({
-         fallback: "style-loader",
-         use:
-         [ { loader: 'css-loader'
-           , options: { sourceMap: config.build.cssSourceMap }
-           }
-         , { loader: 'postcss-loader'
-           , options:
-             { ident: 'postcss-prod'
-             , plugins: [autoprefixer({ overrideBrowserslist: ['electron 1.7'] })]
-             , sourceMap: config.build.cssSourceMap
+    [{ test: /\.(scss|css)$/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use:
+         [ { loader: 'css-loader',
+           options: { sourceMap: config.build.cssSourceMap }
+         },
+         { loader: 'postcss-loader',
+           options:
+             { ident: 'postcss-prod',
+               plugins: [
+                 autoprefixer({
+                   overrideBrowserslist: ['electron 1.7']
+                 })
+               ],
+               sourceMap: config.build.cssSourceMap
              }
-           }
-         , { loader: 'resolve-url-loader' }
-         , { loader: 'sass-loader'
-           , options:
-             { ident: 'sass-prod'
-             , implementation: sass
-             , importer: jsonImporter()
-             , silenceDeprecations: ['legacy-js-api', 'import']
-             , quietDeps: true
-             , sourceMap: config.build.cssSourceMap
+         },
+         { loader: 'resolve-url-loader' },
+         { loader: 'sass-loader',
+           options:
+             { ident: 'sass-prod',
+               implementation: sass,
+               importer: jsonImporter(),
+               silenceDeprecations: ['legacy-js-api', 'import'],
+               quietDeps: true,
+               sourceMap: config.build.cssSourceMap
              }
-           }
+         }
          ]
-       })
+      })
     }]
-  }
+  },
 
-, plugins:
+  plugins:
   [ new ExtractTextPlugin(
-      { filename: assetsPath('stylesheets/styles.css')
-      , allChunks: true
-      })
+    { filename: assetsPath('stylesheets/styles.css'),
+      allChunks: true
+    }),
 
-  , new webpack.DefinePlugin(
-      { 'process.env': config.build.env
-      })
+  new webpack.DefinePlugin(
+    { 'process.env': config.build.env
+    }),
 
-  , new HtmlWebpackPlugin(
-      { filename: '../app.html'
-      , template: 'app/app.dev.html'
-      , inject: true
-      })
-  ]
+  new HtmlWebpackPlugin(
+    { filename: '../app.html',
+      template: 'app/app.dev.html',
+      inject: true
+    })
+  ],
 
-, node:
-  { __dirname: false
-  , __filename: false
+  node:
+  { __dirname: false,
+    __filename: false
   }
-});
+  })

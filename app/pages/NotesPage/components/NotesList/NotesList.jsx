@@ -1,8 +1,8 @@
-import React from 'react';
+import React from 'react'
 import classNames from 'classnames'
-import moment from 'moment';
+import moment from 'moment'
 
-import { truncateChars } from 'utils/stringTools';
+import { truncateChars } from 'utils/stringTools'
 
 export default class NotesList extends React.Component {
   creationDate(note) {
@@ -11,28 +11,28 @@ export default class NotesList extends React.Component {
       lastDay: '[Yesterday]',
       lastWeek: '[Last] dddd',
       sameElse: 'DD/MM/YY'
-    });
+    })
   }
 
   renderNoteExcerpt(note) {
-    let sanitizer = document.createElement('div');
-    let extractedText;
+    let sanitizer = document.createElement('div')
+    let extractedText
 
-    sanitizer.innerHTML = note.contents;
-    extractedText = sanitizer.textContent || sanitizer.innerText || '';
+    sanitizer.innerHTML = note.contents
+    extractedText = sanitizer.textContent || sanitizer.innerText || ''
 
-    return truncateChars(extractedText, 215);
+    return truncateChars(extractedText, 215)
   }
 
   renderNotes() {
     return this.props.notes.map((note) => {
       if (note.notebookId !== this.props.activeNotebook._id)
-        return;
+        return
 
       let style = classNames({
         'note-list-entry': true,
         'is-selected': this.props.selectedNote._id === note._id
-      });
+      })
 
       return (
         <li className={ style } key={ note._id }
@@ -44,13 +44,15 @@ export default class NotesList extends React.Component {
           </div>
           <div className="entry-contents">
             { note.contents
-            ? <p className="contents">{ this.renderNoteExcerpt(note) }</p>
-            : <p className="meta-empty">Empty Note&hellip;</p>
+              ? <p className="contents">
+                { this.renderNoteExcerpt(note) }
+              </p>
+              : <p className="meta-empty">Empty Note&hellip;</p>
             }
           </div>
         </li>
       )
-    });
+    })
   }
 
   render() {
@@ -58,11 +60,11 @@ export default class NotesList extends React.Component {
       <section className="notes-list">
         <ul className="notes-list-entries">
           { this.props.isStoreLoading
-          ? ''
-          : this.renderNotes()
+            ? ''
+            : this.renderNotes()
           }
         </ul>
       </section>
-    );
+    )
   }
 }

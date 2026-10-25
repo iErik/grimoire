@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-import BurgerButton from 'components/BurgerButton';
-import WindowControls from 'components/WindowControls';
+import BurgerButton from 'components/BurgerButton'
+import WindowControls from 'components/WindowControls'
 
 export default class Titlebar extends React.Component {
   toggleSidebar() {
-    this.props.updateUI('showSidebar', !this.props.ui.showSidebar);
+    this.props.updateUI('showSidebar', !this.props.ui.showSidebar)
   }
 
   render() {
@@ -14,9 +14,10 @@ export default class Titlebar extends React.Component {
         <div className="column title-container draggable">
           <p className="title">Notebooks</p>
         </div>
-        {/* Electron applies drag regions in document order, so this no-drag
-            section must come after the full-width draggable title, which
-            it overlaps, or the title's drag region swallows its clicks. */}
+        {/* Electron applies drag regions in document order, so
+            this no-drag section must come after the full-width
+            draggable title, which it overlaps, or the title's drag
+            region swallows its clicks. */}
         <div className="section section-left column">
           <div className="control-container">
             <BurgerButton
@@ -31,6 +32,6 @@ export default class Titlebar extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

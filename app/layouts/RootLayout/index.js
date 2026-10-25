@@ -1,3 +1,3 @@
-import RootLayout from './RootLayout';
+import RootLayout from './RootLayout'
 
-export default RootLayout;
+export default RootLayout

@@ -1,7 +1,11 @@
 //  Document Creation
 //  -----------------
 
-export const createNote = (notebookId, title = 'Untitled', contents = '') => ({
+export const createNote = (
+  notebookId,
+  title = 'Untitled',
+  contents = ''
+) => ({
   type: 'REQUEST_CREATE_NOTE',
   payload: {
     title,

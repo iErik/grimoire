@@ -1,8 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import ui from 'redux-ui';
-import classNames from 'classnames';
-import { isEqual } from 'underscore';
+import React from 'react'
+import PropTypes from 'prop-types'
+import ui from 'redux-ui'
+import classNames from 'classnames'
 
 /*
  * TODO: Use the SelectField component and integrate it with
@@ -22,12 +21,12 @@ export default class NotebooksField extends React.Component {
   }
 
   onChange(option) {
-    this.props.onChange(option);
-    this.props.updateUI('showOptions', false);
+    this.props.onChange(option)
+    this.props.updateUI('showOptions', false)
   }
 
   toggleOptions() {
-    this.props.updateUI('showOptions', !this.props.ui.showOptions);
+    this.props.updateUI('showOptions', !this.props.ui.showOptions)
   }
 
   renderOptions() {
@@ -37,11 +36,11 @@ export default class NotebooksField extends React.Component {
         <span className="option-label">{ option.label }</span>
 
         { option.key === this.props.value.key
-        ? <i className="icn-check"></i>
-        : ''
+          ? <i className="icn-check"></i>
+          : ''
         }
       </div>
-    ));
+    ))
   }
 
   render() {
@@ -54,9 +53,15 @@ export default class NotebooksField extends React.Component {
 
     return (
       <div className={ styles.select }>
-        <div className="select-field-value" onClick={ this.toggleOptions.bind(this) }>
-          <span className="value-label">{ this.props.value.label }</span>
-          <button className="btn"><i className="icn-arrow-down"></i></button>
+        <div
+          className="select-field-value"
+          onClick={ this.toggleOptions.bind(this) }>
+          <span className="value-label">
+            { this.props.value.label }
+          </span>
+          <button className="btn">
+            <i className="icn-arrow-down"></i>
+          </button>
         </div>
         <div className="select-field-options">
           <div className="entries">
@@ -64,6 +69,6 @@ export default class NotebooksField extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }

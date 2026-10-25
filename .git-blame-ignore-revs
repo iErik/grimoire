@@ -1,0 +1,6 @@
+# Commits that only reformat code. git blame skips them when
+# blame.ignoreRevsFile points here; GitHub reads this file by itself.
+# Each one contains only `eslint --fix --fix-type layout` output.
+
+# GRM-1: Apply eslint --fix --fix-type layout
+5ac94e3564e13d862a9163f5d221442db5496db5
