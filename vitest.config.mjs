@@ -30,7 +30,14 @@ const aliases = {
 }
 
 export default defineConfig({
-  resolve: { alias: aliases },
+  resolve: {
+    alias: aliases,
+    // app/node_modules has its own electron (a peer of
+    // @electron/remote). Resolve every import to the root copy, so
+    // the stub in vitest.setup.js replaces it too, and its binary
+    // download is never triggered.
+    dedupe: ['electron']
+  },
   test: {
     environment: 'node',
     include: ['app/**/*.test.js'],
