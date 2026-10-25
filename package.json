@@ -2,7 +2,6 @@
   "name": "grimoire",
   "productName": "Grimoire",
   "repository": "iErik/grimoire",
-  "version": "1.0.0-beta.1",
   "license": "GPL-2.0-only",
   "author": {
     "name": "Erik Isidore",
@@ -38,7 +37,6 @@
   },
   "build": {
     "productName": "Grimoire",
-    "artifactName": "${productName} Beta.${ext}",
     "appId": "org.isidore.Grimoire",
     "publish": null,
     "directories": {
@@ -54,7 +52,16 @@
     ],
     "mac": {
       "category": "public.app-category.productivity",
-      "target": "zip"
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "artifactName": "${productName}-${version}-mac-${arch}.${ext}"
     },
     "linux": {
       "category": "TextEditor",
@@ -77,10 +84,30 @@
             "x64"
           ]
         }
-      ]
+      ],
+      "artifactName": "${productName}-${version}-linux-x64.${ext}"
     },
     "win": {
-      "target": "portable"
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "${productName}-${version}-win-${arch}-portable.${ext}"
+    },
+    "nsis": {
+      "artifactName": "${productName}-${version}-win-${arch}-setup.${ext}"
     }
   },
   "devDependencies": {
