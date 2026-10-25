@@ -129,7 +129,9 @@ $sidebar-document-entry-icon-size: 0.8em;
           }
 
           &:hover {
-            @include themify { color: foreground-color('primary-light'); }
+            @include themify {
+              color: foreground-color('primary-light');
+            }
           }
         }
       }
@@ -150,7 +152,9 @@ $sidebar-document-entry-icon-size: 0.8em;
     transition: background-color 0.4s;
 
     &:hover {
-      @include themify { background-color: darken(primary-color(light), 3%); }
+      @include themify {
+        background-color: darken(primary-color(light), 3%);
+      }
     }
 
     @include icon {

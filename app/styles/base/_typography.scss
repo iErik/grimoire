@@ -33,23 +33,6 @@
     margin-bottom: 1.3em;
   }
 
-  //  Links  //
-
-  a { }
-
-  //  Quotations  //
-
-  blockquote { }
-
-  q { }
-
-  //  Semantics  //
-
-  strong { }
-  em { }
-  hr { }
-  br { }
-
   //  Media Elements  //
 
   p img {
@@ -60,8 +43,6 @@
     border-radius: 4px;
     border: 1px solid #EDEDED;
   }
-
-  img { }
 
   //  List Elements  //
 
@@ -89,12 +70,4 @@
     font-family: $font-monospace, monospace;
     font-size: 1em;
   }
-
-  code, pre, tt { }
-
-  code, tt { }
-
-  pre { }
-
-  pre code, pre tt { }
 }
