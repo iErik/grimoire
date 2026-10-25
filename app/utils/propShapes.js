@@ -65,5 +65,8 @@ export const routePropTypes = {
   match: PropTypes.shape({
     url: PropTypes.string,
     params: PropTypes.objectOf(PropTypes.string)
+  }).isRequired,
+  history: PropTypes.shape({
+    replace: PropTypes.func
   }).isRequired
 }
