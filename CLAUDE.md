@@ -20,6 +20,8 @@ pnpm build:pack       # build + electron-builder → release/
 pnpm build:pack:{mac,linux,win,multi}
 pnpm lint             # ESLint (JS/JSX) and Stylelint (SCSS)
 pnpm lint:fix         # both, with autofix
+pnpm test             # Vitest, runs once (vitest.config.mjs)
+pnpm test:watch       # Vitest in watch mode
 ```
 
 Packaging uses electron-builder 26 with publishing off (`build.publish: null`).
@@ -28,7 +30,27 @@ The Linux rpm target needs `rpmbuild`. The dev shell provides it on Linux
 out, and `build:pack:linux` builds the AppImage and deb, then fails at the rpm
 unless the host has a working `rpmbuild`.
 
-There are no tests yet.
+### Tests
+
+Vitest is only the test runner. It has its own config,
+`vitest.config.mjs`, and doesn't touch the webpack/Babel build.
+
+- Tests sit next to the code they test as `<name>.test.js`, under `app/`.
+  They import `describe`, `it`, `expect` and `vi` from `vitest`; globals
+  are off. They run in Vitest's `node` environment and must pass
+  `pnpm lint`.
+- `vitest.config.mjs` repeats the import aliases of
+  `build/webpack.base.config.js`. Keep both lists in sync: same names,
+  same targets.
+- `vitest.setup.js` mocks `electron` for every test (`app.getPath`,
+  `remote.app.getPath` and `BrowserWindow` are stubs). No test may touch
+  real Electron APIs or the filesystem.
+- Mock the nedb collection modules and `electron-settings` with
+  `vi.mock(path, factory)`, returning plain objects with stubbed methods.
+  Don't automock them: that evaluates the real module, which opens an
+  nedb file on disk.
+- Vitest turns watch mode off in CI, without a TTY, or when it detects
+  an AI agent, so `pnpm test:watch` then runs once and exits.
 
 `pnpm install` installs a husky pre-commit hook (via `prepare`) that runs
 `eslint --fix` on staged JS/JSX/CJS/MJS files and `stylelint --fix`
