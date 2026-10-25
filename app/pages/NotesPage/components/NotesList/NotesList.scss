@@ -64,7 +64,9 @@ $entry-height: 130px;
         .title {
           font-size:   $entry-title-font-size;
           font-weight: $entry-title-font-weight;
-          @include themify { color: foreground-color('primary-light'); }
+          @include themify {
+            color: foreground-color('primary-light');
+          }
 
           margin: 0;
         }
@@ -72,7 +74,9 @@ $entry-height: 130px;
         .meta-date {
           font-size:   $entry-meta-date-font-size;
           font-weight: $entry-meta-date-font-weight;
-          @include themify { color: foreground-color('primary-light'); }
+          @include themify {
+            color: foreground-color('primary-light');
+          }
 
           margin: 0;
         }
@@ -84,7 +88,9 @@ $entry-height: 130px;
         .contents {
           font-size:   $entry-contents-font-size;
           font-weight: $entry-contents-font-weight;
-          @include themify { color: foreground-color('primary-light'); }
+          @include themify {
+            color: foreground-color('primary-light');
+          }
 
           margin: 5px 0 0;
         }
@@ -93,7 +99,9 @@ $entry-height: 130px;
           font-size:   $entry-meta-empty-font-size;
           font-weight: $entry-meta-empty-font-weight;
           font-style:  italic;
-          @include themify { color: foreground-color('primary-light'); }
+          @include themify {
+            color: foreground-color('primary-light');
+          }
         }
       }
     }

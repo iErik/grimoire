@@ -79,14 +79,16 @@ $btn-transition-duration: 0.3s;
 
     @include themify {
       background-color: foreground-color('light');
-      &::after, &::before { background-color: foreground-color('light'); }
+      &::after, &::before {
+        background-color: foreground-color('light');
+      }
     }
 
     transition: background-color 0s ease $btn-transition-duration;
 
     &::after,
     &::before {
-      content: "";
+      content: '';
       display: block;
 
       position: absolute;

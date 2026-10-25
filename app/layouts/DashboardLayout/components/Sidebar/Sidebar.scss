@@ -58,14 +58,19 @@ $sidebar-icon-size: 1.4em;
 
       @include icon {
         font-size: $sidebar-icon-size;
-        @include themify { color: rgba(foreground-color('primary'), 0.7); }
+        @include themify {
+          color: rgba(foreground-color('primary'), 0.7);
+        }
 
-        // This is a bit of a special case, should be taken care of soon
+        // This is a bit of a special case, should be taken care of
+        // soon
         &.icn-notebook { font-size: 1.47em; }
       }
 
       &:hover {
-        @include themify { background-color: darken(primary-color(), 2%); }
+        @include themify {
+          background-color: darken(primary-color(), 2%);
+        }
       }
 
       &.is-active {

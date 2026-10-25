@@ -73,7 +73,9 @@ $select-field-options-background-color: #FFF;
         max-height: $select-field-options-max-height;
         overflow: scroll;
 
-        transition: min-height 300ms ease-out, max-height 300ms ease-out;
+        transition:
+          min-height 300ms ease-out,
+          max-height 300ms ease-out;
       }
     }
 
@@ -142,7 +144,8 @@ $select-field-options-background-color: #FFF;
         &:hover {
           cursor: pointer;
 
-          background-color: darken($select-field-options-background-color, 10%);
+          background-color:
+            darken($select-field-options-background-color, 10%);
         }
 
         .option-label {
