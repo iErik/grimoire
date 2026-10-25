@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { uiPropTypes } from 'utils/propShapes'
 
 import BurgerButton from 'components/BurgerButton'
 import WindowControls from 'components/WindowControls'
@@ -95,6 +97,12 @@ const TitleBar = (props) => {
       </div>
     </div>
   )
+}
+
+TitleBar.propTypes = {
+  ui: uiPropTypes.ui,
+  updateUI: uiPropTypes.updateUI,
+  editorActions: PropTypes.objectOf(PropTypes.func).isRequired
 }
 
 export default TitleBar

@@ -1,10 +1,20 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { noteShape, notebookShape } from 'utils/propShapes'
 import classNames from 'classnames'
 import moment from 'moment'
 
 import { truncateChars } from 'utils/stringTools'
 
 export default class NotesList extends React.Component {
+  static propTypes = {
+    notes: PropTypes.arrayOf(noteShape).isRequired,
+    activeNotebook: notebookShape.isRequired,
+    selectedNote: noteShape.isRequired,
+    isStoreLoading: PropTypes.bool.isRequired,
+    changeSelectedNote: PropTypes.func.isRequired
+  }
+
   creationDate(note) {
     return moment(note.createdAt).calendar(null, {
       sameDay: 'HH:mm',

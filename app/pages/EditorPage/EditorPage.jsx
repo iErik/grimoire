@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import ui from 'redux-ui'
 import AceEditor from 'react-ace'
 
@@ -12,23 +13,13 @@ import Editor from './components/Editor'
 
 import { without, union, map } from 'underscore'
 import { editorThemes } from 'config/themes'
+import {
+  noteShape,
+  editorThemesShape,
+  uiPropTypes
+} from 'utils/propShapes'
 
-export default ui({
-  key: 'editorPage',
-  state: {
-    editorOptions: (props) => ({
-      name: props.selectedNote._id || 'brace-editor',
-      fontSize: props.editorFontSize,
-      mode: 'markdown',
-      width: '100%',
-      height: '100%',
-      showGutter: false,
-      wrapEnabled: true,
-      showPrintMargin: false,
-      focus: true
-    })
-  }
-})(({ updateNoteContents, ...props }) => {
+const EditorPage = ({ updateNoteContents, ...props }) => {
   var editor
 
   const loadThemes = async () => {
@@ -196,4 +187,33 @@ export default ui({
       </section>
     </div>
   )
-})
+}
+
+EditorPage.propTypes = {
+  ui: uiPropTypes.ui,
+  updateUI: uiPropTypes.updateUI,
+  // The edited note: undefined when it no longer exists.
+  selectedNote: noteShape,
+  // Undefined until the settings have loaded.
+  editorFontSize: PropTypes.number,
+  editorTheme: editorThemesShape,
+  updateNoteContents: PropTypes.func.isRequired,
+  changeEditorFontSize: PropTypes.func.isRequired
+}
+
+export default ui({
+  key: 'editorPage',
+  state: {
+    editorOptions: (props) => ({
+      name: props.selectedNote._id || 'brace-editor',
+      fontSize: props.editorFontSize,
+      mode: 'markdown',
+      width: '100%',
+      height: '100%',
+      showGutter: false,
+      wrapEnabled: true,
+      showPrintMargin: false,
+      focus: true
+    })
+  }
+})(EditorPage)

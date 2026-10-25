@@ -1,4 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import {
+  noteShape,
+  notebookShape,
+  uiPropTypes
+} from 'utils/propShapes'
 import ui from 'redux-ui'
 import { filter } from 'underscore'
 
@@ -12,6 +18,14 @@ import ActionButton from 'components/ActionButton'
   }
 })
 export default class NotebookGrid extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI,
+    notebooks: PropTypes.arrayOf(notebookShape).isRequired,
+    notes: PropTypes.arrayOf(noteShape).isRequired,
+    createNotebook: PropTypes.func.isRequired
+  }
+
   updateSearchFilter(ev) {
     this.props.updateUI('searchFilter', ev.target.value)
   }

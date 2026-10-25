@@ -67,9 +67,7 @@ export default [
     settings: { react: { version: '16.2' } },
     rules: {
       ...js.configs.recommended.rules,
-      ...react.configs.flat.recommended.rules,
-      // Declaring propTypes is GRM-12.
-      'react/prop-types': 'off'
+      ...react.configs.flat.recommended.rules
     }
   },
 

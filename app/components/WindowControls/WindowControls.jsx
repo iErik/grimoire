@@ -1,6 +1,11 @@
 import React from 'react'
+import { uiPropTypes } from 'utils/propShapes'
 
 export default class WindowControls extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui
+  }
+
   closeWindow() {
     console.log('WindowControls.ui: ', this.props.ui)
     this.props.ui.currentWindow.close()

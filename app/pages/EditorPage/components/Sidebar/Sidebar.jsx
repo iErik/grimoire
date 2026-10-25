@@ -1,4 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import {
+  noteShape,
+  uiPropTypes,
+  routePropTypes
+} from 'utils/propShapes'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 import ui from 'redux-ui'
@@ -11,6 +17,19 @@ import Input from 'components/Input'
   }
 })
 export default class Sidebar extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI,
+    match: routePropTypes.match,
+    // The edited note: undefined when it no longer exists.
+    selectedNote: noteShape,
+    notes: PropTypes.arrayOf(noteShape).isRequired,
+    docActions: PropTypes.objectOf(PropTypes.func).isRequired,
+    createNote: PropTypes.func.isRequired,
+    updateNoteTitle: PropTypes.func.isRequired,
+    deleteNote: PropTypes.func.isRequired
+  }
+
   createNote() {
     this.props.createNote(
       decodeURIComponent(this.props.match.params.notebookId)

@@ -1,8 +1,13 @@
 import React from 'react'
+import { uiPropTypes } from 'utils/propShapes'
 import classNames from 'classnames'
 import { NavLink } from 'react-router-dom'
 
 export default class Sidebar extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui
+  }
+
   render() {
     let classState = classNames({
       'narrow-sidebar': true,

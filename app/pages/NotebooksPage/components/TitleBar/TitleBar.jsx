@@ -1,9 +1,15 @@
 import React from 'react'
+import { uiPropTypes } from 'utils/propShapes'
 
 import BurgerButton from 'components/BurgerButton'
 import WindowControls from 'components/WindowControls'
 
 export default class Titlebar extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI
+  }
+
   toggleSidebar() {
     this.props.updateUI('showSidebar', !this.props.ui.showSidebar)
   }

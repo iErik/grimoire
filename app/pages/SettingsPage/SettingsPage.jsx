@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { settingsShape } from 'utils/propShapes'
 import { keys } from 'underscore'
 
 import TitleBar from './components/TitleBar'
@@ -11,6 +13,14 @@ import { editorThemes, applicationThemes } from 'config/themes'
 import { capitalize } from 'utils/stringTools'
 
 export default class SettingsPage extends React.Component {
+  static propTypes = {
+    settings: settingsShape.isRequired,
+    changeApplicationTheme: PropTypes.func.isRequired,
+    changeEditorFontSize: PropTypes.func.isRequired,
+    changeEditorThemeLight: PropTypes.func.isRequired,
+    changeEditorThemeDark: PropTypes.func.isRequired
+  }
+
   render() {
     return (
       <div className="collapse inner stack container">
