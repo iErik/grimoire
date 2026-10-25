@@ -57,6 +57,10 @@ export default class TitleBar extends React.Component {
   }
 
   renderNotesActions() {
+    const hasSelectedNote = Boolean(
+      this.props.selectedNote && this.props.selectedNote._id
+    )
+
     if (this.props.selectedNote) {
       return (
         <div className="actions-container">
@@ -69,6 +73,7 @@ export default class TitleBar extends React.Component {
           </div>
           <div className="action-container">
             <button className="btn"
+              disabled={ !hasSelectedNote }
               onClick={ this.props.editNote.bind(
                 null,
                 this.props.selectedNote
@@ -78,6 +83,7 @@ export default class TitleBar extends React.Component {
           </div>
           <div className="action-container">
             <button className="btn"
+              disabled={ !hasSelectedNote }
               onClick={ this.props.deleteNote.bind(
                 null,
                 this.props.selectedNote

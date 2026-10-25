@@ -4,6 +4,7 @@ import { noteShape } from 'utils/propShapes'
 import moment from 'moment'
 
 import Input from 'components/Input'
+import { orEmpty } from 'utils/stringTools'
 
 export default class NoteViewer extends React.Component {
   static propTypes = {
@@ -39,7 +40,24 @@ export default class NoteViewer extends React.Component {
       return { __html: this.props.selectedNote.contents }
   }
 
+  renderEmptyState() {
+    return (
+      <div className="note-viewer">
+        <div className="note-empty">
+          <p className="empty-message">
+            This notebook has no notes
+          </p>
+        </div>
+      </div>
+    )
+  }
+
   render() {
+    const { isStoreLoading, selectedNote } = this.props
+
+    if (!isStoreLoading && !selectedNote._id)
+      return this.renderEmptyState()
+
     return (
       <div className="note-viewer">
         <div className="note-header">
@@ -47,9 +65,9 @@ export default class NoteViewer extends React.Component {
             <Input
               type="text"
               className="input-title"
-              value={ this.props.isStoreLoading
+              value={ isStoreLoading
                 ? ''
-                : this.props.selectedNote.title }
+                : orEmpty(selectedNote.title) }
               onChange={ this.renameNote.bind(this) }
             />
           </div>
