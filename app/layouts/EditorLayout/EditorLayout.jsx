@@ -13,8 +13,8 @@ import EditorPage from 'pages/EditorPage'
 
 @ui({
   state: {
-    mdContents: ({ selectedNote }) =>
-      toMarkdown(selectedNote.contents) || '',
+    mdContents: ({ editedNote }) =>
+      toMarkdown(editedNote.contents) || '',
     isDark: false,
     showSidebar: false,
     areThemesLoaded: false
@@ -25,13 +25,13 @@ export default class EditorLayout extends React.Component {
     match: routePropTypes.match,
     updateUI: uiPropTypes.updateUI,
     // Optional: undefined when the edited note no longer exists.
-    selectedNote: noteShape
+    editedNote: noteShape
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.selectedNote._id !== nextProps.selectedNote._id) {
+    if (this.props.editedNote._id !== nextProps.editedNote._id) {
       this.props.updateUI({
-        mdContents: toMarkdown(nextProps.selectedNote.contents)
+        mdContents: toMarkdown(nextProps.editedNote.contents)
       })
     }
   }

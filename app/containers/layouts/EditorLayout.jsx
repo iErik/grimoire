@@ -9,9 +9,7 @@ const mapStateToProps = (state, { match }) => ({
     note => note.notebookId === match.params.notebookId),
   note => -(new Date(note.createdAt).getTime())),
 
-  activeNotebook: find(state.notebooks.notebooks,
-    notebook => notebook._id === match.params.notebookId),
-  selectedNote: find(state.notes.notes,
+  editedNote: find(state.notes.notes,
     note => note._id === match.params.noteId),
 
   editorTheme: state.settings.editorTheme,

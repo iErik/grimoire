@@ -22,7 +22,7 @@ export default class Sidebar extends React.Component {
     updateUI: uiPropTypes.updateUI,
     match: routePropTypes.match,
     // The edited note: undefined when it no longer exists.
-    selectedNote: noteShape,
+    editedNote: noteShape,
     notes: PropTypes.arrayOf(noteShape).isRequired,
     docActions: PropTypes.objectOf(PropTypes.func).isRequired,
     createNote: PropTypes.func.isRequired,
@@ -37,7 +37,7 @@ export default class Sidebar extends React.Component {
   }
 
   renameNote(note, ev) {
-    if (note._id === this.props.selectedNote._id) ev.preventDefault()
+    if (note._id === this.props.editedNote._id) ev.preventDefault()
 
     const handler = () => {
       this.props.updateUI('hightlightSelectedNote', false)
@@ -60,7 +60,7 @@ export default class Sidebar extends React.Component {
         decodeURIComponent(this.props.match.params.notebookId)
       let style = classNames({
         'document-list-entry': true,
-        'is-editing': note._id === this.props.selectedNote._id &&
+        'is-editing': note._id === this.props.editedNote._id &&
                       this.props.ui.hightlightSelectedNote
       })
 
