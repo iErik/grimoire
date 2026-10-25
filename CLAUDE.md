@@ -44,7 +44,10 @@ Vitest is only the test runner. It has its own config,
   same targets.
 - `vitest.setup.js` mocks `electron` for every test (`app.getPath`,
   `remote.app.getPath` and `BrowserWindow` are stubs). No test may touch
-  real Electron APIs or the filesystem.
+  real Electron APIs or the filesystem. `app/node_modules` holds a second
+  `electron` (a peer of `@electron/remote`), so the config dedupes
+  `electron` to the root copy. Without that, app code would get the real
+  module, which downloads its binary when it's imported.
 - Mock the nedb collection modules and `electron-settings` with
   `vi.mock(path, factory)`, returning plain objects with stubbed methods.
   Don't automock them: that evaluates the real module, which opens an
