@@ -18,8 +18,8 @@ pnpm dev              # express + HMR dev server on :5050, then spawns Electron
 PORT=6000 pnpm dev    # override the dev server port
 pnpm build:pack       # build + electron-builder → release/
 pnpm build:pack:{mac,linux,win,multi}
-pnpm lint             # ESLint on all JS/JSX (eslint.config.mjs)
-pnpm lint:fix         # ESLint with autofix
+pnpm lint             # ESLint (JS/JSX) and Stylelint (SCSS)
+pnpm lint:fix         # both, with autofix
 ```
 
 Packaging uses electron-builder 26 with publishing off (`build.publish: null`).
@@ -31,8 +31,8 @@ unless the host has a working `rpmbuild`.
 There are no tests yet.
 
 `pnpm install` installs a husky pre-commit hook (via `prepare`) that runs
-`eslint --fix` on staged JS/JSX/CJS/MJS files through lint-staged,
-re-stages the fixes, and blocks the commit if errors remain. It calls
+`eslint --fix` on staged JS/JSX/CJS/MJS files and `stylelint --fix`
+on staged SCSS files through lint-staged, re-stages the fixes, and blocks the commit if errors remain. It calls
 `pnpm`, so commit from inside the nix/direnv shell. It runs lint-staged
 with `--no-stash`, because the stash stack is shared by every worktree.
 `pnpm build` and `pnpm dev` don't lint.
@@ -114,6 +114,27 @@ ESLint enforces the formatting; every rule is an error.
 - The parser is `@typescript-eslint/parser`, without type information,
   because espree can't parse the legacy `@ui({...})` decorators. Don't
   rewrite the decorators to suit the linter.
+
+Stylelint (`stylelint.config.mjs`, `postcss-scss` syntax) lints SCSS
+with only these rules, every one an error, and extends no preset:
+
+- Formatting (`@stylistic/stylelint-plugin`): `indentation` 2,
+  `string-quotes` single (with `avoidEscape`),
+  `declaration-block-trailing-semicolon` always, and
+  `max-line-length` 70. The 70/61 line-length rule above applies to
+  SCSS too; `url()` arguments aren't counted.
+- Correctness: `block-no-empty`,
+  `declaration-block-no-duplicate-properties`, `property-no-unknown`,
+  `unit-no-unknown`, `color-no-invalid-hex`, and
+  `scss/at-rule-no-unknown` (from `stylelint-scss`; core
+  `at-rule-no-unknown` stays off).
+- `app/styles/vendors/**` (foundation's settings) is ignored, along
+  with `node_modules` and build output. normalize.css is linted.
+- Disables need a rule and a reason; needless ones are errors. Use
+  `/* stylelint-disable-next-line <rule> -- <reason> */`.
+- `postcss-scss` needs postcss 8, but the hoisted layout puts the
+  webpack loaders' postcss 5 at the top, so a `pnpm.packageExtensions`
+  entry gives it its own copy.
 
 ## Agent skills
 
