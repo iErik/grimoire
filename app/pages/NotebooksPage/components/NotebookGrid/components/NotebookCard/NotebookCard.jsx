@@ -3,13 +3,18 @@ import PropTypes from 'prop-types'
 import {
   noteShape,
   notebookShape,
+  routePropTypes,
   uiPropTypes
 } from 'utils/propShapes'
 import classNames from 'classnames'
+import { withRouter } from 'react-router-dom'
 import ui from 'redux-ui'
 
 import Input from 'components/Input'
 
+// `withRouter` goes outermost: redux-ui passes every prop through,
+// so `history` reaches the card.
+@withRouter
 @ui({
   state: {
     hideOptions: true
@@ -19,6 +24,7 @@ export default class NotebookCard extends React.Component {
   static propTypes = {
     ui: uiPropTypes.ui,
     updateUI: uiPropTypes.updateUI,
+    history: routePropTypes.history,
     notebook: notebookShape.isRequired,
     // The notebook's notes.
     notes: PropTypes.arrayOf(noteShape).isRequired,
@@ -29,8 +35,6 @@ export default class NotebookCard extends React.Component {
     deleteNote: PropTypes.func.isRequired
   }
 
-  static contextTypes = { router: PropTypes.object.isRequired }
-
   updateNotebookName(ev) {
     this.props.updateNotebookName(
       this.props.notebook,
@@ -40,7 +44,7 @@ export default class NotebookCard extends React.Component {
 
   openNotebook() {
     this.props.changeActiveNotebook(this.props.notebook)
-    this.context.router.push('/dashboard/')
+    this.props.history.push('/dashboard')
   }
 
   openNote(note, ev) {
