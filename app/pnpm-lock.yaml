@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   redux-electron-store@0.4.1:
-    hash: d8ca8391c3f70221cd029f853f292b3cb7091c99296e541ca31b0dcf5bc9bef1
+    hash: 88a3d6764bd216a1128755ec976c42ef622e2dd0b0ca8aa03aaf07cd85853976
     path: patches/redux-electron-store@0.4.1.patch
 
 importers:
@@ -72,7 +72,7 @@ importers:
         version: 0.2.1
       redux-electron-store:
         specifier: 0.4.1
-        version: 0.4.1(patch_hash=d8ca8391c3f70221cd029f853f292b3cb7091c99296e541ca31b0dcf5bc9bef1)
+        version: 0.4.1(patch_hash=88a3d6764bd216a1128755ec976c42ef622e2dd0b0ca8aa03aaf07cd85853976)
       redux-saga:
         specifier: 0.16.0
         version: 0.16.0
@@ -1815,7 +1815,7 @@ snapshots:
 
   redux-async-initial-state@0.2.1: {}
 
-  redux-electron-store@0.4.1(patch_hash=d8ca8391c3f70221cd029f853f292b3cb7091c99296e541ca31b0dcf5bc9bef1):
+  redux-electron-store@0.4.1(patch_hash=88a3d6764bd216a1128755ec976c42ef622e2dd0b0ca8aa03aaf07cd85853976):
     dependencies:
       lodash: 4.17.5
 

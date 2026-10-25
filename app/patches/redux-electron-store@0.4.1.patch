@@ -2,7 +2,7 @@ diff --git a/.npmignore b/.npmignore
 deleted file mode 100644
 index e69de29bb2d1d6434b8b29ae775ad8c2e48c5391..0000000000000000000000000000000000000000
 diff --git a/lib/electronBrowserEnhancer.js b/lib/electronBrowserEnhancer.js
-index f94f9b7704c5fbcbbeff8f5d5e93d8af7ee66a19..0e4ee7f31aad7033d963789d2de716de28494093 100644
+index f94f9b7704c5fbcbbeff8f5d5e93d8af7ee66a19..33664450267ee0a8df91139be65787d1b27c19ed 100644
 --- a/lib/electronBrowserEnhancer.js
 +++ b/lib/electronBrowserEnhancer.js
 @@ -58,6 +58,7 @@ function electronBrowserEnhancer() {
@@ -13,7 +13,18 @@ index f94f9b7704c5fbcbbeff8f5d5e93d8af7ee66a19..0e4ee7f31aad7033d963789d2de716de
  
        var store = storeCreator(reducer, initialState);
  
-@@ -103,18 +104,18 @@ function electronBrowserEnhancer() {
+@@ -71,8 +72,8 @@ function electronBrowserEnhancer() {
+ 
+       var clients = {}; // webContentsId -> {webContents, filter, clientId, windowId, active}
+ 
+-      // Need to keep track of windows, as when a window refreshes it creates a new
+-      // webContents, and the old one must be unregistered
++      // Need to keep track of windows: if a window gets a new webContents, the
++      // old one must be unregistered. A reload keeps the same webContents.
+       var windowMap = {}; // windowId -> webContentsId
+ 
+       var currentSource = sourceName || 'main_process';
+@@ -103,27 +104,32 @@ function electronBrowserEnhancer() {
          var filter = _ref3.filter;
          var clientId = _ref3.clientId;
  
@@ -32,7 +43,29 @@ index f94f9b7704c5fbcbbeff8f5d5e93d8af7ee66a19..0e4ee7f31aad7033d963789d2de716de
 +        if (sender.getType() !== 'webview') {
            // For windowMap (not webviews)
 -          var browserWindow = sender.getOwnerBrowserWindow();
+-          if (windowMap[browserWindow.id] !== undefined) {
+-            unregisterRenderer(windowMap[browserWindow.id]);
 +          var browserWindow = BrowserWindow.fromWebContents(sender);
-           if (windowMap[browserWindow.id] !== undefined) {
-             unregisterRenderer(windowMap[browserWindow.id]);
++          var windowId = browserWindow.id;
++          var previousId = windowMap[windowId];
++          if (previousId !== undefined && previousId !== webContentsId) {
++            unregisterRenderer(previousId);
++          }
++          windowMap[windowId] = webContentsId;
++
++          // Webcontents aren't automatically destroyed on window close.
++          // Listen once per window, for whichever webContents it has then.
++          if (previousId === undefined) {
++            browserWindow.on('closed', function () {
++              return unregisterRenderer(windowMap[windowId]);
++            });
            }
+-          windowMap[browserWindow.id] = webContentsId;
+-
+-          // Webcontents aren't automatically destroyed on window close
+-          browserWindow.on('closed', function () {
+-            return unregisterRenderer(webContentsId);
+-          });
+         }
+       });
+ 
