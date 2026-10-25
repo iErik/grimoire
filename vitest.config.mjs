@@ -32,10 +32,9 @@ const aliases = {
 export default defineConfig({
   resolve: {
     alias: aliases,
-    // app/node_modules has its own electron (a peer of
-    // @electron/remote). Resolve every import to the root copy, so
-    // the stub in vitest.setup.js replaces it too, and its binary
-    // download is never triggered.
+    // Guard: resolve every electron import to the root copy, so a
+    // nested one (e.g. an auto-installed peer under app/) can't
+    // bypass the stub in vitest.setup.js and download its binary.
     dedupe: ['electron']
   },
   test: {
