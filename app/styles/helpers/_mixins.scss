@@ -3,13 +3,13 @@ $theme: null;
 @mixin themify($themes: $applicationThemes) {
   @each $theme-name, $palette in $themes {
     &.theme-#{$theme-name},
-     .theme-#{$theme-name} & {
-       $theme: $palette !global;
+    .theme-#{$theme-name} & {
+      $theme: $palette !global;
 
-       @content;
+      @content;
 
-       $theme: null !global;
-     }
+      $theme: null !global;
+    }
   }
 }
 
@@ -61,8 +61,8 @@ $theme: null;
   .fa,
   .icn,
   [data-icon],
-  [class^="icn-"],
-  [class*=" icn-"] {
+  [class^='icn-'],
+  [class*=' icn-'] {
     @content;
   }
 }
