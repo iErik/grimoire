@@ -57,7 +57,7 @@ const EditorPage = ({ updateNoteContents, ...props }) => {
   const docActions = {
     saveDocument: () => {
       updateNoteContents(
-        props.selectedNote,
+        props.editedNote,
         toHtml(props.ui.mdContents)
       )
     },
@@ -193,7 +193,7 @@ EditorPage.propTypes = {
   ui: uiPropTypes.ui,
   updateUI: uiPropTypes.updateUI,
   // The edited note: undefined when it no longer exists.
-  selectedNote: noteShape,
+  editedNote: noteShape,
   // Undefined until the settings have loaded.
   editorFontSize: PropTypes.number,
   editorTheme: editorThemesShape,
@@ -205,7 +205,7 @@ export default ui({
   key: 'editorPage',
   state: {
     editorOptions: (props) => ({
-      name: props.selectedNote._id || 'brace-editor',
+      name: props.editedNote._id || 'brace-editor',
       fontSize: props.editorFontSize,
       mode: 'markdown',
       width: '100%',
