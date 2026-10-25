@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { uiPropTypes } from 'utils/propShapes'
 import classNames from 'classnames'
 import ui from 'redux-ui'
 
@@ -10,6 +12,12 @@ import Input from 'components/Input'
   }
 })
 export default class SearchBar extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI,
+    onChange: PropTypes.func.isRequired
+  }
+
   toggleSearchInput() {
     this.props.updateUI(
       'hideSearchInput',

@@ -1,4 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import {
+  noteShape,
+  notebookShape,
+  uiPropTypes
+} from 'utils/propShapes'
 
 import { productName as APP_NAME } from 'app/package'
 
@@ -7,6 +13,20 @@ import WindowControls from 'components/WindowControls'
 import NotebooksField from './components/NotebooksField'
 
 export default class TitleBar extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI,
+    notebooks: PropTypes.arrayOf(notebookShape).isRequired,
+    activeNotebook: notebookShape.isRequired,
+    selectedNote: noteShape,
+    isStoreLoading: PropTypes.bool.isRequired,
+    changeActiveNotebook: PropTypes.func.isRequired,
+    selectNextNote: PropTypes.func.isRequired,
+    createNote: PropTypes.func.isRequired,
+    editNote: PropTypes.func.isRequired,
+    deleteNote: PropTypes.func.isRequired
+  }
+
   createNote() {
     this.props.selectNextNote()
     this.props.createNote(this.props.activeNotebook._id)

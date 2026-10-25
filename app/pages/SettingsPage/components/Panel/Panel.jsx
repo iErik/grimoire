@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { uiPropTypes } from 'utils/propShapes'
 import classNames from 'classnames'
 import ui from 'redux-ui'
 
@@ -10,7 +11,10 @@ import ui from 'redux-ui'
 })
 export default class Panel extends React.Component {
   static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI,
     panelName: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired
   }
 
   toggleContents() {

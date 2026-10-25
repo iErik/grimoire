@@ -1,6 +1,12 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 export default class Input extends React.Component {
+  static propTypes = {
+    value: PropTypes.string,
+    onChange: PropTypes.func.isRequired
+  }
+
   constructor(props) {
     super(props)
 

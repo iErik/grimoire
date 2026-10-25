@@ -1,7 +1,13 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 export default class BurgerButton extends React.Component {
+  static propTypes = {
+    isActive: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired
+  }
+
   render() {
     let classState = classNames({
       'burger-btn': true,

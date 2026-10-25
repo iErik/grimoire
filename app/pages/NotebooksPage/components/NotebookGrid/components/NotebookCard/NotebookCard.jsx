@@ -1,5 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {
+  noteShape,
+  notebookShape,
+  uiPropTypes
+} from 'utils/propShapes'
 import classNames from 'classnames'
 import ui from 'redux-ui'
 
@@ -11,6 +16,19 @@ import Input from 'components/Input'
   }
 })
 export default class NotebookCard extends React.Component {
+  static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI,
+    notebook: notebookShape.isRequired,
+    // The notebook's notes.
+    notes: PropTypes.arrayOf(noteShape).isRequired,
+    updateNotebookName: PropTypes.func.isRequired,
+    deleteNotebook: PropTypes.func.isRequired,
+    changeActiveNotebook: PropTypes.func.isRequired,
+    editNote: PropTypes.func.isRequired,
+    deleteNote: PropTypes.func.isRequired
+  }
+
   static contextTypes = { router: PropTypes.object.isRequired }
 
   updateNotebookName(ev) {

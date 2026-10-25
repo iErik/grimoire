@@ -1,4 +1,5 @@
 import React from 'react'
+import { routePropTypes } from 'utils/propShapes'
 import ui from 'redux-ui'
 
 import { Switch, Route } from 'react-router-dom'
@@ -14,6 +15,10 @@ import NotesPage from 'pages/NotesPage'
   }
 })
 export default class DashboardLayout extends React.Component {
+  static propTypes = {
+    match: routePropTypes.match
+  }
+
   render() {
     let basePath = this.props.match.url
 

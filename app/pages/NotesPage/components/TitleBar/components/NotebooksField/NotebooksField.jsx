@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { uiPropTypes } from 'utils/propShapes'
 import ui from 'redux-ui'
 import classNames from 'classnames'
 
@@ -15,9 +16,11 @@ import classNames from 'classnames'
 })
 export default class NotebooksField extends React.Component {
   static propTypes = {
+    ui: uiPropTypes.ui,
+    updateUI: uiPropTypes.updateUI,
     onChange: PropTypes.func.isRequired,
     options: PropTypes.array.isRequired,
-    value: PropTypes.object
+    value: PropTypes.object.isRequired
   }
 
   onChange(option) {

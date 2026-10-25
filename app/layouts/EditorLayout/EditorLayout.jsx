@@ -1,4 +1,9 @@
 import React from 'react'
+import {
+  noteShape,
+  uiPropTypes,
+  routePropTypes
+} from 'utils/propShapes'
 import ui from 'redux-ui'
 import { Route } from 'react-router-dom'
 
@@ -16,6 +21,13 @@ import EditorPage from 'pages/EditorPage'
   }
 })
 export default class EditorLayout extends React.Component {
+  static propTypes = {
+    match: routePropTypes.match,
+    updateUI: uiPropTypes.updateUI,
+    // Optional: undefined when the edited note no longer exists.
+    selectedNote: noteShape
+  }
+
   componentWillReceiveProps(nextProps) {
     if (this.props.selectedNote._id !== nextProps.selectedNote._id) {
       this.props.updateUI({

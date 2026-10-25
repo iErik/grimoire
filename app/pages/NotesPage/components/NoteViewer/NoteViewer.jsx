@@ -1,9 +1,17 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+import { noteShape } from 'utils/propShapes'
 import moment from 'moment'
 
 import Input from 'components/Input'
 
 export default class NoteViewer extends React.Component {
+  static propTypes = {
+    selectedNote: noteShape.isRequired,
+    isStoreLoading: PropTypes.bool.isRequired,
+    updateNoteTitle: PropTypes.func.isRequired
+  }
+
   renameNote(ev) {
     this.props.updateNoteTitle(
       this.props.selectedNote,

@@ -1,5 +1,6 @@
 import { remote } from 'electron'
 import React from 'react'
+import PropTypes from 'prop-types'
 import ui from 'redux-ui'
 import os from 'os'
 
@@ -14,6 +15,11 @@ import EditorLayout from 'containers/layouts/EditorLayout'
   }
 })
 export default class RootLayout extends React.Component {
+  static propTypes = {
+    // Undefined until the settings have loaded.
+    appTheme: PropTypes.string
+  }
+
   render() {
     let platform = os.platform()
 
