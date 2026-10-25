@@ -22,6 +22,12 @@ pnpm lint             # ESLint on all JS/JSX (eslint.config.mjs)
 pnpm lint:fix         # ESLint with autofix
 ```
 
+Packaging uses electron-builder 26 with publishing off (`build.publish: null`).
+The Linux rpm target needs `rpmbuild`. The dev shell provides it on Linux
+(nixpkgs `rpm`). On macOS, nixpkgs' `rpmbuild` crashes, so the shell leaves it
+out, and `build:pack:linux` builds the AppImage and deb, then fails at the rpm
+unless the host has a working `rpmbuild`.
+
 There are no tests yet.
 
 `pnpm install` installs a husky pre-commit hook (via `prepare`) that runs
@@ -59,10 +65,9 @@ uses it automatically; locally, run
 
 ## Gotchas
 
-- `node_modules` uses `node-linker=hoisted` (`.npmrc`) because Electron,
-  electron-builder 19, and the `module.globalPaths` hack in `main.dev.js`
-  expect a flat layout. `auto-install-peers=false` keeps the unused `node-sass`
-  peer out.
+- `node_modules` uses `node-linker=hoisted` (`.npmrc`) because Electron and
+  the `module.globalPaths` hack in `main.dev.js` expect a flat layout.
+  `auto-install-peers=false` keeps the unused `node-sass` peer out.
 - pnpm 10 blocks install scripts. Only `electron` is allowed, via
   `pnpm.onlyBuiltDependencies` in the root `package.json`.
 - webpack 3 needs `--openssl-legacy-provider` on Node ≥17. It's passed on the
