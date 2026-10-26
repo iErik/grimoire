@@ -35,7 +35,8 @@ unless the host has a working `rpmbuild`.
 Vitest is only the test runner. It has its own config,
 `vitest.config.mjs`, and doesn't touch the webpack/Babel build.
 
-- Tests sit next to the code they test as `<name>.test.js`, under `app/`.
+- Tests sit next to the code they test as `<name>.test.js`, under `app/`
+  (build scripts: `<name>.test.mjs`, under `build/`).
   They import `describe`, `it`, `expect` and `vi` from `vitest`; globals
   are off. They run in Vitest's `node` environment and must pass
   `pnpm lint`.
@@ -67,6 +68,39 @@ Formatting-only commits are listed in `.git-blame-ignore-revs`. GitHub
 uses it automatically; locally, run
 `git config blame.ignoreRevsFile .git-blame-ignore-revs`.
 
+## CI and releases
+
+GitHub Actions workflows live in `.github/workflows/` (no Nix there).
+`checks.yml` runs on PRs to `master` and through `workflow_call`: a
+frozen install, `pnpm build`, `pnpm lint`, `pnpm test`. The `master`
+ruleset requires its job, `Build, lint and test`. `release.yml` runs
+on pushes to `master` that change `app/`, `build/`, `config/`,
+`resources/`, `package.json`, `pnpm-lock.yaml`, `.babelrc` or
+`.npmrc`, and by hand (`workflow_dispatch`; `dry_run` packages but
+doesn't tag, publish or bump). Jobs: `checks` → `version` →
+`package` (one per OS) → `release` (only if every OS packaged; tags
+`v<version>` and publishes all seven files, as a pre-release when
+the version has a pre-release part) → `bump`, which commits the new
+`version` to `master` as `Release v<version> [skip ci]` through the
+release GitHub App (`RELEASE_APP_CLIENT_ID` variable,
+`RELEASE_APP_PRIVATE_KEY` secret). That's the only commit a workflow
+makes, and it may change only the `version` line. Jobs without pnpm
+set `package-manager-cache: false`, or `actions/setup-node` fails.
+
+**Versions.** `app/package.json`'s `version` is the only version (the
+root has none): the last release, always `X.Y.Z` or `X.Y.Z-<word>.N`.
+A release takes the next number on that line after its highest tag
+(`1.0.0-beta.2` → `v1.0.0-beta.3`); an untagged version is released
+as is, so a new line starts with a manual edit (`1.1.0`). The math is
+in `build/next-version.mjs`; packaging injects the result with
+`-c.extraMetadata.version` (packaged `package.json`, `Info.plist`).
+
+**Artifacts.** `Grimoire-<version>-<os>-<arch>[-portable|-setup].<ext>`:
+`mac-{x64,arm64}.zip`, `win-x64-{portable,setup}.exe` and
+`linux-x64.{AppImage,deb,rpm}`. Linux spells `x64` literally, since
+`${arch}` is `x86_64`/`amd64` there. The `build` config's targets set
+the architectures, so `electron-builder --mac` builds both zips.
+
 ## Layout
 
 - **Two-package structure** (electron-builder): the root `package.json` holds build
@@ -84,7 +118,8 @@ uses it automatically; locally, run
 - `app/styles`: global SCSS (foundation-sites, helpers/mixins, themes). The
   themes come from `app/config/themes.json` via node-sass-json-importer.
 - `build/`: webpack configs (`base`, `dev`, `prod`, `electron` for main),
-  `dev-server.js`, `build.js`. `config/`: dev/prod env and port.
+  `dev-server.js`, `build.js`, and the release workflow's
+  `next-version.mjs`. `config/`: dev/prod env and port.
 - Import aliases (`components`, `pages`, `layouts`, `store`, `actions`,
   `styles`, `utils`, …) are defined in `build/webpack.base.config.js`. SCSS
   files import helpers with `@import '~styles/helpers/_module'`.

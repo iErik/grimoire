@@ -28,7 +28,7 @@ const formatting = {
   }
 }
 
-const testFiles = ['**/*.test.js']
+const testFiles = ['**/*.test.{js,mjs}']
 
 export default [
   {
@@ -93,7 +93,12 @@ export default [
 
   // Build scripts, env config and this file.
   {
-    files: ['build/**/*.js', 'config/**/*.js', 'eslint.config.mjs'],
+    files: [
+      'build/**/*.{js,mjs}',
+      'config/**/*.js',
+      'eslint.config.mjs'
+    ],
+    ignores: testFiles,
     ...js.configs.recommended,
     languageOptions: {
       sourceType: 'module',

@@ -39,7 +39,7 @@ export default defineConfig({
   },
   test: {
     environment: 'node',
-    include: ['app/**/*.test.js'],
+    include: ['app/**/*.test.js', 'build/**/*.test.mjs'],
     setupFiles: ['./vitest.setup.js']
   }
 })
