@@ -9,6 +9,8 @@ $title-bar-title-font-size: 1.3em;
 
 $control-container-width: 60px;
 
+$title-bar-disabled-opacity: 0.2;
+
 //  Object Structure
 //  ----------------
 
@@ -105,6 +107,11 @@ $control-container-width: 60px;
         @include icon {
           font-size: $title-bar-icons-size;
           @include themify { color: foreground-color('primary'); }
+        }
+
+        &:disabled {
+          opacity: $title-bar-disabled-opacity;
+          cursor: default;
         }
       }
     }

@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { orEmpty } from 'utils/stringTools'
 
 export default class Input extends React.Component {
   static propTypes = {
@@ -10,12 +11,14 @@ export default class Input extends React.Component {
   constructor(props) {
     super(props)
 
-    this.state = { value: props.value }
+    this.state = { value: orEmpty(props.value) }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.state.value !== nextProps.value)
-      this.setState({ value: nextProps.value })
+    const value = orEmpty(nextProps.value)
+
+    if (this.state.value !== value)
+      this.setState({ value })
   }
 
   onChange(ev) {

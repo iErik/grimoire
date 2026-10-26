@@ -13,6 +13,9 @@ $note-meta-date-font-weight: 300;
 
 $note-contents-font-size: 0.9em;
 
+$note-empty-font-size: 1.25em;
+$note-empty-opacity: 0.6;
+
 //  Object Structure
 //  ---------------
 
@@ -64,6 +67,25 @@ $note-contents-font-size: 0.9em;
 
   .note-contents {
     font-size: $note-contents-font-size;
+  }
+
+  .note-empty {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+
+    .empty-message {
+      font-family: $font-serif;
+      font-size:   $note-empty-font-size;
+      font-weight: $note-title-font-weight;
+      @include themify { color: foreground-color(); }
+
+      margin: 0;
+      opacity: $note-empty-opacity;
+      user-select: none;
+      cursor: default;
+    }
   }
 }
 

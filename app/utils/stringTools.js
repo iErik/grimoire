@@ -39,3 +39,9 @@ export function truncateWords(input, words) {
 export function capitalize(input) {
   return input.charAt(0).toUpperCase() + input.slice(1)
 }
+
+// A missing value (undefined or null) as '', so a field whose
+// value it is stays controlled.
+export function orEmpty(input) {
+  return input === undefined || input === null ? '' : input
+}
