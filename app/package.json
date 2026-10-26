@@ -1,7 +1,7 @@
 {
   "name": "grimoire",
   "productName": "Grimoire",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-beta.3",
   "main": "./main.js",
   "repository": "git@gitlab.com:Isidore/Grimoire.git",
   "license": "GPL-2.0-only",
