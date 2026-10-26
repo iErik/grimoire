@@ -50,7 +50,9 @@ $panel-name-font-weight: 200;
       transition:
         grid-template-rows $panel-toggle-duration ease-out;
 
+      // No overflow transition here: clip as soon as it starts.
       .panel-contents {
+        overflow: hidden;
         padding-top: 0;
         padding-bottom: 0;
 
@@ -95,6 +97,8 @@ $panel-name-font-weight: 200;
 
   // A 1fr <-> 0fr row animates the contents' height. A grid
   // item can't be shorter than its padding, so that animates too.
+  // The contents clip while collapsed and animating, but not once
+  // expanded, so open SelectField menus can extend past them.
   .panel-contents-wrapper {
     display: grid;
     grid-template-rows: 1fr;
@@ -106,14 +110,17 @@ $panel-name-font-weight: 200;
       flex-direction: column;
 
       min-height: 0;
-      overflow: hidden;
+      overflow: visible;
 
       padding: 17.5px 25px;
 
       border-bottom-left-radius: $panel-border-radius;
       border-bottom-right-radius: $panel-border-radius;
 
-      transition: padding $panel-toggle-duration ease-in;
+      // Expanding: unclip only after the height animation ends.
+      transition:
+        padding $panel-toggle-duration ease-in,
+        overflow 0s $panel-toggle-duration allow-discrete;
 
       @include themify {
         background-color: background-color('lighter');
