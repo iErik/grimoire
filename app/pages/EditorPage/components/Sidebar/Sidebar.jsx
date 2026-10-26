@@ -36,8 +36,13 @@ export default class Sidebar extends React.Component {
     )
   }
 
+  isEditedNote(note) {
+    const { editedNote } = this.props
+    return Boolean(editedNote) && note._id === editedNote._id
+  }
+
   renameNote(note, ev) {
-    if (note._id === this.props.editedNote._id) ev.preventDefault()
+    if (this.isEditedNote(note)) ev.preventDefault()
 
     const handler = () => {
       this.props.updateUI('hightlightSelectedNote', false)
@@ -60,7 +65,7 @@ export default class Sidebar extends React.Component {
         decodeURIComponent(this.props.match.params.notebookId)
       let style = classNames({
         'document-list-entry': true,
-        'is-editing': note._id === this.props.editedNote._id &&
+        'is-editing': this.isEditedNote(note) &&
                       this.props.ui.hightlightSelectedNote
       })
 

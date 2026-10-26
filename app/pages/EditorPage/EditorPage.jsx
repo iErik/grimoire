@@ -56,6 +56,9 @@ const EditorPage = ({ updateNoteContents, ...props }) => {
 
   const docActions = {
     saveDocument: () => {
+      // Nothing to save to while the edited note is missing.
+      if (!props.editedNote) return
+
       updateNoteContents(
         props.editedNote,
         toHtml(props.ui.mdContents)
@@ -205,7 +208,8 @@ export default ui({
   key: 'editorPage',
   state: {
     editorOptions: (props) => ({
-      name: props.editedNote._id || 'brace-editor',
+      name: (props.editedNote && props.editedNote._id) ||
+        'brace-editor',
       fontSize: props.editorFontSize,
       mode: 'markdown',
       width: '100%',

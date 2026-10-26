@@ -3,7 +3,8 @@ import { describe, it, expect } from 'vitest'
 import {
   truncateChars,
   truncateWords,
-  capitalize
+  capitalize,
+  orEmpty
 } from 'utils/stringTools'
 
 describe('truncateChars', () => {
@@ -105,5 +106,23 @@ describe('capitalize', () => {
 
   it('throws on undefined input', () => {
     expect(() => capitalize(undefined)).toThrow(TypeError)
+  })
+})
+
+describe('orEmpty', () => {
+  it('turns undefined into an empty string', () => {
+    expect(orEmpty(undefined)).toBe('')
+  })
+
+  it('turns null into an empty string', () => {
+    expect(orEmpty(null)).toBe('')
+  })
+
+  it('returns a string unchanged', () => {
+    expect(orEmpty('First Note')).toBe('First Note')
+  })
+
+  it('keeps an empty string', () => {
+    expect(orEmpty('')).toBe('')
   })
 })

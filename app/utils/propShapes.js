@@ -68,6 +68,7 @@ export const routePropTypes = {
     params: PropTypes.objectOf(PropTypes.string)
   }).isRequired,
   history: PropTypes.shape({
-    push: PropTypes.func.isRequired
+    push: PropTypes.func.isRequired,
+    replace: PropTypes.func
   }).isRequired
 }
