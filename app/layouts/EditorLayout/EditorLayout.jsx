@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   noteShape,
   uiPropTypes,
@@ -13,8 +14,9 @@ import EditorPage from 'pages/EditorPage'
 
 @ui({
   state: {
-    mdContents: ({ editedNote }) =>
-      toMarkdown(editedNote.contents) || '',
+    mdContents: ({ editedNote }) => editedNote
+      ? toMarkdown(editedNote.contents) || ''
+      : '',
     isDark: false,
     showSidebar: false,
     areThemesLoaded: false
@@ -23,17 +25,45 @@ import EditorPage from 'pages/EditorPage'
 export default class EditorLayout extends React.Component {
   static propTypes = {
     match: routePropTypes.match,
+    history: routePropTypes.history,
+    ui: uiPropTypes.ui,
     updateUI: uiPropTypes.updateUI,
     // Optional: undefined when the edited note no longer exists.
-    editedNote: noteShape
+    editedNote: noteShape,
+    // Set only while the edited note is missing: the note to
+    // switch to, or undefined to close the window.
+    nextNote: noteShape,
+    isStoreLoading: PropTypes.bool.isRequired
+  }
+
+  componentDidMount() {
+    this.replaceMissingNote(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.editedNote._id !== nextProps.editedNote._id) {
+    const { editedNote } = nextProps
+
+    if (!editedNote) return this.replaceMissingNote(nextProps)
+
+    if (!this.props.editedNote ||
+        this.props.editedNote._id !== editedNote._id) {
       this.props.updateUI({
-        mdContents: toMarkdown(nextProps.editedNote.contents)
+        mdContents: toMarkdown(editedNote.contents)
       })
     }
+  }
+
+  // When the edited note doesn't exist (deleted, or never there),
+  // switch to the notebook's newest note, or close the window if
+  // the notebook is empty.
+  replaceMissingNote({ editedNote, nextNote, isStoreLoading }) {
+    if (editedNote || isStoreLoading) return
+
+    if (!nextNote) return this.props.ui.currentWindow.close()
+
+    const { notebookId } = this.props.match.params
+    this.props.history.replace(
+      `/editor/${notebookId}/${nextNote._id}`)
   }
 
   render() {

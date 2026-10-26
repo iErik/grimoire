@@ -3,20 +3,30 @@ import { sortBy, filter, find } from 'underscore'
 
 import EditorLayout from 'layouts/EditorLayout'
 import storeActions from 'actions'
+import nextNote from 'utils/nextNote'
 
-const mapStateToProps = (state, { match }) => ({
-  notes: sortBy(filter(state.notes.notes,
-    note => note.notebookId === match.params.notebookId),
-  note => -(new Date(note.createdAt).getTime())),
+const mapStateToProps = (state, { match }) => {
+  const { notebookId, noteId } = match.params
+  const editedNote = find(state.notes.notes,
+    note => note._id === noteId)
 
-  editedNote: find(state.notes.notes,
-    note => note._id === match.params.noteId),
+  return {
+    notes: sortBy(filter(state.notes.notes,
+      note => note.notebookId === notebookId),
+    note => -(new Date(note.createdAt).getTime())),
 
-  editorTheme: state.settings.editorTheme,
-  editorFontSize: state.settings.editorFontSize,
-  editorFontFamily: state.settings.editorFontFamily,
+    editedNote,
+    // The note to switch to while the edited note is missing.
+    nextNote: editedNote
+      ? undefined
+      : nextNote(state.notes.notes, notebookId),
 
-  isStoreLoading: state.initialState.loading
-})
+    editorTheme: state.settings.editorTheme,
+    editorFontSize: state.settings.editorFontSize,
+    editorFontFamily: state.settings.editorFontFamily,
+
+    isStoreLoading: state.initialState.loading
+  }
+}
 
 export default connect(mapStateToProps, storeActions)(EditorLayout)
