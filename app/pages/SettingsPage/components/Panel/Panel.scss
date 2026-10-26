@@ -5,6 +5,7 @@
 
 $panel-border-radius: 3px;
 $panel-max-width: 600px;
+$panel-toggle-duration: 200ms;
 
 $panel-control-icon-size: 1em;
 
@@ -28,42 +29,36 @@ $panel-name-font-weight: 200;
 
   box-shadow: 0px 4px 9px -2px rgba(0,0,0,0.55);
 
+  // Collapsing eases out; the base rules below ease in on expand.
   &.is-hidden {
     .panel-control {
       border-bottom-left-radius: $panel-border-radius;
       border-bottom-right-radius: $panel-border-radius;
 
-      transition: all 200ms ease 0.5s;
+      transition: border-radius $panel-toggle-duration ease-out;
+
+      .btn-toggle {
+        @include icon {
+          transform: rotate(180deg);
+          transition: transform $panel-toggle-duration ease-out;
+        }
+      }
     }
 
-    /*
     .panel-contents-wrapper {
-      max-height: 0px;
-      overflow: hidden;
-      transition: max-height 1s cubic-bezier(0, 1, 0, 1);
-    }
-    */
-
-    /*
-    .panel-contents {
-      overflow: hidden !important;
-      height: 0px !important;
-      padding: 0px 25px !important;
-
+      grid-template-rows: 0fr;
       transition:
-        padding .2s ease-out,
-        height .2s ease-out !important;
-    }
-    */
+        grid-template-rows $panel-toggle-duration ease-out;
 
-    /*
-    .panel-contents {
-      transform-origin: top;
-      transform: scaleY(0) !important;
+      // No overflow transition here: clip as soon as it starts.
+      .panel-contents {
+        overflow: hidden;
+        padding-top: 0;
+        padding-bottom: 0;
 
-      transition: transform 0.25s ease-out !important;
+        transition: padding $panel-toggle-duration ease-out;
+      }
     }
-    */
   }
 
   .panel-control {
@@ -76,6 +71,8 @@ $panel-name-font-weight: 200;
 
     border-top-left-radius: $panel-border-radius;
     border-top-right-radius: $panel-border-radius;
+
+    transition: border-radius $panel-toggle-duration ease-in;
 
     .panel-name {
       display: flex;
@@ -92,36 +89,38 @@ $panel-name-font-weight: 200;
       @include icon {
         font-size: $panel-control-icon-size;
         @include themify { color: foreground-color('primary'); }
+
+        transition: transform $panel-toggle-duration ease-in;
       }
     }
   }
 
+  // A 1fr <-> 0fr row animates the contents' height. A grid
+  // item can't be shorter than its padding, so that animates too.
+  // The contents clip while collapsed and animating, but not once
+  // expanded, so open SelectField menus can extend past them.
   .panel-contents-wrapper {
-    display: flex;
+    display: grid;
+    grid-template-rows: 1fr;
 
-    max-height: 9999px;
-    //overflow:  hidden;
-
-    transition: max-height 2.5s ease-in, overflow 0ms ease 2.5s;
+    transition: grid-template-rows $panel-toggle-duration ease-in;
 
     .panel-contents {
       display: flex;
       flex-direction: column;
 
-      transform-origin: top;
-      transform: scaleY(1);
-
-      flex-grow:   1;
-      flex-shrink: 0;
+      min-height: 0;
+      overflow: visible;
 
       padding: 17.5px 25px;
 
       border-bottom-left-radius: $panel-border-radius;
       border-bottom-right-radius: $panel-border-radius;
 
+      // Expanding: unclip only after the height animation ends.
       transition:
-        padding .2s ease-in,
-        height .2s ease-in transform 0.25s ease-in;
+        padding $panel-toggle-duration ease-in,
+        overflow 0s $panel-toggle-duration allow-discrete;
 
       @include themify {
         background-color: background-color('lighter');
