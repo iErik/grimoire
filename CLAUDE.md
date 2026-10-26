@@ -44,10 +44,11 @@ Vitest is only the test runner. It has its own config,
   same targets.
 - `vitest.setup.js` mocks `electron` for every test (`app.getPath`,
   `remote.app.getPath` and `BrowserWindow` are stubs). No test may touch
-  real Electron APIs or the filesystem. `app/node_modules` holds a second
-  `electron` (a peer of `@electron/remote`), so the config dedupes
-  `electron` to the root copy. Without that, app code would get the real
-  module, which downloads its binary when it's imported.
+  real Electron APIs or the filesystem. The config dedupes `electron`
+  to the root copy. `app/` doesn't install one today (`app/.npmrc`
+  turns off `auto-install-peers`), but the dedupe stays as a guard: a
+  future nested `electron` would otherwise bypass the mock, and the
+  real module downloads its binary when it's imported.
 - Mock the nedb collection modules and `electron-settings` with
   `vi.mock(path, factory)`, returning plain objects with stubbed methods.
   Don't automock them: that evaluates the real module, which opens an
@@ -93,6 +94,8 @@ uses it automatically; locally, run
 - `node_modules` uses `node-linker=hoisted` (`.npmrc`) because Electron and
   the `module.globalPaths` hack in `main.dev.js` expect a flat layout.
   `auto-install-peers=false` keeps the unused `node-sass` peer out.
+  `app/.npmrc` sets it too, so `@electron/remote`'s `electron` peer
+  comes from the root instead of a second copy in `app/node_modules`.
 - pnpm 10 blocks install scripts. Only `electron` is allowed, via
   `pnpm.onlyBuiltDependencies` in the root `package.json`.
 - webpack 3 needs `--openssl-legacy-provider` on Node ≥17. It's passed on the
