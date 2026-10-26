@@ -59,14 +59,16 @@ export const uiPropTypes = {
   updateUI: PropTypes.func.isRequired
 }
 
-// Injected by react-router into routed components, and passed on
-// to children through `{ ...props }`.
+// Injected by react-router into routed components and by its
+// `withRouter` decorator, and passed on to children through
+// `{ ...props }`.
 export const routePropTypes = {
   match: PropTypes.shape({
     url: PropTypes.string,
     params: PropTypes.objectOf(PropTypes.string)
   }).isRequired,
   history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
     replace: PropTypes.func
   }).isRequired
 }
